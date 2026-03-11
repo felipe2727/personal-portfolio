@@ -56,56 +56,153 @@ function useClock() {
   return t.toLocaleTimeString("en-GB", { timeZone: "Europe/Madrid", hour: "2-digit", minute: "2-digit" });
 }
 
-const BRAIN_TOTAL = 96;
-const BRAIN_FPS = 12;
-function BrainAnimation() {
-  const [frame, setFrame] = useState(1);
-  const canvasRef = useRef(null);
-  const framesRef = useRef([]);
-  const loadedRef = useRef(0);
+function NeuralMesh() {
+  const containerRef = useRef(null);
 
   useEffect(() => {
-    const imgs = [];
-    for (let i = 1; i <= BRAIN_TOTAL; i++) {
-      const img = new Image();
-      img.src = `/brain-frames/frame-${String(i).padStart(3, "0")}.jpg`;
-      img.onload = () => { loadedRef.current++; };
-      imgs.push(img);
-    }
-    framesRef.current = imgs;
-  }, []);
+    const container = containerRef.current;
+    if (!container) return;
 
-  useEffect(() => {
-    let raf;
-    let last = 0;
-    const interval = 1000 / BRAIN_FPS;
-    const loop = (ts) => {
-      if (ts - last >= interval) {
-        setFrame((f) => (f % BRAIN_TOTAL) + 1);
-        last = ts;
+    const renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
+    renderer.setPixelRatio(window.devicePixelRatio);
+    container.appendChild(renderer.domElement);
+
+    const scene = new THREE.Scene();
+    const camera = new THREE.OrthographicCamera(-1, 1, 1, -1, 0, 1);
+    const clock = new THREE.Clock();
+
+    const vertexShader = `void main() { gl_Position = vec4(position, 1.0); }`;
+
+    const fragmentShader = `
+      precision highp float;
+      uniform vec2 iResolution;
+      uniform float iTime;
+      uniform vec2 iMouse;
+
+      float random(vec2 st) {
+        return fract(sin(dot(st.xy, vec2(12.9898, 78.233))) * 43758.5453123);
       }
-      raf = requestAnimationFrame(loop);
+
+      void main() {
+        vec2 uv = (gl_FragCoord.xy - 0.5 * iResolution.xy) / iResolution.y;
+        vec2 mouse = (iMouse - 0.5 * iResolution.xy) / iResolution.y;
+
+        float t = iTime * 0.2;
+        float mouseDist = length(uv - mouse);
+
+        float warp = sin(mouseDist * 20.0 - t * 4.0) * 0.1;
+        warp *= smoothstep(0.4, 0.0, mouseDist);
+        uv += warp;
+
+        vec2 gridUv = abs(fract(uv * 10.0) - 0.5);
+        float line = pow(1.0 - min(gridUv.x, gridUv.y), 50.0);
+
+        vec3 gridColor = vec3(0.9, 0.15, 0.1);
+        vec3 color = gridColor * line * (0.3 + sin(t * 2.0) * 0.15);
+
+        float energy = sin(uv.x * 20.0 + t * 5.0) * sin(uv.y * 20.0 + t * 3.0);
+        energy = smoothstep(0.8, 1.0, energy);
+        color += vec3(1.0, 0.3, 0.1) * energy * line;
+
+        float glow = smoothstep(0.1, 0.0, mouseDist);
+        color += vec3(0.9, 0.2, 0.1) * glow * 0.4;
+
+        color += random(uv + t * 0.1) * 0.03;
+
+        gl_FragColor = vec4(color, 1.0);
+      }
+    `;
+
+    const uniforms = {
+      iTime: { value: 0 },
+      iResolution: { value: new THREE.Vector2() },
+      iMouse: { value: new THREE.Vector2() },
     };
-    raf = requestAnimationFrame(loop);
-    return () => cancelAnimationFrame(raf);
+
+    const material = new THREE.ShaderMaterial({ vertexShader, fragmentShader, uniforms });
+    const geometry = new THREE.PlaneGeometry(2, 2);
+    const mesh = new THREE.Mesh(geometry, material);
+    scene.add(mesh);
+
+    const onResize = () => {
+      const w = container.clientWidth, h = container.clientHeight;
+      renderer.setSize(w, h);
+      uniforms.iResolution.value.set(w, h);
+    };
+    const ro = new ResizeObserver(onResize);
+    ro.observe(container);
+    onResize();
+
+    const onMouseMove = (e) => {
+      const rect = container.getBoundingClientRect();
+      uniforms.iMouse.value.set(e.clientX - rect.left, container.clientHeight - (e.clientY - rect.top));
+    };
+    window.addEventListener("mousemove", onMouseMove);
+
+    renderer.setAnimationLoop(() => {
+      uniforms.iTime.value = clock.getElapsedTime();
+      renderer.render(scene, camera);
+    });
+
+    return () => {
+      ro.disconnect();
+      window.removeEventListener("mousemove", onMouseMove);
+      renderer.setAnimationLoop(null);
+      if (renderer.domElement.parentNode) renderer.domElement.parentNode.removeChild(renderer.domElement);
+      material.dispose();
+      geometry.dispose();
+      renderer.dispose();
+    };
   }, []);
 
+  const [termLines, setTermLines] = useState([]);
+  const allLines = [
+    "> initializing neural_mesh...",
+    "> loading design_systems v4.2.1",
+    "> compiling shader_pipeline",
+    "> status: ONLINE",
+    "> uptime: 99.97%",
+    "> latency: 12ms",
+    "> nodes_active: 2,048",
+    "> signal: ██████████ 100%",
+  ];
+
   useEffect(() => {
-    const ctx = canvasRef.current?.getContext("2d");
-    const img = framesRef.current[frame - 1];
-    if (ctx && img && img.complete) {
-      const canvas = canvasRef.current;
-      canvas.width = img.naturalWidth;
-      canvas.height = img.naturalHeight;
-      ctx.drawImage(img, 0, 0);
-    }
-  }, [frame]);
+    let i = 0;
+    const interval = setInterval(() => {
+      if (i < allLines.length) {
+        setTermLines((prev) => [...prev, allLines[i]]);
+        i++;
+      } else {
+        i = 0;
+        setTermLines([]);
+      }
+    }, 1800);
+    return () => clearInterval(interval);
+  }, []);
 
   return (
-    <canvas ref={canvasRef} style={{
-      width: "100%", height: "100%", objectFit: "cover", display: "block",
-    filter: "brightness(1.15)",
-    }} />
+    <div ref={containerRef} style={{ width: "100%", height: "100%", position: "relative" }}>
+      <div style={{
+        position: "absolute", top: 0, left: 0, right: 0, bottom: 0,
+        padding: "16px 20px",
+        display: "flex", flexDirection: "column", justifyContent: "flex-end",
+        pointerEvents: "none", zIndex: 1,
+        fontFamily: "var(--f-mono)", fontSize: "11px", lineHeight: 1.7,
+        color: "rgba(230,50,40,0.7)",
+        textShadow: "0 0 8px rgba(230,50,40,0.3)",
+      }}>
+        {termLines.map((line, i) => (
+          <div key={i} style={{ opacity: 0.6 + (i / allLines.length) * 0.4 }}>{line}</div>
+        ))}
+        <div style={{
+          width: "7px", height: "14px",
+          background: "rgba(230,50,40,0.8)",
+          animation: "blink 1s step-end infinite",
+          marginTop: "2px",
+        }} />
+      </div>
+    </div>
   );
 }
 
@@ -298,7 +395,7 @@ function Nav() {
       borderBottom: scrolled ? "1px solid rgba(0,0,0,0.06)" : "none",
       transition: "all 0.5s cubic-bezier(.16,1,.3,1)",
     }}>
-      <span style={{ fontFamily: "var(--f-display)", fontSize: 20, fontWeight: 700, color: "var(--ink)" }}>Fe.</span>
+      <a href="#" onClick={(e) => { e.preventDefault(); window.scrollTo({ top: 0, behavior: "smooth" }); }} style={{ fontFamily: "var(--f-display)", fontSize: 20, fontWeight: 700, color: "var(--ink)", textDecoration: "none", cursor: "pointer" }}>Fe.</a>
       <div style={{ display: "flex", gap: 6 }}>
         {[["Work", "#work"], ["About", "#about"], ["Contact", "#contact"]].map(([l, h]) => (
           <a key={l} href={h} style={{
@@ -606,6 +703,10 @@ function WorkSection() {
   return (
     <section id="work" style={{ padding: "80px 40px 100px" }}>
       <div style={{ maxWidth: 1200, margin: "0 auto" }}>
+        <Reveal style={{ textAlign: "center", marginBottom: 48 }}>
+          <div style={{ fontFamily: "var(--f-mono)", fontSize: 11, letterSpacing: "0.25em", color: "var(--red)", opacity: 0.7, marginBottom: 12 }}>{"{ SELECTED WORK }"}</div>
+          <div style={{ fontFamily: "var(--f-display)", fontSize: 38, fontWeight: 700, color: "var(--ink)", lineHeight: 1.1 }}>Projects & Systems</div>
+        </Reveal>
         {/* Dashboard grid — 4 cols */}
         <div style={{
           display: "grid",
@@ -646,12 +747,12 @@ function WorkSection() {
           {/* Project 2 */}
           <ProjectTile p={PROJECTS[1]} delay={0.18} span="1/2" />
 
-          {/* CENTER HERO — brain animation */}
+          {/* CENTER HERO — neural mesh */}
           <DashTile span="2/2" delay={0.24} style={{
             padding: 0, overflow: "hidden",
             borderColor: "rgba(230,50,40,0.12)",
           }}>
-            <BrainAnimation />
+            <NeuralMesh />
           </DashTile>
 
           {/* Project 3 */}
@@ -924,6 +1025,7 @@ export default function Portfolio() {
         body { background: var(--bg); color: var(--ink); -webkit-font-smoothing: antialiased; overflow-x: hidden; }
         ::selection { background: rgba(230,50,40,0.15); color: var(--ink); }
 
+        @keyframes blink { 0%, 100% { opacity: 1; } 50% { opacity: 0; } }
         @keyframes marquee { from { transform: translateX(0); } to { transform: translateX(-50%); } }
         @keyframes pulse { 0%, 100% { opacity: 1; box-shadow: 0 0 0 0 rgba(230,50,40,0.3); } 50% { opacity: 0.6; box-shadow: 0 0 0 5px rgba(230,50,40,0); } }
 
