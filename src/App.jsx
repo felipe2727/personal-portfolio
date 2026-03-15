@@ -252,7 +252,7 @@ function EcheverriTitle() {
             position: "absolute", inset: 0, display: "flex", alignItems: "center", justifyContent: "center",
             fontFamily: "var(--f-display)", fontSize: "clamp(72px, 13vw, 200px)", fontWeight: 700,
             letterSpacing: "0.05em", color: "transparent",
-            WebkitTextStroke: "1px var(--amber)",
+            WebkitTextStroke: "1px var(--red)",
             transform: "translate(3px, 2px)", animation: "glitch2 0.15s infinite",
             pointerEvents: "none", zIndex: 3,
           }}>ECHEVERRI</div>
@@ -477,7 +477,7 @@ function Hero() {
             fontWeight: 400,
             letterSpacing: "0.08em",
             color: "transparent",
-            background: "linear-gradient(135deg, #e63228, #ff6b35, #d4a017)",
+            background: "linear-gradient(135deg, #e63228, #d4392b, #e63228)",
             WebkitBackgroundClip: "text",
             WebkitTextFillColor: "transparent",
             position: "relative",
@@ -514,7 +514,7 @@ function Hero() {
           <div style={{
             fontFamily: "'Zen Dots', cursive", fontSize: 12, fontStyle: "normal",
             letterSpacing: "0.06em",
-            background: "linear-gradient(135deg, #e63228, #ff6b35, #d4a017)",
+            background: "linear-gradient(135deg, #e63228, #d4392b, #e63228)",
             WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent",
             marginBottom: 10,
           }}>
@@ -749,23 +749,25 @@ function WorkSection() {
           <ProjectTile p={PROJECTS[6]} delay={0.42} span="2/1" />
           <ProjectTile p={PROJECTS[7]} delay={0.48} span="1/1" />
 
-          {/* ── Row 4: Project 9 + Project 10 + spacer ── */}
+          {/* ── Row 4: Project 9 + Project 10 (wide) + GitHub CTA ── */}
           <ProjectTile p={PROJECTS[8]} delay={0.54} span="1/1" />
-          <ProjectTile p={PROJECTS[9]} delay={0.6} span="1/1" />
+          <ProjectTile p={PROJECTS[9]} delay={0.6} span="2/1" />
 
           {/* GitHub CTA tile */}
-          <DashTile span="2/1" delay={0.66} style={{
+          <DashTile span="1/1" delay={0.66} style={{
             display: "flex", alignItems: "center", justifyContent: "center",
+            background: "linear-gradient(135deg, #e63228, #d4392b)",
+            borderColor: "rgba(230,50,40,0.3)",
           }}>
             <a href="https://github.com/felipe2727" target="_blank" rel="noopener noreferrer" style={{
-              fontFamily: "var(--f-mono)", fontSize: 10, letterSpacing: "0.1em",
-              color: "var(--muted)", textDecoration: "none", transition: "all 0.3s",
-              display: "flex", alignItems: "center", gap: 8,
+              fontFamily: "var(--f-mono)", fontSize: 10, letterSpacing: "0.12em",
+              color: "#fff", textDecoration: "none", transition: "all 0.3s",
+              display: "flex", alignItems: "center", gap: 8, fontWeight: 600,
             }}
-              onMouseEnter={e => { e.target.style.color = "var(--ink)"; }}
-              onMouseLeave={e => { e.target.style.color = "var(--muted)"; }}
+              onMouseEnter={e => { e.target.style.opacity = "0.8"; }}
+              onMouseLeave={e => { e.target.style.opacity = "1"; }}
             >
-              VIEW ALL ON GITHUB <span style={{ color: "var(--red)" }}>&rarr;</span>
+              VIEW ALL ON GITHUB <span>&rarr;</span>
             </a>
           </DashTile>
 
@@ -799,25 +801,41 @@ function WorkSection() {
 //  BRANDING GALLERY — Auto-sliding rows
 // ═══════════════════════════════════════
 const GALLERY_ROW1 = [
-  "https://images.unsplash.com/photo-1558618666-fcd25c85f82e?w=500&h=340&q=80&auto=format&fit=crop",
-  "https://images.unsplash.com/photo-1563089145-599997674d42?w=500&h=340&q=80&auto=format&fit=crop",
-  "https://images.unsplash.com/photo-1620641788421-7a1c342ea42e?w=500&h=340&q=80&auto=format&fit=crop",
-  "https://images.unsplash.com/photo-1633356122544-f134324a6cee?w=500&h=340&q=80&auto=format&fit=crop",
-  "https://images.unsplash.com/photo-1614624532983-4ce03382d63d?w=500&h=340&q=80&auto=format&fit=crop",
-  "https://images.unsplash.com/photo-1558591710-4b4a1ae0f04d?w=500&h=340&q=80&auto=format&fit=crop",
-  "https://images.unsplash.com/photo-1515630771457-09367d0ae038?w=500&h=340&q=80&auto=format&fit=crop",
-  "https://images.unsplash.com/photo-1617802690992-15d93263d3a9?w=500&h=340&q=80&auto=format&fit=crop",
+  "/gallery/1.1_hero_mango.png",
+  "/gallery/2.1_frozen_original.png",
+  "/gallery/3.1_xpressions_vol11.png",
+  "/gallery/5.1_beach_hero.png",
+  "/gallery/1.2_announcement_poster_v2.png",
+  "/gallery/2.2_dramatic_rimlight.png",
+  "/gallery/3.2_morning_story.png",
+  { video: "/gallery/4.1_product_reveal.mp4" },
+  "/gallery/1.3_lineup_all_five.png",
+  "/gallery/5.3_festival_poster.png",
+  "/gallery/2.3_splash_pour.png",
+  "/gallery/3.4_monochrome_orange.png",
+  "/gallery/5.4_3d_summer.png",
+  "/gallery/1.5_billboard_banner.png",
 ];
 
 const GALLERY_ROW2 = [
-  "https://images.unsplash.com/photo-1531297484001-80022131f5a1?w=500&h=340&q=80&auto=format&fit=crop",
-  "https://images.unsplash.com/photo-1526374965328-7f61d4dc18c5?w=500&h=340&q=80&auto=format&fit=crop",
-  "https://images.unsplash.com/photo-1550751827-4bd374c3f58b?w=500&h=340&q=80&auto=format&fit=crop",
-  "https://images.unsplash.com/photo-1635070041078-e363dbe005cb?w=500&h=340&q=80&auto=format&fit=crop",
-  "https://images.unsplash.com/photo-1504639725590-34d0984388bd?w=500&h=340&q=80&auto=format&fit=crop",
-  "https://images.unsplash.com/photo-1558618666-fcd25c85f82e?w=500&h=340&q=80&auto=format&fit=crop",
-  "https://images.unsplash.com/photo-1563089145-599997674d42?w=500&h=340&q=80&auto=format&fit=crop",
-  "https://images.unsplash.com/photo-1620641788421-7a1c342ea42e?w=500&h=340&q=80&auto=format&fit=crop",
+  "/gallery/bomber.jpg",
+  "/gallery/pro-1.jpg",
+  "/gallery/whisk-1.jpeg",
+  "/gallery/hoodie.jpg",
+  "/gallery/ugc-1.jpg",
+  "/gallery/3.3_repeating_brand.png",
+  { video: "/gallery/4.4_mango_teaser.mp4" },
+  "/gallery/flannel.jpg",
+  "/gallery/pro-2.jpg",
+  "/gallery/whisk-2.jpeg",
+  "/gallery/tshirt.jpg",
+  "/gallery/5.2_pool_flatlay.png",
+  "/gallery/track.jpg",
+  "/gallery/pro-3.jpg",
+  "/gallery/knit.jpg",
+  "/gallery/5.5_summer_edition_can.png",
+  "/gallery/1.6_food_pairing_v2.png",
+  "/gallery/3.5_pastel_grid.png",
 ];
 
 function GalleryRow({ images, direction = "left", speed = 40 }) {
@@ -843,26 +861,37 @@ function GalleryRow({ images, direction = "left", speed = 40 }) {
         display: "flex", gap: 12, width: "max-content",
         animation: `gallery${direction === "left" ? "Left" : "Right"} ${speed}s linear infinite`,
       }}>
-        {doubled.map((src, i) => (
-          <div key={i} style={{
-            width: 320, height: 220, borderRadius: 6, overflow: "hidden",
-            flexShrink: 0, position: "relative",
-            border: "1px solid var(--border)",
-            transition: "transform 0.4s cubic-bezier(.16,1,.3,1), border-color 0.3s",
-          }}
-            onMouseEnter={e => { e.currentTarget.style.transform = "scale(1.04)"; e.currentTarget.style.borderColor = "rgba(230,50,40,0.2)"; e.currentTarget.style.zIndex = "5"; }}
-            onMouseLeave={e => { e.currentTarget.style.transform = "scale(1)"; e.currentTarget.style.borderColor = "var(--border)"; e.currentTarget.style.zIndex = "1"; }}
-          >
-            <img src={src} alt="" loading="lazy" style={{
-              width: "100%", height: "100%", objectFit: "cover",
-              filter: "saturate(0.85) contrast(1.05)",
-              transition: "filter 0.4s ease",
+        {doubled.map((item, i) => {
+          const isVideo = typeof item === "object" && item.video;
+          const src = isVideo ? item.video : item;
+          return (
+            <div key={i} style={{
+              width: 320, height: 220, borderRadius: 6, overflow: "hidden",
+              flexShrink: 0, position: "relative",
+              border: "1px solid var(--border)",
+              transition: "transform 0.4s cubic-bezier(.16,1,.3,1), border-color 0.3s",
             }}
-              onMouseEnter={e => e.target.style.filter = "saturate(1.1) contrast(1.1)"}
-              onMouseLeave={e => e.target.style.filter = "saturate(0.85) contrast(1.05)"}
-            />
-          </div>
-        ))}
+              onMouseEnter={e => { e.currentTarget.style.transform = "scale(1.04)"; e.currentTarget.style.borderColor = "rgba(230,50,40,0.2)"; e.currentTarget.style.zIndex = "5"; }}
+              onMouseLeave={e => { e.currentTarget.style.transform = "scale(1)"; e.currentTarget.style.borderColor = "var(--border)"; e.currentTarget.style.zIndex = "1"; }}
+            >
+              {isVideo ? (
+                <video src={src} muted autoPlay loop playsInline style={{
+                  width: "100%", height: "100%", objectFit: "cover",
+                  filter: "saturate(0.85) contrast(1.05)",
+                }} />
+              ) : (
+                <img src={src} alt="" loading="lazy" style={{
+                  width: "100%", height: "100%", objectFit: "cover",
+                  filter: "saturate(0.85) contrast(1.05)",
+                  transition: "filter 0.4s ease",
+                }}
+                  onMouseEnter={e => e.target.style.filter = "saturate(1.1) contrast(1.1)"}
+                  onMouseLeave={e => e.target.style.filter = "saturate(0.85) contrast(1.05)"}
+                />
+              )}
+            </div>
+          );
+        })}
       </div>
     </div>
   );
@@ -877,19 +906,11 @@ function BrandingGallery() {
       opacity: vis ? 1 : 0, transition: "opacity 0.8s ease",
     }}>
       {/* Section header */}
-      <div style={{ padding: "0 40px", maxWidth: 1200, margin: "0 auto 40px" }}>
-        <div style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-end" }}>
-          <div>
-            <div style={{ fontFamily: "var(--f-mono)", fontSize: 8, letterSpacing: "0.2em", color: "var(--red)", opacity: 0.7, marginBottom: 8 }}>[ CREATIVE PORTFOLIO ]</div>
-            <h2 style={{ fontFamily: "var(--f-display)", fontSize: 28, fontWeight: 300, color: "var(--ink)", margin: 0, letterSpacing: "0.02em" }}>
-              Branding & Visuals
-            </h2>
-          </div>
-          <div style={{ fontFamily: "var(--f-mono)", fontSize: 9, color: "var(--faint)", letterSpacing: "0.1em", textAlign: "right" }}>
-            AI-GENERATED CONCEPTS<br />
-            <span style={{ color: "var(--amber)" }}>CAMPAIGNS · EDITORIAL · PRODUCT</span>
-          </div>
-        </div>
+      <div style={{ padding: "0 40px", maxWidth: 1200, margin: "0 auto 48px" }}>
+        <Reveal style={{ textAlign: "center" }}>
+          <div style={{ fontFamily: "var(--f-mono)", fontSize: 11, letterSpacing: "0.25em", color: "var(--red)", opacity: 0.7, marginBottom: 12 }}>{"{ CREATIVE PORTFOLIO }"}</div>
+          <div style={{ fontFamily: "var(--f-display)", fontSize: 38, fontWeight: 700, color: "var(--ink)", lineHeight: 1.1 }}>Branding & Visuals</div>
+        </Reveal>
       </div>
 
       {/* Row 1 — slides left */}
@@ -938,7 +959,7 @@ function AboutSection() {
           <Reveal key={i} delay={0.1 * i}>
             <div style={{ display: "grid", gridTemplateColumns: "180px 1fr", gap: 40, padding: "24px 0", borderTop: "1px solid var(--border)" }}>
               <div>
-                <div style={{ fontFamily: "var(--f-mono)", fontSize: 10, color: "var(--amber)", marginBottom: 6, opacity: 0.7 }}>{exp.period}</div>
+                <div style={{ fontFamily: "var(--f-mono)", fontSize: 10, color: "var(--red)", marginBottom: 6, opacity: 0.7 }}>{exp.period}</div>
                 <div style={{ fontFamily: "var(--f-sans)", fontSize: 17, fontWeight: 600, color: "var(--ink)", marginBottom: 4 }}>{exp.role}</div>
                 <div style={{ fontFamily: "var(--f-mono)", fontSize: 10, color: "var(--faint)" }}>{exp.company}</div>
               </div>
@@ -967,19 +988,19 @@ function Contact() {
           </div>
         </Mask>
         <Reveal delay={0.3} style={{ marginTop: 44, display: "flex", gap: 16, alignItems: "center", flexWrap: "wrap" }}>
-          <a href="mailto:hello@felipemolina.dev" style={{
+          <a href="mailto:mortylobster@gmail.com" style={{
             fontFamily: "var(--f-mono)", fontSize: 12, padding: "13px 30px", borderRadius: 40,
             background: "var(--red)", color: "#fff", textDecoration: "none", fontWeight: 500,
             transition: "opacity 0.3s",
           }}
             onMouseEnter={e => e.target.style.opacity = "0.85"} onMouseLeave={e => e.target.style.opacity = "1"}>Schedule a call</a>
-          <a href="mailto:hello@felipemolina.dev" style={{
+          <a href="mailto:mortylobster@gmail.com" style={{
             fontFamily: "var(--f-mono)", fontSize: 12, padding: "13px 30px", borderRadius: 40,
             border: "1px solid var(--border)", color: "var(--muted)", textDecoration: "none",
             transition: "all 0.3s",
           }}
             onMouseEnter={e => { e.target.style.borderColor = "var(--ink)"; e.target.style.color = "var(--ink)"; }}
-            onMouseLeave={e => { e.target.style.borderColor = "var(--border)"; e.target.style.color = "var(--muted)"; }}>hello@felipemolina.dev</a>
+            onMouseLeave={e => { e.target.style.borderColor = "var(--border)"; e.target.style.color = "var(--muted)"; }}>mortylobster@gmail.com</a>
         </Reveal>
         <Reveal delay={0.4} style={{ marginTop: 40, display: "flex", gap: 24 }}>
           {["GitHub", "LinkedIn", "Instagram", "Dribbble"].map(s => (
