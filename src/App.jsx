@@ -525,8 +525,11 @@ function Hero() {
           }}>
             A CREATIVE PRACTICE
           </div>
-          <p style={{ fontFamily: "var(--f-sans)", fontSize: 11, lineHeight: 1.7, color: "var(--faint)" }}>
-            Design engineer and AI systems architect building intelligent products, automated pipelines, and high-concept brand experiences.
+          <p style={{ fontFamily: "var(--f-sans)", fontSize: 12, lineHeight: 1.8, color: "var(--ink)", opacity: 0.72, fontWeight: 500 }}>
+            Design engineer and AI architect — I build things that actually ship. Products, pipelines, chatbots, brand systems. Lately a lot of AI tooling: news digests, monitoring dashboards, conversational interfaces.
+          </p>
+          <p style={{ fontFamily: "var(--f-sans)", fontSize: 12, lineHeight: 1.8, color: "var(--ink)", opacity: 0.55, fontWeight: 400, marginTop: 10 }}>
+            I care about the gap between what a thing looks like and how it actually works. Clean UI, solid backend, no cut corners.
           </p>
           <a href="#contact" style={{
             display: "block", marginTop: 14, padding: "8px 0",
