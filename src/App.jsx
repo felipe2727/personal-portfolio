@@ -7,23 +7,18 @@ import * as THREE from "three";
    Inspired by: AVA SRG · scratchy warm grey palette
    ════════════════════════════════════════════════════════════════ */
 
-const IMG = {
-  profile: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=400&q=80&auto=format",
-  proj1: "https://images.unsplash.com/photo-1635070041078-e363dbe005cb?w=700&q=80&auto=format",
-  proj2: "https://images.unsplash.com/photo-1550751827-4bd374c3f58b?w=700&q=80&auto=format",
-  proj3: "https://images.unsplash.com/photo-1526374965328-7f61d4dc18c5?w=700&q=80&auto=format",
-  proj4: "https://images.unsplash.com/photo-1558591710-4b4a1ae0f04d?w=700&q=80&auto=format",
-  proj5: "https://images.unsplash.com/photo-1531297484001-80022131f5a1?w=700&q=80&auto=format",
-  proj6: "https://images.unsplash.com/photo-1617802690992-15d93263d3a9?w=700&q=80&auto=format",
-};
 
 const PROJECTS = [
-  { id: "01", title: "OpenClaw HQ", role: "Architecture, Engineering", year: "2025", img: IMG.proj1, desc: "Two-agent AI system with cost-optimized model routing across distributed hardware.", tags: ["Kimi K2.5", "Claude", "DeepSeek"] },
-  { id: "02", title: "Shibumi Botanicals", role: "Brand, Design, Dev", year: "2025", img: IMG.proj2, desc: "High-end bonsai custodianship subscription with JUUN.J-inspired editorial design.", tags: ["Next.js", "Supabase", "Framer"] },
-  { id: "03", title: "B2B Lead Engine", role: "Engineering, Automation", year: "2025", img: IMG.proj3, desc: "Parallelized scraping pipeline targeting Spanish SMBs across fashion, hotels, restaurants.", tags: ["Apify", "Firecrawl", "Airtable"] },
-  { id: "04", title: "Härissa Foods", role: "Design, Development", year: "2024", img: IMG.proj4, desc: "WhatsApp chatbot for Mediterranean restaurant chain with parsed JSON menu.", tags: ["WhatsApp API", "Node.js"] },
-  { id: "05", title: "AI News Digest", role: "Design, Engineering", year: "2025", img: IMG.proj5, desc: "Dark editorial news aggregation platform with automated curation.", tags: ["Next.js 15", "Supabase"] },
-  { id: "06", title: "MCP Memory Server", role: "Engineering", year: "2025", img: IMG.proj6, desc: "Semantic memory retrieval across distributed machines via Qdrant Cloud.", tags: ["Qdrant", "MCP", "Claude Code"] },
+  { id: "01", title: "OpenClaw HQ", role: "Architecture, Engineering", year: "2025", desc: "Two-agent AI system with cost-optimized model routing across distributed hardware.", tags: ["Kimi K2.5", "Claude", "DeepSeek"], github: null, live: null },
+  { id: "02", title: "Shibumi Botanicals", role: "Brand, Design, Dev", year: "2025", desc: "High-end bonsai custodianship subscription with JUUN.J-inspired editorial design.", tags: ["Next.js", "Supabase", "Framer"], github: "https://github.com/felipe2727/bonsai-claude", live: "https://bonsai-claude.vercel.app" },
+  { id: "03", title: "B2B Lead Engine", role: "Engineering, Automation", year: "2025", desc: "Parallelized scraping pipeline targeting Spanish SMBs across fashion, hotels, restaurants.", tags: ["Apify", "Firecrawl", "Airtable"], github: null, live: null },
+  { id: "04", title: "Härissa Foods", role: "Design, Development", year: "2024", desc: "WhatsApp chatbot for Mediterranean restaurant chain with parsed JSON menu.", tags: ["WhatsApp API", "Node.js"], github: "https://github.com/felipe2727/harissa-chatbot", live: "https://harissa-chatbot.vercel.app" },
+  { id: "05", title: "AI News Digest", role: "Design, Engineering", year: "2025", desc: "Automated pipeline that fetches, scores, and summarizes AI news into an editorial front end.", tags: ["Next.js 15", "Supabase", "Gemini"], github: "https://github.com/felipe2727/ai-news-digest", live: "https://website-rho-ten-481pvky5qj.vercel.app" },
+  { id: "06", title: "MCP Memory Server", role: "Engineering", year: "2025", desc: "Semantic memory retrieval across distributed machines via Qdrant Cloud.", tags: ["Qdrant", "MCP", "Claude Code"], github: null, live: null },
+  { id: "07", title: "Kentro Platform", role: "Design, Development", year: "2025", desc: "Power Platform consulting website with glassmorphism UI and service breakdowns.", tags: ["Next.js", "TypeScript"], github: "https://github.com/felipe2727/kentro-website", live: "https://kentro-vscode.vercel.app" },
+  { id: "08", title: "Fortuna Cookies", role: "Design, Dev", year: "2025", desc: "Fortune cookie generator with randomized wisdom and playful editorial design.", tags: ["React", "Vite"], github: "https://github.com/felipe2727/fortuna-cookies", live: "https://fortuna-cookies.vercel.app" },
+  { id: "09", title: "Asset Monitor", role: "Engineering", year: "2025", desc: "Python-based asset monitoring tool for tracking and alerting on portfolio positions.", tags: ["Python", "Automation"], github: "https://github.com/felipe2727/Asset-Monitoring-Tool", live: null },
+  { id: "10", title: "GadgetSwipe", role: "Design, Engineering", year: "2025", desc: "Tinder-style product discovery app for consumer electronics with swipe-based UX.", tags: ["TypeScript", "React"], github: "https://github.com/felipe2727/gadgetswipe-new", live: null },
 ];
 
 const EXPERIENCE = [
@@ -679,13 +674,37 @@ function ProjectTile({ p, delay, span = "1/1" }) {
         </div>
         <div style={{ marginTop: 16 }}>
           <div style={{ fontFamily: "var(--f-mono)", fontSize: 8, letterSpacing: "0.1em", color: "var(--faint)", marginBottom: 8 }}>{p.role}</div>
-          <div style={{ display: "flex", flexWrap: "wrap", gap: 5 }}>
-            {p.tags.map(t => (
-              <span key={t} style={{
-                fontFamily: "var(--f-mono)", fontSize: 8, padding: "3px 8px",
-                borderRadius: 3, border: "1px solid var(--border)", color: "var(--muted)",
-              }}>&gt;{t}&lt;</span>
-            ))}
+          <div style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-end" }}>
+            <div style={{ display: "flex", flexWrap: "wrap", gap: 5 }}>
+              {p.tags.map(t => (
+                <span key={t} style={{
+                  fontFamily: "var(--f-mono)", fontSize: 8, padding: "3px 8px",
+                  borderRadius: 3, border: "1px solid var(--border)", color: "var(--muted)",
+                }}>&gt;{t}&lt;</span>
+              ))}
+            </div>
+            <div style={{ display: "flex", gap: 8, flexShrink: 0, marginLeft: 8 }}>
+              {p.github && (
+                <a href={p.github} target="_blank" rel="noopener noreferrer" style={{
+                  fontFamily: "var(--f-mono)", fontSize: 8, color: "var(--muted)",
+                  textDecoration: "none", padding: "3px 8px", borderRadius: 3,
+                  border: "1px solid var(--border)", transition: "all 0.3s",
+                }}
+                  onMouseEnter={e => { e.target.style.borderColor = "var(--red)"; e.target.style.color = "var(--ink)"; }}
+                  onMouseLeave={e => { e.target.style.borderColor = "var(--border)"; e.target.style.color = "var(--muted)"; }}
+                >GitHub</a>
+              )}
+              {p.live && (
+                <a href={p.live} target="_blank" rel="noopener noreferrer" style={{
+                  fontFamily: "var(--f-mono)", fontSize: 8, color: "var(--red)",
+                  textDecoration: "none", padding: "3px 8px", borderRadius: 3,
+                  border: "1px solid rgba(230,50,40,0.25)", transition: "all 0.3s",
+                }}
+                  onMouseEnter={e => { e.target.style.background = "var(--red)"; e.target.style.color = "#fff"; }}
+                  onMouseLeave={e => { e.target.style.background = "transparent"; e.target.style.color = "var(--red)"; }}
+                >Live</a>
+              )}
+            </div>
           </div>
         </div>
       </div>
@@ -694,15 +713,6 @@ function ProjectTile({ p, delay, span = "1/1" }) {
 }
 
 function WorkSection() {
-  const [countVis, setCountVis] = useState(false);
-  const countRef = useRef(null);
-
-  useEffect(() => {
-    const el = countRef.current; if (!el) return;
-    const o = new IntersectionObserver(([e]) => { if (e.isIntersecting) { setCountVis(true); o.unobserve(el); } }, { threshold: 0.3 });
-    o.observe(el); return () => o.disconnect();
-  }, []);
-
   return (
     <section id="work" style={{ padding: "80px 40px 100px" }}>
       <div style={{ maxWidth: 1200, margin: "0 auto" }}>
@@ -717,40 +727,14 @@ function WorkSection() {
           gridAutoRows: "minmax(160px, auto)",
           gap: 10,
         }}>
-          {/* ── Row 1: Stats tiles + project 1 (wide) ── */}
+          {/* ── Row 1: Project 1 (wide) + Project 2 + Project 3 ── */}
+          <ProjectTile p={PROJECTS[0]} delay={0} span="2/1" />
+          <ProjectTile p={PROJECTS[1]} delay={0.06} span="1/1" />
+          <ProjectTile p={PROJECTS[2]} delay={0.12} span="1/1" />
 
-          {/* Stat: Projects */}
-          <DashTile span="1/1" delay={0} style={{ display: "flex", flexDirection: "column", justifyContent: "space-between" }}>
-            <div style={{ fontFamily: "var(--f-mono)", fontSize: 8, letterSpacing: "0.15em", color: "var(--red)", opacity: 0.7 }}>PROJECTS</div>
-            <div ref={countRef}>
-              <span style={{
-                fontFamily: "var(--f-display)", fontSize: 52, fontWeight: 700, color: "var(--ink)",
-                lineHeight: 1, display: "block",
-              }}>
-                {countVis ? "30" : "0"}<span style={{ fontSize: 28, color: "var(--red)" }}>+</span>
-              </span>
-              <span style={{ fontFamily: "var(--f-mono)", fontSize: 9, color: "var(--faint)" }}>deployed systems</span>
-            </div>
-          </DashTile>
+          {/* ── Row 2: Project 4 + CENTER SHADER + Project 5 ── */}
+          <ProjectTile p={PROJECTS[3]} delay={0.18} span="1/2" />
 
-          {/* Stat: Domains */}
-          <DashTile span="1/1" delay={0.06} style={{ display: "flex", flexDirection: "column", justifyContent: "space-between" }}>
-            <div style={{ fontFamily: "var(--f-mono)", fontSize: 8, letterSpacing: "0.15em", color: "var(--red)", opacity: 0.7 }}>DOMAINS</div>
-            <div>
-              <span style={{ fontFamily: "var(--f-display)", fontSize: 52, fontWeight: 700, color: "var(--ink)", lineHeight: 1, display: "block" }}>5</span>
-              <span style={{ fontFamily: "var(--f-mono)", fontSize: 9, color: "var(--faint)" }}>specializations</span>
-            </div>
-          </DashTile>
-
-          {/* Project 1 — wide */}
-          <ProjectTile p={PROJECTS[0]} delay={0.12} span="2/1" />
-
-          {/* ── Row 2: Project 2 + CENTER HERO + Project 3 ── */}
-
-          {/* Project 2 */}
-          <ProjectTile p={PROJECTS[1]} delay={0.18} span="1/2" />
-
-          {/* CENTER HERO — neural mesh */}
           <DashTile span="2/2" delay={0.24} style={{
             padding: 0, overflow: "hidden",
             borderColor: "rgba(230,50,40,0.12)",
@@ -758,22 +742,35 @@ function WorkSection() {
             <NeuralMesh />
           </DashTile>
 
-          {/* Project 3 */}
-          <ProjectTile p={PROJECTS[2]} delay={0.3} span="1/2" />
+          <ProjectTile p={PROJECTS[4]} delay={0.3} span="1/2" />
 
-          {/* ── Row 3: Remaining projects + extra tiles ── */}
+          {/* ── Row 3: Project 6 + Project 7 (wide) + Project 8 ── */}
+          <ProjectTile p={PROJECTS[5]} delay={0.36} span="1/1" />
+          <ProjectTile p={PROJECTS[6]} delay={0.42} span="2/1" />
+          <ProjectTile p={PROJECTS[7]} delay={0.48} span="1/1" />
 
-          {/* Project 4 */}
-          <ProjectTile p={PROJECTS[3]} delay={0.36} span="1/1" />
+          {/* ── Row 4: Project 9 + Project 10 + spacer ── */}
+          <ProjectTile p={PROJECTS[8]} delay={0.54} span="1/1" />
+          <ProjectTile p={PROJECTS[9]} delay={0.6} span="1/1" />
 
-          {/* Project 5 — wide */}
-          <ProjectTile p={PROJECTS[4]} delay={0.42} span="2/1" />
-
-          {/* Project 6 */}
-          <ProjectTile p={PROJECTS[5]} delay={0.48} span="1/1" />
+          {/* GitHub CTA tile */}
+          <DashTile span="2/1" delay={0.66} style={{
+            display: "flex", alignItems: "center", justifyContent: "center",
+          }}>
+            <a href="https://github.com/felipe2727" target="_blank" rel="noopener noreferrer" style={{
+              fontFamily: "var(--f-mono)", fontSize: 10, letterSpacing: "0.1em",
+              color: "var(--muted)", textDecoration: "none", transition: "all 0.3s",
+              display: "flex", alignItems: "center", gap: 8,
+            }}
+              onMouseEnter={e => { e.target.style.color = "var(--ink)"; }}
+              onMouseLeave={e => { e.target.style.color = "var(--muted)"; }}
+            >
+              VIEW ALL ON GITHUB <span style={{ color: "var(--red)" }}>&rarr;</span>
+            </a>
+          </DashTile>
 
           {/* ── Bottom row: Tech stack bar ── */}
-          <DashTile span="4/1" delay={0.54} style={{
+          <DashTile span="4/1" delay={0.72} style={{
             display: "flex", alignItems: "center", justifyContent: "space-between",
             padding: "16px 24px",
           }}>
