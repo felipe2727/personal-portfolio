@@ -1,636 +1,686 @@
 <!DOCTYPE html>
-<html><head><script>window.__resources = {"threeJs":"../assets/asset-002.js","https://unpkg.com/react@18.3.1/umd/react.production.min.js":"assets/asset-005.js","https://unpkg.com/react-dom@18.3.1/umd/react-dom.production.min.js":"assets/asset-006.js"};</script>
+<html lang="es">
+<head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<script src="assets/asset-004.js"></script>
+<title>Kéntro — AI Ad Lab · Madrid</title>
+<style>
+@font-face { font-family: 'JetBrains Mono'; font-style: normal; font-weight: 300 500; font-display: swap; src: url("assets/asset-012.woff2") format('woff2'); unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD; }
+@font-face { font-family: 'JetBrains Mono'; font-style: normal; font-weight: 300 500; font-display: swap; src: url("assets/asset-011.woff2") format('woff2'); unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF; }
+@font-face { font-family: 'Oxanium'; font-style: normal; font-weight: 200 800; font-display: swap; src: url("assets/asset-014.woff2") format('woff2'); unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD; }
+@font-face { font-family: 'Oxanium'; font-style: normal; font-weight: 200 800; font-display: swap; src: url("assets/asset-013.woff2") format('woff2'); unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF; }
+@font-face { font-family: 'Zen Dots'; font-style: normal; font-weight: 400; font-display: swap; src: url("assets/asset-016.woff2") format('woff2'); unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD; }
+@font-face { font-family: 'Zen Dots'; font-style: normal; font-weight: 400; font-display: swap; src: url("assets/asset-015.woff2") format('woff2'); unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF; }
 
+* { margin: 0; padding: 0; box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body { background: #9b9a99; color: #1a1a1a; -webkit-font-smoothing: antialiased; overflow-x: hidden; font-family: 'Oxanium', sans-serif; }
+::selection { background: rgba(230,50,40,0.15); color: #1a1a1a; }
+a { color: rgba(26,26,26,0.75); }
+a:hover { color: #1a1a1a; }
+img, video, canvas { display: block; }
+::-webkit-scrollbar { width: 3px; }
+::-webkit-scrollbar-track { background: #9b9a99; }
+::-webkit-scrollbar-thumb { background: rgba(26,26,26,0.12); border-radius: 3px; }
+@keyframes marquee { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+@keyframes pulse { 0%, 100% { opacity: 1; box-shadow: 0 0 0 0 rgba(230,50,40,0.3); } 50% { opacity: 0.6; box-shadow: 0 0 0 5px rgba(230,50,40,0); } }
+@keyframes felipeGlow { 0%, 100% { opacity: 0.5; transform: scale(1); } 50% { opacity: 1; transform: scale(1.15); } }
+@keyframes felipeSlide { 0% { opacity: 0; transform: translateX(20px); letter-spacing: 0.25em; } 60% { opacity: 1; } 100% { opacity: 1; transform: translateX(0); letter-spacing: 0.08em; } }
 
-<style id="mobile-fixes">
+/* ══ NAV ══ */
+nav { position: fixed; top: 0; left: 0; right: 0; z-index: 200; padding: 0 40px; height: 56px; display: flex; justify-content: space-between; align-items: center; background: rgba(155,154,153,0.92); backdrop-filter: blur(20px) saturate(1.3); border-bottom: 1px solid rgba(0,0,0,0.06); }
+nav .logo { font-size: 20px; font-weight: 700; color: #1a1a1a; text-decoration: none; }
+nav .links { display: flex; gap: 6px; }
+nav .links a { font-size: 13px; color: rgba(26,26,26,0.75); text-decoration: none; padding: 6px 16px; border-radius: 30px; border: 1px solid transparent; }
+nav .links a:hover { color: #1a1a1a; border-color: rgba(230,50,40,0.2); background: rgba(230,50,40,0.04); }
+nav .meta { font-family: 'JetBrains Mono', monospace; font-size: 10px; color: rgba(26,26,26,0.5); display: flex; gap: 12px; align-items: center; }
+nav .meta .clock { color: rgba(26,26,26,0.75); font-variant-numeric: tabular-nums; }
+#lang-toggle { font-family: 'JetBrains Mono', monospace; font-size: 10px; letter-spacing: 0.1em; color: rgba(26,26,26,0.75); background: none; border: 1px solid rgba(26,26,26,0.2); border-radius: 30px; padding: 4px 12px; cursor: pointer; transition: all 0.3s; }
+#lang-toggle:hover { border-color: rgba(230,50,40,0.4); color: #1a1a1a; }
+
+/* ══ HERO (4 quadrants) ══ */
+.hero { height: 100vh; position: relative; overflow: hidden; display: grid; grid-template-columns: 280px 1fr; grid-template-rows: minmax(0, 2fr) minmax(0, 3fr); background: #9b9a99; }
+.hero .noise { position: absolute; inset: 0; opacity: 0.06; pointer-events: none; z-index: 0; mix-blend-mode: multiply; background: url("data:image/svg+xml,%3Csvg viewBox='0 0 512 512' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='5' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E"); }
+.q1 { border-right: 1px solid rgba(230,50,40,0.08); border-bottom: 1px solid rgba(230,50,40,0.08); position: relative; z-index: 10; overflow: hidden; background: #9b9a99; }
+.q1 img { width: 100%; height: 100%; object-fit: cover; object-position: center; filter: brightness(0.95) contrast(1.05); }
+.q1 .fade { position: absolute; bottom: 0; left: 0; right: 0; height: 25%; background: linear-gradient(to top, #9b9a99, transparent); pointer-events: none; }
+.q2 { border-bottom: 1px solid rgba(230,50,40,0.08); display: flex; flex-direction: column; align-items: center; justify-content: center; position: relative; padding: 72px 20px 16px; overflow: hidden; }
+.q2 .title-wrap { perspective: 1200px; cursor: pointer; position: relative; width: 100%; display: flex; align-items: center; justify-content: center; overflow: hidden; }
+.q2 h1 { font-size: clamp(72px, 13vw, 200px); font-weight: 700; letter-spacing: 0.05em; color: #1a1a1a; text-align: center; user-select: none; margin: 0; transform-style: preserve-3d; transition: transform 0.4s cubic-bezier(.16,1,.3,1), text-shadow 0.4s; position: relative; z-index: 2; }
+.q2 h1:hover { transform: rotateY(12deg) rotateX(-3deg) scale(1.02); text-shadow: 0 0 80px rgba(230,50,40,0.1), 0 0 160px rgba(230,50,40,0.04); }
+.q2 .reflection { position: absolute; bottom: -6px; left: 0; right: 0; height: 50%; display: flex; align-items: flex-start; justify-content: center; font-size: clamp(72px, 13vw, 200px); font-weight: 700; letter-spacing: 0.05em; color: #1a1a1a; transform: scaleY(-1); opacity: 0.04; mask-image: linear-gradient(to bottom, rgba(0,0,0,0.3), transparent); -webkit-mask-image: linear-gradient(to bottom, rgba(0,0,0,0.3), transparent); pointer-events: none; z-index: 1; }
+.q2 .ai-badge { position: absolute; bottom: 36px; right: 32px; z-index: 20; }
+.q2 .ai-badge .glow { position: absolute; inset: -20px -30px; background: radial-gradient(ellipse, rgba(230,80,40,0.08) 0%, transparent 70%); border-radius: 50%; pointer-events: none; animation: felipeGlow 3s ease-in-out infinite; }
+.q2 .ai-badge span { font-family: 'Zen Dots', cursive; font-size: clamp(28px, 4vw, 52px); font-weight: 400; letter-spacing: 0.08em; background: linear-gradient(135deg, #e63228, #d4392b, #e63228); -webkit-background-clip: text; -webkit-text-fill-color: transparent; position: relative; display: inline-block; animation: felipeSlide 1.5s cubic-bezier(.16,1,.3,1) 0.6s both; }
+.q2 .tagline { display: flex; align-items: center; gap: 14px; font-family: 'JetBrains Mono', monospace; font-size: 9px; letter-spacing: 0.12em; color: rgba(26,26,26,0.5); margin-top: 12px; flex-wrap: wrap; justify-content: center; }
+.q2 .tagline .dot { color: #e63228; opacity: 0.5; }
+.q3 { border-right: 1px solid rgba(26,26,26,0.1); padding: 20px 24px; display: flex; flex-direction: column; justify-content: space-between; overflow: hidden; }
+.q3 .kicker { font-family: 'Zen Dots', cursive; font-size: 12px; letter-spacing: 0.06em; background: linear-gradient(135deg, #e63228, #d4392b, #e63228); -webkit-background-clip: text; -webkit-text-fill-color: transparent; margin-bottom: 10px; }
+.q3 p.main { font-size: 12px; line-height: 1.8; color: #1a1a1a; opacity: 0.72; font-weight: 500; }
+.q3 p.sub { font-size: 12px; line-height: 1.8; color: #1a1a1a; opacity: 0.55; font-weight: 400; margin-top: 10px; }
+.q3 .cta { display: block; margin-top: 14px; padding: 10px 0; font-family: 'JetBrains Mono', monospace; font-size: 10px; letter-spacing: 0.12em; color: #fff; background: #e63228; border-radius: 30px; text-decoration: none; text-align: center; font-weight: 500; transition: opacity 0.3s; }
+.q3 .cta:hover { opacity: 0.85; color: #fff; }
+.q3 .stats { font-family: 'JetBrains Mono', monospace; font-size: 9px; letter-spacing: 0.1em; color: rgba(26,26,26,0.5); }
+.q3 .stats .rows { line-height: 2; }
+.q3 .stats .avail { margin-top: 10px; display: flex; align-items: center; justify-content: space-between; }
+.q3 .stats .avail .left { display: flex; align-items: center; gap: 6px; color: #e63228; }
+.q3 .stats .avail .pulse-dot { width: 6px; height: 6px; border-radius: 50%; background: #e63228; display: inline-block; animation: pulse 2s ease infinite; }
+.q3 .stats .avail .ver { color: #e63228; opacity: 0.5; }
+.q4 { position: relative; overflow: hidden; background: linear-gradient(135deg, rgba(0,0,0,0.02), rgba(0,0,0,0.06)); }
+.q4 scene-object { position: absolute; inset: 0; }
+.q4 .gridlines { position: absolute; inset: 0; pointer-events: none; z-index: 2; opacity: 0.07; background-image: linear-gradient(#e63228 1px, transparent 1px), linear-gradient(90deg, #e63228 1px, transparent 1px); background-size: 60px 60px; }
+.q4 .hud-tr { position: absolute; top: 16px; right: 24px; font-family: 'JetBrains Mono', monospace; font-size: 9px; letter-spacing: 0.1em; color: rgba(26,26,26,0.5); text-align: right; line-height: 2.2; z-index: 3; }
+.q4 .hud-tr .ok { color: #e63228; }
+.q4 .hud-bl { position: absolute; bottom: 16px; left: 24px; font-family: 'JetBrains Mono', monospace; font-size: 8px; letter-spacing: 0.15em; color: rgba(26,26,26,0.5); z-index: 3; }
+.q4 .hud-br { position: absolute; bottom: 16px; right: 24px; font-family: 'JetBrains Mono', monospace; font-size: 8px; letter-spacing: 0.15em; color: rgba(26,26,26,0.5); z-index: 3; display: flex; align-items: center; gap: 6px; }
+.q4 .hud-br .dot { width: 4px; height: 4px; border-radius: 50%; background: #e63228; display: inline-block; }
+.q4 .vignette { position: absolute; inset: 0; pointer-events: none; z-index: 1; background: radial-gradient(ellipse at center, transparent 40%, rgba(155,154,153,0.35) 100%); }
+
+/* ══ SHARED SECTIONS ══ */
+.marquee { overflow: hidden; white-space: nowrap; border-top: 1px solid rgba(26,26,26,0.1); border-bottom: 1px solid rgba(26,26,26,0.1); padding: 16px 0; }
+.marquee div { display: inline-block; animation: marquee 32s linear infinite; font-size: 13px; font-weight: 700; letter-spacing: 0.1em; color: rgba(230,50,40,0.12); text-transform: uppercase; }
+section.block { padding: 90px 40px; border-top: 1px solid rgba(26,26,26,0.1); }
+.inner { max-width: 1100px; margin: 0 auto; }
+.section-head { text-align: center; margin-bottom: 48px; padding: 0 20px; }
+.section-head .tag { display: block; font-family: 'JetBrains Mono', monospace; font-size: 11px; letter-spacing: 0.25em; color: #e63228; opacity: 0.7; margin-bottom: 12px; }
+.section-head h2 { font-size: clamp(28px, 4vw, 38px); font-weight: 700; line-height: 1.15; }
+.section-head .sub { max-width: 560px; margin: 14px auto 0; font-size: 13px; line-height: 1.8; opacity: 0.6; font-weight: 500; }
+.slot { border-radius: 6px; overflow: hidden; position: relative; border: 1px solid rgba(26,26,26,0.12); background: repeating-linear-gradient(45deg, rgba(26,26,26,0.05) 0px, rgba(26,26,26,0.05) 10px, transparent 10px, transparent 20px); display: flex; align-items: center; justify-content: center; }
+.slot span { font-family: 'JetBrains Mono', monospace; font-size: 9px; letter-spacing: 0.12em; color: rgba(26,26,26,0.5); }
+.slot img, .slot video { width: 100%; height: 100%; object-fit: cover; position: absolute; inset: 0; }
+
+/* ══ 01 FORMATOS ══ */
+.formats { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; max-width: 1200px; margin: 0 auto; }
+.format { border: 1px solid rgba(26,26,26,0.12); border-radius: 6px; padding: 24px 20px; transition: border-color 0.3s, transform 0.4s cubic-bezier(.16,1,.3,1); background: rgba(255,255,255,0.04); display: flex; flex-direction: column; }
+.format:hover { border-color: rgba(230,50,40,0.3); transform: translateY(-3px); }
+.format .badge { display: inline-block; font-family: 'JetBrains Mono', monospace; font-size: 8px; letter-spacing: 0.14em; color: #e63228; border: 1px solid rgba(230,50,40,0.3); border-radius: 20px; padding: 3px 10px; margin-bottom: 12px; align-self: flex-start; }
+.format .num { font-family: 'JetBrains Mono', monospace; font-size: 9px; letter-spacing: 0.14em; color: rgba(26,26,26,0.45); }
+.format h3 { font-size: 18px; font-weight: 700; margin-top: 8px; letter-spacing: 0.02em; }
+.format p { font-size: 12px; line-height: 1.75; opacity: 0.65; margin-top: 8px; font-weight: 500; flex: 1; }
+.format .media { margin-top: 16px; aspect-ratio: 9/16; }
+
+/* ══ 02 HOOKS ══ */
+.hooks-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; max-width: 1200px; margin: 0 auto; }
+.hooks-grid .slot { aspect-ratio: 9/16; }
+.hooks-note { max-width: 640px; margin: 36px auto 0; text-align: center; font-family: 'JetBrains Mono', monospace; font-size: 10px; letter-spacing: 0.1em; line-height: 2; color: rgba(26,26,26,0.55); }
+.hooks-note b { color: #e63228; font-weight: 500; }
+
+/* ══ 03 NÚMEROS ══ */
+.numbers { display: grid; grid-template-columns: 1fr auto 1fr; gap: 24px; align-items: stretch; max-width: 980px; margin: 0 auto; }
+.num-card { border: 1px solid rgba(26,26,26,0.12); border-radius: 6px; padding: 34px 30px; background: rgba(255,255,255,0.04); }
+.num-card.kentro { border-color: rgba(230,50,40,0.35); }
+.num-card .label { font-family: 'JetBrains Mono', monospace; font-size: 9px; letter-spacing: 0.16em; color: rgba(26,26,26,0.5); }
+.num-card.kentro .label { color: #e63228; }
+.num-card .big { font-size: clamp(40px, 5vw, 64px); font-weight: 800; letter-spacing: -0.02em; line-height: 1.1; margin-top: 12px; }
+.num-card .big small { font-size: 0.35em; font-weight: 500; opacity: 0.6; letter-spacing: 0; }
+.num-card ul { list-style: none; margin-top: 18px; }
+.num-card ul li { font-family: 'JetBrains Mono', monospace; font-size: 10px; letter-spacing: 0.08em; color: rgba(26,26,26,0.6); padding: 5px 0; }
+.num-card ul li::before { content: "→ "; color: rgba(26,26,26,0.35); }
+.num-card.kentro ul li::before { color: #e63228; }
+.numbers .vs { display: flex; align-items: center; justify-content: center; font-family: 'Zen Dots', cursive; font-size: 18px; color: #e63228; }
+.numbers-close { max-width: 640px; margin: 36px auto 0; text-align: center; font-size: 13px; line-height: 1.8; opacity: 0.65; font-weight: 500; }
+
+/* ══ 04 POR QUÉ IA ══ */
+.why { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; max-width: 1100px; margin: 0 auto; }
+.why .card { border: 1px solid rgba(26,26,26,0.12); border-radius: 6px; padding: 30px 26px; background: rgba(255,255,255,0.04); }
+.why .n { font-family: 'JetBrains Mono', monospace; font-size: 24px; color: #e63228; opacity: 0.85; }
+.why h3 { font-size: 17px; font-weight: 700; margin-top: 12px; }
+.why p { font-size: 12.5px; line-height: 1.8; opacity: 0.65; margin-top: 8px; font-weight: 500; }
+.why a { color: #e63228; text-decoration: none; }
+.why a:hover { text-decoration: underline; }
+
+/* ══ 05 PARA QUIÉN ══ */
+.who { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; max-width: 980px; margin: 0 auto; }
+.who .col { border: 1px solid rgba(26,26,26,0.12); border-radius: 6px; padding: 30px 26px; background: rgba(255,255,255,0.04); }
+.who h3 { font-size: 15px; font-weight: 700; letter-spacing: 0.04em; display: flex; align-items: center; gap: 10px; }
+.who h3 .dot { width: 8px; height: 8px; border-radius: 50%; display: inline-block; background: #e63228; }
+.who .col.creators h3 .dot { background: rgba(26,26,26,0.35); }
+.who ul { margin-top: 18px; list-style: none; }
+.who ul li { font-size: 13px; line-height: 1.7; padding: 8px 0; border-top: 1px solid rgba(26,26,26,0.07); opacity: 0.75; font-weight: 500; }
+.who ul li::before { content: "✓  "; color: #e63228; font-weight: 700; }
+.who .col.creators ul li::before { color: rgba(26,26,26,0.4); }
+
+/* ══ 06 APLICA ══ */
+.survey { max-width: 640px; margin: 0 auto; }
+.survey form { display: flex; flex-direction: column; gap: 14px; }
+.field label, .tipo-label { display: block; font-family: 'JetBrains Mono', monospace; font-size: 9px; letter-spacing: 0.16em; color: rgba(26,26,26,0.55); margin-bottom: 7px; text-transform: uppercase; }
+.field input, .field select, .field textarea { width: 100%; background: rgba(255,255,255,0.25); border: 1px solid rgba(26,26,26,0.15); border-radius: 6px; padding: 13px 15px; font-family: 'Oxanium', sans-serif; font-size: 14px; color: #1a1a1a; outline: none; transition: border-color 0.3s; }
+.field input:focus, .field select:focus, .field textarea:focus { border-color: rgba(230,50,40,0.5); }
+.field textarea { min-height: 100px; resize: vertical; }
+.row2 { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+.tipo-pills { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+.tipo-pills input[type="radio"] { position: absolute; opacity: 0; pointer-events: none; }
+.tipo-pills label.pill { display: block; text-align: center; font-family: 'JetBrains Mono', monospace; font-size: 11px; letter-spacing: 0.08em; padding: 15px 10px; border: 1px solid rgba(26,26,26,0.2); border-radius: 6px; cursor: pointer; color: rgba(26,26,26,0.65); transition: all 0.25s; background: rgba(255,255,255,0.15); }
+.tipo-pills label.pill:hover { border-color: rgba(230,50,40,0.4); color: #1a1a1a; }
+.tipo-pills input[type="radio"]:checked + label.pill { border-color: #e63228; color: #e63228; background: rgba(230,50,40,0.06); font-weight: 500; }
+.survey button { font-family: 'JetBrains Mono', monospace; font-size: 12px; padding: 15px 34px; border-radius: 40px; background: #e63228; color: #fff; border: none; cursor: pointer; font-weight: 500; letter-spacing: 0.05em; margin-top: 8px; transition: opacity 0.3s; }
+.survey button:hover { opacity: 0.85; }
+.survey .fine { font-family: 'JetBrains Mono', monospace; font-size: 9px; letter-spacing: 0.08em; color: rgba(26,26,26,0.45); text-align: center; margin-top: 14px; }
+.gracias { display: none; text-align: center; padding: 40px 0; }
+.gracias h3 { font-size: 24px; font-weight: 700; }
+.gracias p { margin-top: 10px; font-size: 13px; opacity: 0.65; }
+
+/* ══ VIDEO LIGHTBOX ══ */
+.formats .media video, .hooks-grid .slot video { cursor: zoom-in; }
+.vid-lightbox { position: fixed; inset: 0; z-index: 500; background: rgba(20,20,20,0.92); backdrop-filter: blur(8px); display: none; align-items: center; justify-content: center; padding: 30px; }
+.vid-lightbox.open { display: flex; }
+.vid-lightbox video { height: min(80vh, 720px); aspect-ratio: 9/16; width: auto; max-width: 92vw; border-radius: 8px; box-shadow: 0 20px 80px rgba(0,0,0,0.5); background: #000; object-fit: contain; }
+.vid-lightbox .close { position: absolute; top: 18px; right: 26px; font-family: 'JetBrains Mono', monospace; font-size: 13px; color: rgba(255,255,255,0.7); letter-spacing: 0.1em; cursor: pointer; background: none; border: none; }
+.vid-lightbox .close:hover { color: #fff; }
+
+/* ══ CTA FOOTER ══ */
+.cta { padding: 100px 40px 60px; border-top: 1px solid rgba(26,26,26,0.1); }
+.cta .inner { max-width: 1100px; margin: 0 auto; }
+.cta h2 { display: flex; align-items: baseline; gap: 16px; flex-wrap: wrap; margin: 0; }
+.cta h2 .strong { font-size: clamp(44px, 6.5vw, 88px); font-weight: 800; color: #1a1a1a; letter-spacing: -0.03em; line-height: 1; }
+.cta h2 .light { font-size: clamp(44px, 6.5vw, 88px); font-weight: 200; color: rgba(26,26,26,0.75); line-height: 1; letter-spacing: -0.02em; }
+.cta .row { margin-top: 44px; display: flex; gap: 16px; align-items: center; flex-wrap: wrap; }
+.cta .row a { font-family: 'JetBrains Mono', monospace; font-size: 12px; padding: 13px 30px; border-radius: 40px; text-decoration: none; transition: all 0.3s; }
+.cta .row a.primary { background: #e63228; color: #ffffff; font-weight: 500; }
+.cta .row a.primary:hover { opacity: 0.85; color: #ffffff; }
+.cta .row a.secondary { border: 1px solid rgba(26,26,26,0.1); color: rgba(26,26,26,0.75); }
+.cta .row a.secondary:hover { border-color: #1a1a1a; color: #1a1a1a; }
+.cta .socials { margin-top: 40px; display: flex; gap: 24px; }
+.cta .socials a { font-family: 'JetBrains Mono', monospace; font-size: 11px; color: rgba(26,26,26,0.5); text-decoration: none; transition: color 0.3s; }
+.cta .socials a:hover { color: #1a1a1a; }
+.cta footer { margin-top: 100px; padding-top: 20px; border-top: 1px solid rgba(26,26,26,0.1); display: flex; justify-content: space-between; gap: 10px; flex-wrap: wrap; font-family: 'JetBrains Mono', monospace; font-size: 9px; letter-spacing: 0.1em; color: rgba(26,26,26,0.5); }
+
+/* ══ MOBILE ══ */
 @media (max-width: 768px) {
-  /* NAV: tighten, drop the clock */
-  nav { padding: 0 12px !important; }
-  nav > div:last-child { display: none !important; }
-  nav > div:nth-child(2) a { padding: 6px 9px !important; font-size: 12px !important; }
-
-  /* HERO: stack the 4 quadrants vertically */
-  #top { display: flex !important; flex-direction: column !important; height: auto !important; padding-top: 56px; }
-  #top > div:nth-child(2) { height: 340px; border-right: none !important; }
-  #top > div:nth-child(3) { padding: 48px 16px 20px !important; border-bottom: 1px solid rgba(230,50,40,0.08); }
-  #top > div:nth-child(3) h1 { font-size: clamp(44px, 16.5vw, 72px) !important; }
-  #top > div:nth-child(3) > div:first-child > div { font-size: clamp(44px, 16.5vw, 72px) !important; }
-  #top > div:nth-child(3) > div:nth-child(2) { bottom: 72px !important; right: 16px !important; }
-  #top > div:nth-child(3) > div:last-child { flex-wrap: wrap; justify-content: center; row-gap: 4px; padding: 0 8px; }
-  #top > div:nth-child(4) { border-right: none !important; }
-  /* 3D quadrant: children are absolute, give it real height */
-  #top > div:nth-child(5) { height: 340px; min-height: 340px; }
-  #top > div:nth-child(5) > div:nth-of-type(5) { display: none !important; }
-
-  /* CONTACT: reduce desktop padding */
-  #contact { padding: 64px 20px 40px !important; }
-  #contact footer { flex-wrap: wrap; gap: 8px; }
-}
-</style></head>
-<body>
-<x-dc>
-<helmet>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com">
-  <style>/* cyrillic-ext */
-@font-face {
-  font-family: 'JetBrains Mono';
-  font-style: normal;
-  font-weight: 300;
-  font-display: swap;
-  src: url("assets/asset-007.woff2") format('woff2');
-  unicode-range: U+0460-052F, U+1C80-1C8A, U+20B4, U+2DE0-2DFF, U+A640-A69F, U+FE2E-FE2F;
-}
-/* cyrillic */
-@font-face {
-  font-family: 'JetBrains Mono';
-  font-style: normal;
-  font-weight: 300;
-  font-display: swap;
-  src: url("assets/asset-008.woff2") format('woff2');
-  unicode-range: U+0301, U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116;
-}
-/* greek */
-@font-face {
-  font-family: 'JetBrains Mono';
-  font-style: normal;
-  font-weight: 300;
-  font-display: swap;
-  src: url("assets/asset-009.woff2") format('woff2');
-  unicode-range: U+0370-0377, U+037A-037F, U+0384-038A, U+038C, U+038E-03A1, U+03A3-03FF;
-}
-/* vietnamese */
-@font-face {
-  font-family: 'JetBrains Mono';
-  font-style: normal;
-  font-weight: 300;
-  font-display: swap;
-  src: url("assets/asset-010.woff2") format('woff2');
-  unicode-range: U+0102-0103, U+0110-0111, U+0128-0129, U+0168-0169, U+01A0-01A1, U+01AF-01B0, U+0300-0301, U+0303-0304, U+0308-0309, U+0323, U+0329, U+1EA0-1EF9, U+20AB;
-}
-/* latin-ext */
-@font-face {
-  font-family: 'JetBrains Mono';
-  font-style: normal;
-  font-weight: 300;
-  font-display: swap;
-  src: url("assets/asset-011.woff2") format('woff2');
-  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
-}
-/* latin */
-@font-face {
-  font-family: 'JetBrains Mono';
-  font-style: normal;
-  font-weight: 300;
-  font-display: swap;
-  src: url("assets/asset-012.woff2") format('woff2');
-  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
-}
-/* cyrillic-ext */
-@font-face {
-  font-family: 'JetBrains Mono';
-  font-style: normal;
-  font-weight: 400;
-  font-display: swap;
-  src: url("assets/asset-007.woff2") format('woff2');
-  unicode-range: U+0460-052F, U+1C80-1C8A, U+20B4, U+2DE0-2DFF, U+A640-A69F, U+FE2E-FE2F;
-}
-/* cyrillic */
-@font-face {
-  font-family: 'JetBrains Mono';
-  font-style: normal;
-  font-weight: 400;
-  font-display: swap;
-  src: url("assets/asset-008.woff2") format('woff2');
-  unicode-range: U+0301, U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116;
-}
-/* greek */
-@font-face {
-  font-family: 'JetBrains Mono';
-  font-style: normal;
-  font-weight: 400;
-  font-display: swap;
-  src: url("assets/asset-009.woff2") format('woff2');
-  unicode-range: U+0370-0377, U+037A-037F, U+0384-038A, U+038C, U+038E-03A1, U+03A3-03FF;
-}
-/* vietnamese */
-@font-face {
-  font-family: 'JetBrains Mono';
-  font-style: normal;
-  font-weight: 400;
-  font-display: swap;
-  src: url("assets/asset-010.woff2") format('woff2');
-  unicode-range: U+0102-0103, U+0110-0111, U+0128-0129, U+0168-0169, U+01A0-01A1, U+01AF-01B0, U+0300-0301, U+0303-0304, U+0308-0309, U+0323, U+0329, U+1EA0-1EF9, U+20AB;
-}
-/* latin-ext */
-@font-face {
-  font-family: 'JetBrains Mono';
-  font-style: normal;
-  font-weight: 400;
-  font-display: swap;
-  src: url("assets/asset-011.woff2") format('woff2');
-  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
-}
-/* latin */
-@font-face {
-  font-family: 'JetBrains Mono';
-  font-style: normal;
-  font-weight: 400;
-  font-display: swap;
-  src: url("assets/asset-012.woff2") format('woff2');
-  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
-}
-/* cyrillic-ext */
-@font-face {
-  font-family: 'JetBrains Mono';
-  font-style: normal;
-  font-weight: 500;
-  font-display: swap;
-  src: url("assets/asset-007.woff2") format('woff2');
-  unicode-range: U+0460-052F, U+1C80-1C8A, U+20B4, U+2DE0-2DFF, U+A640-A69F, U+FE2E-FE2F;
-}
-/* cyrillic */
-@font-face {
-  font-family: 'JetBrains Mono';
-  font-style: normal;
-  font-weight: 500;
-  font-display: swap;
-  src: url("assets/asset-008.woff2") format('woff2');
-  unicode-range: U+0301, U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116;
-}
-/* greek */
-@font-face {
-  font-family: 'JetBrains Mono';
-  font-style: normal;
-  font-weight: 500;
-  font-display: swap;
-  src: url("assets/asset-009.woff2") format('woff2');
-  unicode-range: U+0370-0377, U+037A-037F, U+0384-038A, U+038C, U+038E-03A1, U+03A3-03FF;
-}
-/* vietnamese */
-@font-face {
-  font-family: 'JetBrains Mono';
-  font-style: normal;
-  font-weight: 500;
-  font-display: swap;
-  src: url("assets/asset-010.woff2") format('woff2');
-  unicode-range: U+0102-0103, U+0110-0111, U+0128-0129, U+0168-0169, U+01A0-01A1, U+01AF-01B0, U+0300-0301, U+0303-0304, U+0308-0309, U+0323, U+0329, U+1EA0-1EF9, U+20AB;
-}
-/* latin-ext */
-@font-face {
-  font-family: 'JetBrains Mono';
-  font-style: normal;
-  font-weight: 500;
-  font-display: swap;
-  src: url("assets/asset-011.woff2") format('woff2');
-  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
-}
-/* latin */
-@font-face {
-  font-family: 'JetBrains Mono';
-  font-style: normal;
-  font-weight: 500;
-  font-display: swap;
-  src: url("assets/asset-012.woff2") format('woff2');
-  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
-}
-/* latin-ext */
-@font-face {
-  font-family: 'Oxanium';
-  font-style: normal;
-  font-weight: 200;
-  font-display: swap;
-  src: url("assets/asset-013.woff2") format('woff2');
-  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
-}
-/* latin */
-@font-face {
-  font-family: 'Oxanium';
-  font-style: normal;
-  font-weight: 200;
-  font-display: swap;
-  src: url("assets/asset-014.woff2") format('woff2');
-  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
-}
-/* latin-ext */
-@font-face {
-  font-family: 'Oxanium';
-  font-style: normal;
-  font-weight: 300;
-  font-display: swap;
-  src: url("assets/asset-013.woff2") format('woff2');
-  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
-}
-/* latin */
-@font-face {
-  font-family: 'Oxanium';
-  font-style: normal;
-  font-weight: 300;
-  font-display: swap;
-  src: url("assets/asset-014.woff2") format('woff2');
-  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
-}
-/* latin-ext */
-@font-face {
-  font-family: 'Oxanium';
-  font-style: normal;
-  font-weight: 400;
-  font-display: swap;
-  src: url("assets/asset-013.woff2") format('woff2');
-  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
-}
-/* latin */
-@font-face {
-  font-family: 'Oxanium';
-  font-style: normal;
-  font-weight: 400;
-  font-display: swap;
-  src: url("assets/asset-014.woff2") format('woff2');
-  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
-}
-/* latin-ext */
-@font-face {
-  font-family: 'Oxanium';
-  font-style: normal;
-  font-weight: 500;
-  font-display: swap;
-  src: url("assets/asset-013.woff2") format('woff2');
-  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
-}
-/* latin */
-@font-face {
-  font-family: 'Oxanium';
-  font-style: normal;
-  font-weight: 500;
-  font-display: swap;
-  src: url("assets/asset-014.woff2") format('woff2');
-  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
-}
-/* latin-ext */
-@font-face {
-  font-family: 'Oxanium';
-  font-style: normal;
-  font-weight: 600;
-  font-display: swap;
-  src: url("assets/asset-013.woff2") format('woff2');
-  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
-}
-/* latin */
-@font-face {
-  font-family: 'Oxanium';
-  font-style: normal;
-  font-weight: 600;
-  font-display: swap;
-  src: url("assets/asset-014.woff2") format('woff2');
-  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
-}
-/* latin-ext */
-@font-face {
-  font-family: 'Oxanium';
-  font-style: normal;
-  font-weight: 700;
-  font-display: swap;
-  src: url("assets/asset-013.woff2") format('woff2');
-  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
-}
-/* latin */
-@font-face {
-  font-family: 'Oxanium';
-  font-style: normal;
-  font-weight: 700;
-  font-display: swap;
-  src: url("assets/asset-014.woff2") format('woff2');
-  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
-}
-/* latin-ext */
-@font-face {
-  font-family: 'Oxanium';
-  font-style: normal;
-  font-weight: 800;
-  font-display: swap;
-  src: url("assets/asset-013.woff2") format('woff2');
-  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
-}
-/* latin */
-@font-face {
-  font-family: 'Oxanium';
-  font-style: normal;
-  font-weight: 800;
-  font-display: swap;
-  src: url("assets/asset-014.woff2") format('woff2');
-  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
-}
-/* latin-ext */
-@font-face {
-  font-family: 'Zen Dots';
-  font-style: normal;
-  font-weight: 400;
-  font-display: swap;
-  src: url("assets/asset-015.woff2") format('woff2');
-  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
-}
-/* latin */
-@font-face {
-  font-family: 'Zen Dots';
-  font-style: normal;
-  font-weight: 400;
-  font-display: swap;
-  src: url("assets/asset-016.woff2") format('woff2');
-  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+  nav { padding: 0 8px; }
+  nav .meta .city, nav .meta .clock { display: none; }
+  nav .meta { gap: 6px; }
+  nav .logo { font-size: 17px; }
+  nav .links { gap: 0; }
+  nav .links a { padding: 6px 5px; font-size: 11px; }
+  #lang-toggle { padding: 3px 8px; font-size: 9px; }
+  .hero { display: flex; flex-direction: column; height: auto; padding-top: 56px; }
+  .q1 { height: 340px; border-right: none; }
+  .q2 { padding: 48px 16px 20px; border-bottom: 1px solid rgba(230,50,40,0.08); }
+  .q2 h1 { font-size: clamp(44px, 16.5vw, 72px); }
+  .q2 .reflection { font-size: clamp(44px, 16.5vw, 72px); }
+  .q2 .ai-badge { bottom: 72px; right: 16px; }
+  .q3 { border-right: none; }
+  .q4 { height: 340px; min-height: 340px; }
+  .q4 .hud-br { display: none; }
+  section.block { padding: 60px 18px; }
+  .formats { grid-template-columns: repeat(2, 1fr); gap: 10px; }
+  .hooks-grid { grid-template-columns: repeat(2, 1fr); gap: 10px; }
+  .numbers { grid-template-columns: 1fr; }
+  .numbers .vs { transform: rotate(90deg); padding: 4px 0; }
+  .why { grid-template-columns: 1fr; }
+  .who { grid-template-columns: 1fr; }
+  .row2 { grid-template-columns: 1fr; }
+  .cta { padding: 64px 20px 40px; }
 }
 </style>
-  <script src="assets/asset-003.js"></script>
-  <style>
-    * { margin: 0; padding: 0; box-sizing: border-box; }
-    html { scroll-behavior: smooth; }
-    body { background: #9b9a99; color: #1a1a1a; -webkit-font-smoothing: antialiased; overflow-x: hidden; font-family: 'Oxanium', sans-serif; }
-    ::selection { background: rgba(230,50,40,0.15); color: #1a1a1a; }
-    a { color: rgba(26,26,26,0.75); }
-    a:hover { color: #1a1a1a; }
-    img { display: block; }
-    canvas { display: block; }
-    ::-webkit-scrollbar { width: 3px; }
-    ::-webkit-scrollbar-track { background: #9b9a99; }
-    ::-webkit-scrollbar-thumb { background: rgba(26,26,26,0.12); border-radius: 3px; }
-    @keyframes blink { 0%, 100% { opacity: 1; } 50% { opacity: 0; } }
-    @keyframes marquee { from { transform: translateX(0); } to { transform: translateX(-50%); } }
-    @keyframes pulse { 0%, 100% { opacity: 1; box-shadow: 0 0 0 0 rgba(230,50,40,0.3); } 50% { opacity: 0.6; box-shadow: 0 0 0 5px rgba(230,50,40,0); } }
-    @keyframes felipeGlow { 0%, 100% { opacity: 0.5; transform: scale(1); } 50% { opacity: 1; transform: scale(1.15); } }
-    @keyframes felipeSlide { 0% { opacity: 0; transform: translateX(20px); letter-spacing: 0.25em; } 60% { opacity: 1; } 100% { opacity: 1; transform: translateX(0); letter-spacing: 0.08em; } }
-    @keyframes galleryLeft { from { transform: translateX(0); } to { transform: translateX(-50%); } }
-    @keyframes galleryRight { from { transform: translateX(-50%); } to { transform: translateX(0); } }
-  </style>
-</helmet>
+</head>
+<body>
 
-<!-- ══════════ NAV ══════════ -->
-<nav style="position: fixed; top: 0; left: 0; right: 0; z-index: 200; padding: 0 40px; height: 56px; display: flex; justify-content: space-between; align-items: center; background: rgba(155,154,153,0.92); backdrop-filter: blur(20px) saturate(1.3); border-bottom: 1px solid rgba(0,0,0,0.06);">
-  <a href="#top" style="font-family: 'Oxanium', sans-serif; font-size: 20px; font-weight: 700; color: #1a1a1a; text-decoration: none;">Ké.</a>
-  <div style="display: flex; gap: 6px;">
-    <a href="#ugc" style="font-family: 'Oxanium', sans-serif; font-size: 13px; color: rgba(26,26,26,0.75); text-decoration: none; padding: 6px 16px; border-radius: 30px; border: 1px solid transparent;" style-hover="color: #1a1a1a; border-color: rgba(230,50,40,0.2); background: rgba(230,50,40,0.04);">UGC</a>
-    <a href="#editorial" style="font-family: 'Oxanium', sans-serif; font-size: 13px; color: rgba(26,26,26,0.75); text-decoration: none; padding: 6px 16px; border-radius: 30px; border: 1px solid transparent;" style-hover="color: #1a1a1a; border-color: rgba(230,50,40,0.2); background: rgba(230,50,40,0.04);">Editorial</a>
-    <a href="#tutorials" style="font-family: 'Oxanium', sans-serif; font-size: 13px; color: rgba(26,26,26,0.75); text-decoration: none; padding: 6px 16px; border-radius: 30px; border: 1px solid transparent;" style-hover="color: #1a1a1a; border-color: rgba(230,50,40,0.2); background: rgba(230,50,40,0.04);">Tutorials</a>
-    <a href="#contact" style="font-family: 'Oxanium', sans-serif; font-size: 13px; color: rgba(26,26,26,0.75); text-decoration: none; padding: 6px 16px; border-radius: 30px; border: 1px solid transparent;" style-hover="color: #1a1a1a; border-color: rgba(230,50,40,0.2); background: rgba(230,50,40,0.04);">Contact</a>
+<nav>
+  <a class="logo" href="/">Ké.</a>
+  <div class="links">
+    <a href="/avatars">Avatars</a>
+    <a href="#formatos" data-i18n="nav_formats">Formatos</a>
+    <a href="#hooks">Hooks</a>
+    <a href="#numeros" data-i18n="nav_numbers">Números</a>
+    <a href="#aplica" data-i18n="nav_apply">Aplica</a>
   </div>
-  <div style="font-family: 'JetBrains Mono', monospace; font-size: 10px; color: rgba(26,26,26,0.5); display: flex; gap: 12px; align-items: center;">
-    <span>Madrid</span>
-    <span style="color: rgba(26,26,26,0.75); font-variant-numeric: tabular-nums;">{{ clock }}</span>
+  <div class="meta">
+    <button id="lang-toggle">EN</button>
+    <span class="city">Madrid</span>
+    <span class="clock" id="clock"></span>
   </div>
 </nav>
 
 <!-- ══════════ HERO ══════════ -->
-<section id="top" data-screen-label="Hero" style="height: 100vh; position: relative; overflow: hidden; display: grid; grid-template-columns: 280px 1fr; grid-template-rows: minmax(0, 2fr) minmax(0, 3fr); background: #9b9a99;">
-  <div style="position: absolute; inset: 0; opacity: 0.06; pointer-events: none; z-index: 0; mix-blend-mode: multiply; background: url(&quot;data:image/svg+xml,%3Csvg viewBox='0 0 512 512' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='5' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E&quot;);"></div>
-
-  <!-- Q1: whisk gif -->
-  <div style="border-right: 1px solid rgba(230,50,40,0.08); border-bottom: 1px solid rgba(230,50,40,0.08); position: relative; z-index: 10; overflow: hidden; background: #9b9a99;">
-    <img src="assets/asset-001.gif" alt="Animated portrait of Felipe Echeverri" style="width: 100%; height: 100%; object-fit: cover; object-position: center; filter: brightness(0.95) contrast(1.05);">
-    <div style="position: absolute; bottom: 0; left: 0; right: 0; height: 25%; background: linear-gradient(to top, #9b9a99, transparent); pointer-events: none;"></div>
+<section class="hero" id="top">
+  <div class="noise"></div>
+  <div class="q1">
+    <img src="assets/asset-001.gif" alt="Animated portrait of Felipe Echeverri">
+    <div class="fade"></div>
   </div>
-
-  <!-- Q2: ECHEVERRI + FELIPE -->
-  <div style="border-bottom: 1px solid rgba(230,50,40,0.08); display: flex; flex-direction: column; align-items: center; justify-content: center; position: relative; padding: 72px 20px 16px; overflow: hidden;">
-    <div style="perspective: 1200px; cursor: pointer; position: relative; width: 100%; display: flex; align-items: center; justify-content: center; overflow: hidden;">
-      <h1 style="font-family: 'Oxanium', sans-serif; font-size: clamp(72px, 13vw, 200px); font-weight: 700; letter-spacing: 0.05em; color: #1a1a1a; text-align: center; user-select: none; margin: 0; transform-style: preserve-3d; transition: transform 0.4s cubic-bezier(.16,1,.3,1), text-shadow 0.4s; position: relative; z-index: 2;" style-hover="transform: rotateY(12deg) rotateX(-3deg) scale(1.02); text-shadow: 0 0 80px rgba(230,50,40,0.1), 0 0 160px rgba(230,50,40,0.04);">KENTRO</h1>
-      <div style="position: absolute; bottom: -6px; left: 0; right: 0; height: 50%; display: flex; align-items: flex-start; justify-content: center; font-family: 'Oxanium', sans-serif; font-size: clamp(72px, 13vw, 200px); font-weight: 700; letter-spacing: 0.05em; color: #1a1a1a; transform: scaleY(-1); opacity: 0.04; mask-image: linear-gradient(to bottom, rgba(0,0,0,0.3), transparent); -webkit-mask-image: linear-gradient(to bottom, rgba(0,0,0,0.3), transparent); pointer-events: none; z-index: 1;">KENTRO</div>
+  <div class="q2">
+    <div class="title-wrap">
+      <h1>KENTRO</h1>
+      <div class="reflection">KENTRO</div>
     </div>
-    <div style="position: absolute; bottom: 36px; right: 32px; z-index: 20;">
-      <div style="position: absolute; inset: -20px -30px; background: radial-gradient(ellipse, rgba(230,80,40,0.08) 0%, transparent 70%); border-radius: 50%; pointer-events: none; animation: felipeGlow 3s ease-in-out infinite;"></div>
-      <span style="font-family: 'Zen Dots', cursive; font-size: clamp(28px, 4vw, 52px); font-weight: 400; letter-spacing: 0.08em; background: linear-gradient(135deg, #e63228, #d4392b, #e63228); -webkit-background-clip: text; -webkit-text-fill-color: transparent; position: relative; display: inline-block; animation: felipeSlide 1.5s cubic-bezier(.16,1,.3,1) 0.6s both;">AI</span>
-    </div>
-    <div style="display: flex; align-items: center; gap: 14px; font-family: 'JetBrains Mono', monospace; font-size: 9px; letter-spacing: 0.12em; color: rgba(26,26,26,0.5); margin-top: 12px;">
-      <span>AI CONTENT STUDIO</span>
-      <span style="color: #e63228; opacity: 0.5;">·</span>
-      <span>CAMPAIGN VISUALS</span>
-      <span style="color: #e63228; opacity: 0.5;">·</span>
+    <div class="ai-badge"><div class="glow"></div><span>AI</span></div>
+    <div class="tagline">
+      <span>AI AD LAB</span>
+      <span class="dot">·</span>
+      <span data-i18n="tag_agencies">AGENCIAS &amp; MARCAS</span>
+      <span class="dot">·</span>
       <span>MADRID</span>
-      <span style="color: #e63228; opacity: 0.5;">·</span>
+      <span class="dot">·</span>
       <span>2018 — 26</span>
     </div>
   </div>
-
-  <!-- Q3: description -->
-  <div style="border-right: 1px solid rgba(26,26,26,0.1); padding: 20px 24px; display: flex; flex-direction: column; justify-content: space-between; overflow: hidden;">
+  <div class="q3">
     <div>
-      <div style="font-family: 'Zen Dots', cursive; font-size: 12px; letter-spacing: 0.06em; background: linear-gradient(135deg, #e63228, #d4392b, #e63228); -webkit-background-clip: text; -webkit-text-fill-color: transparent; margin-bottom: 10px;">AN AI CONTENT STUDIO</div>
-      <p style="font-family: 'Oxanium', sans-serif; font-size: 12px; line-height: 1.8; color: #1a1a1a; opacity: 0.72; font-weight: 500;">Kéntro produces campaign-grade visuals and video for brands — editorial stills, lookbook imagery, and cinematic product films for labels like BOSI and Casio, built entirely through generative pipelines.</p>
-      <p style="font-family: 'Oxanium', sans-serif; font-size: 12px; line-height: 1.8; color: #1a1a1a; opacity: 0.55; font-weight: 400; margin-top: 10px;">Hyper-realistic avatars and UGC-style video for clinics, real estate, and professional services — plus the prompting frameworks, character-locked storyboards, and automated pipelines that turn one concept into fifteen ad-ready variants.</p>
-      <a href="#contact" style="display: block; margin-top: 14px; padding: 8px 0; font-family: 'JetBrains Mono', monospace; font-size: 9px; letter-spacing: 0.12em; color: rgba(26,26,26,0.75); text-decoration: none; border-top: 1px solid rgba(26,26,26,0.1); border-bottom: 1px solid rgba(26,26,26,0.1); text-align: center;" style-hover="color: #1a1a1a; border-color: rgba(0,0,0,0.15);">LET'S CHAT</a>
+      <div class="kicker" data-i18n="kicker">ANUNCIOS CON IA</div>
+      <p class="main" data-i18n="hero_main">Kéntro produce anuncios con IA para agencias y marcas — 8 formatos ganadores, hooks imposibles de rodar con cámara, y volumen de variantes que ningún equipo de producción puede igualar.</p>
+      <p class="sub" data-i18n="hero_sub">Del brief a la entrega en días, no semanas. Sin castings, sin estudios, sin logística — solo creatividad que para el scroll y vende.</p>
+      <a href="#aplica" class="cta" data-i18n="hero_cta">QUIERO MIS ADS</a>
     </div>
-    <div style="font-family: 'JetBrains Mono', monospace; font-size: 9px; letter-spacing: 0.1em; color: rgba(26,26,26,0.5);">
-      <div style="line-height: 2;">
-        <div>VARIANTS PER CONCEPT: 15</div>
-        <div>SYSTEMS: AVATARS · GRADES · PIPELINES</div>
+    <div class="stats">
+      <div class="rows">
+        <div data-i18n="stat1">VARIANTES POR CONCEPTO: 15</div>
+        <div data-i18n="stat2">FORMATOS: 8 · HOOKS: ILIMITADOS</div>
         <div>40.4168° N, 3.7038° W</div>
       </div>
-      <div style="margin-top: 10px; display: flex; align-items: center; justify-content: space-between;">
-        <div style="display: flex; align-items: center; gap: 6px; color: #e63228;">
-          <span style="width: 6px; height: 6px; border-radius: 50%; background: #e63228; display: inline-block; animation: pulse 2s ease infinite;"></span>
-          AVAILABLE
-        </div>
-        <span style="color: #e63228; opacity: 0.5;">V2.0</span>
+      <div class="avail">
+        <div class="left"><span class="pulse-dot"></span><span data-i18n="avail">DISPONIBLE</span></div>
+        <span class="ver">V3.0</span>
       </div>
     </div>
   </div>
-
-  <!-- Q4: 3D object -->
-  <div style="position: relative; overflow: hidden; background: linear-gradient(135deg, rgba(0,0,0,0.02), rgba(0,0,0,0.06));">
-    <sc-if value="{{ show3dObject }}" hint-placeholder-val="{{ true }}">
-      <x-import component-from-global-scope="scene-object" hint-size="100%,100%" style="position: absolute; inset: 0;"></x-import>
-    </sc-if>
-    <div style="position: absolute; inset: 0; pointer-events: none; z-index: 2; opacity: 0.07; background-image: linear-gradient(#e63228 1px, transparent 1px), linear-gradient(90deg, #e63228 1px, transparent 1px); background-size: 60px 60px;"></div>
-    <div style="position: absolute; top: 16px; right: 24px; font-family: 'JetBrains Mono', monospace; font-size: 9px; letter-spacing: 0.1em; color: rgba(26,26,26,0.5); text-align: right; line-height: 2.2; z-index: 3;">
-      <div>SYS.INIT ████████ <span style="color: #e63228;">OK</span></div>
+  <div class="q4">
+    <scene-object></scene-object>
+    <div class="gridlines"></div>
+    <div class="hud-tr">
+      <div>SYS.INIT ████████ <span class="ok">OK</span></div>
       <div>NEURAL_MESH: ACTIVE</div>
       <div>AGENTS: 2_ONLINE</div>
-      <div>LLM_ROUTER: <span style="color: #e63228;">NOMINAL</span></div>
+      <div>LLM_ROUTER: <span class="ok">NOMINAL</span></div>
     </div>
-    <div style="position: absolute; bottom: 16px; left: 24px; font-family: 'JetBrains Mono', monospace; font-size: 8px; letter-spacing: 0.15em; color: rgba(26,26,26,0.5); z-index: 3;">COGNITIVE ARCHITECTURE · V2.0</div>
-    <div style="position: absolute; bottom: 16px; right: 24px; font-family: 'JetBrains Mono', monospace; font-size: 8px; letter-spacing: 0.15em; color: rgba(26,26,26,0.5); z-index: 3; display: flex; align-items: center; gap: 6px;">
-      <span style="width: 4px; height: 4px; border-radius: 50%; background: #e63228; display: inline-block;"></span>
-      INTERACTIVE · HOVER TO EXPLORE
-    </div>
-    <div style="position: absolute; inset: 0; pointer-events: none; z-index: 1; background: radial-gradient(ellipse at center, transparent 40%, rgba(155,154,153,0.35) 100%);"></div>
+    <div class="hud-bl">COGNITIVE ARCHITECTURE · V3.0</div>
+    <div class="hud-br"><span class="dot"></span>INTERACTIVE · HOVER TO EXPLORE</div>
+    <div class="vignette"></div>
   </div>
 </section>
 
-<!-- ══════════ MARQUEE 1 ══════════ -->
-<div aria-hidden="true" style="overflow: hidden; white-space: nowrap; border-top: 1px solid rgba(26,26,26,0.1); border-bottom: 1px solid rgba(26,26,26,0.1); padding: 18px 0;">
-  <div style="display: inline-block; animation: marquee 35s linear infinite; font-family: 'Oxanium', sans-serif; font-size: 13px; font-weight: 700; letter-spacing: 0.1em; color: rgba(230,50,40,0.1); text-transform: uppercase;">KÉNTRO ✦ AI CONTENT STUDIO ✦ CAMPAIGN VISUALS ✦ AI AVATARS ✦ AUTOMATED PIPELINES ✦ MADRID ✦ KÉNTRO ✦ AI CONTENT STUDIO ✦ CAMPAIGN VISUALS ✦ AI AVATARS ✦ AUTOMATED PIPELINES ✦ MADRID ✦ KÉNTRO ✦ AI CONTENT STUDIO ✦ CAMPAIGN VISUALS ✦ AI AVATARS ✦ AUTOMATED PIPELINES ✦ MADRID ✦ KÉNTRO ✦ AI CONTENT STUDIO ✦ CAMPAIGN VISUALS ✦ AI AVATARS ✦ AUTOMATED PIPELINES ✦ MADRID ✦ KÉNTRO ✦ AI CONTENT STUDIO ✦ CAMPAIGN VISUALS ✦ AI AVATARS ✦ AUTOMATED PIPELINES ✦ MADRID ✦ KÉNTRO ✦ AI CONTENT STUDIO ✦ CAMPAIGN VISUALS ✦ AI AVATARS ✦ AUTOMATED PIPELINES ✦ MADRID ✦ </div>
+<!-- ══════════ MARQUEE ══════════ -->
+<div class="marquee" aria-hidden="true">
+  <div data-i18n="marquee">ADS CON IA ✦ 8 FORMATOS ✦ HOOKS IMPOSIBLES ✦ VOLUMEN SIN LOGÍSTICA ✦ MADRID ✦ ADS CON IA ✦ 8 FORMATOS ✦ HOOKS IMPOSIBLES ✦ VOLUMEN SIN LOGÍSTICA ✦ MADRID ✦ ADS CON IA ✦ 8 FORMATOS ✦ HOOKS IMPOSIBLES ✦ VOLUMEN SIN LOGÍSTICA ✦ MADRID ✦ </div>
 </div>
 
-<!-- ══════════ UGC ══════════ -->
-<section id="ugc" data-screen-label="UGC" style="padding: 80px 0; position: relative; border-top: 1px solid rgba(26,26,26,0.1);">
-  <div style="padding: 0 40px; max-width: 1200px; margin: 0 auto 48px;">
-    <div style="text-align: center;">
-      <div style="font-family: 'JetBrains Mono', monospace; font-size: 11px; letter-spacing: 0.25em; color: #e63228; opacity: 0.7; margin-bottom: 12px;">{ AI AVATARS }</div>
-      <h2 style="font-family: 'Oxanium', sans-serif; font-size: 38px; font-weight: 700; color: #1a1a1a; line-height: 1.1; margin: 0;">UGC</h2>
+<!-- ══════════ 01 FORMATOS ══════════ -->
+<section class="block" id="formatos">
+  <div class="section-head">
+    <span class="tag">— / 01 · <span data-i18n="s1_tag">FORMATOS</span></span>
+    <h2 data-i18n="s1_h">8 formatos. Un solo proveedor.</h2>
+    <p class="sub" data-i18n="s1_sub">Todos los formatos que funcionan hoy en paid y orgánico — producidos con IA, listos para publicar.</p>
+  </div>
+  <div class="formats">
+    <div class="format"><span class="badge" data-i18n="f1_b">PRUEBA SOCIAL</span><span class="num">F_01</span><h3>Street Interviews</h3><p data-i18n="f1_d">Entrevistas en la calle que convencen al que duda. Prueba social sin salir a la calle.</p><div class="media slot"><video src="assets/ads/fmt-street.mp4" autoplay muted loop playsinline preload="metadata"></video></div></div>
+    <div class="format"><span class="badge" data-i18n="f2_b">AUTORIDAD</span><span class="num">F_02</span><h3>Podcasts</h3><p data-i18n="f2_d">Clips de podcast que posicionan a la marca como experto — sin estudio ni invitados.</p><div class="media slot"><video src="assets/ads/fmt-podcast.mp4" autoplay muted loop playsinline preload="metadata"></video></div></div>
+    <div class="format"><span class="badge" data-i18n="f3_b">CONVERSACIÓN</span><span class="num">F_03</span><h3>Dual Casts</h3><p data-i18n="f3_d">Dos personas conversando sobre tu producto. Cercanía que vende sin parecer anuncio.</p><div class="media slot"><video src="assets/ads/fmt-dualcast.mp4" autoplay muted loop playsinline preload="metadata"></video></div></div>
+    <div class="format"><span class="badge" data-i18n="f4_b">ALCANCE</span><span class="num">F_04</span><h3>Trends Virales</h3><p data-i18n="f4_d">Tu producto montado en los trends de TikTok y Reels antes de que mueran.</p><div class="media slot"><video src="assets/ads/fmt-trends.mp4" autoplay muted loop playsinline preload="metadata"></video></div></div>
+    <div class="format"><span class="badge" data-i18n="f5_b">EL MÁS DEMANDADO</span><span class="num">F_05</span><h3>UGC</h3><p data-i18n="f5_d">Personas reales recomendando tu producto. El formato que más convierte, a volumen.</p><div class="media slot"><video src="assets/ads/fmt-ugc.mp4" autoplay muted loop playsinline preload="metadata"></video></div></div>
+    <div class="format"><span class="badge" data-i18n="f6_b">SPOT DE MARCA</span><span class="num">F_06</span><h3>Commercials</h3><p data-i18n="f6_d">El anuncio clásico con look cinematográfico — spots de marca producidos enteramente con IA.</p><div class="media slot"><video src="assets/ads/fmt-commercial.mp4" autoplay muted loop playsinline preload="metadata"></video></div></div>
+    <div class="format"><span class="badge" data-i18n="f7_b">EL MÁS ORIGINAL</span><span class="num">F_07</span><h3 data-i18n="f7_t">Animados</h3><p data-i18n="f7_d">Estilo Pixar, objetos que hablan, mundos imposibles. Creatividad que destaca entre miles.</p><div class="media slot"><video src="assets/ads/fmt-animated.mp4" autoplay muted loop playsinline preload="metadata"></video></div></div>
+    <div class="format"><span class="badge" data-i18n="f8_b">IMAGE ADS</span><span class="num">F_08</span><h3 data-i18n="f8_t">Estáticos</h3><p data-i18n="f8_d">Imagen de alta conversión para feed — sin sesión de fotos ni producto físico.</p><div class="media slot"><img src="assets/ads/fmt-static.jpg" alt="Static ad example" loading="lazy"></div></div>
+  </div>
+</section>
+
+<!-- ══════════ 02 HOOKS ══════════ -->
+<section class="block" id="hooks">
+  <div class="section-head">
+    <span class="tag">— / 02 · HOOKS</span>
+    <h2 data-i18n="s2_h">Hooks que solo la IA puede rodar</h2>
+    <p class="sub" data-i18n="s2_sub">Los primeros 2 segundos deciden todo. Nosotros los rodamos donde ninguna cámara puede: escenas físicamente imposibles que paran el scroll en seco.</p>
+  </div>
+  <div class="hooks-grid">
+    <div class="slot"><video src="assets/ads/hook-01.mp4" autoplay muted loop playsinline preload="metadata"></video></div>
+    <div class="slot"><video src="assets/ads/hook-02.mp4" autoplay muted loop playsinline preload="metadata"></video></div>
+    <div class="slot"><video src="assets/ads/hook-03.mp4" autoplay muted loop playsinline preload="metadata"></video></div>
+    <div class="slot"><video src="assets/ads/hook-04.mp4" autoplay muted loop playsinline preload="metadata"></video></div>
+  </div>
+  <div class="hooks-note"><span data-i18n="s2_note1">SIN LÍMITES DE FÍSICA · SIN PERMISOS DE RODAJE · SIN PRESUPUESTO DE VFX</span><br><b data-i18n="s2_note2">SI LO PUEDES IMAGINAR, ES UN HOOK</b></div>
+</section>
+
+<!-- ══════════ 03 NÚMEROS ══════════ -->
+<section class="block" id="numeros">
+  <div class="section-head">
+    <span class="tag">— / 03 · <span data-i18n="s3_tag">LOS NÚMEROS</span></span>
+    <h2 data-i18n="s3_h">Haz la cuenta.</h2>
+    <p class="sub" data-i18n="s3_sub">Lo que cuesta un solo video UGC tradicional contra lo que entregamos nosotros por el mismo presupuesto.</p>
+  </div>
+  <div class="numbers">
+    <div class="num-card">
+      <div class="label" data-i18n="n1_label">UGC TRADICIONAL · INFLUENCER</div>
+      <div class="big">300 €<small data-i18n="n1_per">/video</small></div>
+      <ul>
+        <li data-i18n="n1_a">ENTREGA EN 2–3 SEMANAS</li>
+        <li data-i18n="n1_b">2–3 VIDEOS AL MES, MÁXIMO</li>
+        <li data-i18n="n1_c">CASTINGS · ENVÍOS · IDAS Y VUELTAS</li>
+        <li data-i18n="n1_d">UNA SOLA VERSIÓN POR VIDEO</li>
+      </ul>
+    </div>
+    <div class="vs">VS</div>
+    <div class="num-card kentro">
+      <div class="label">KÉNTRO AI</div>
+      <div class="big" data-i18n="n2_big">Fracción<small data-i18n="n2_per"> del coste</small></div>
+      <ul>
+        <li data-i18n="n2_a">ENTREGA EN DÍAS, NO SEMANAS</li>
+        <li data-i18n="n2_b">VOLUMEN 10× · TODOS LOS FORMATOS</li>
+        <li data-i18n="n2_c">CERO LOGÍSTICA · CERO CASTINGS</li>
+        <li data-i18n="n2_d">15 VARIANTES POR CONCEPTO PARA TESTEAR</li>
+      </ul>
     </div>
   </div>
-  <div style="overflow: hidden; width: 100%; position: relative;">
-    <div style="position: absolute; left: 0; top: 0; bottom: 0; width: 80px; background: linear-gradient(90deg, #9b9a99, transparent); z-index: 2; pointer-events: none;"></div>
-    <div style="position: absolute; right: 0; top: 0; bottom: 0; width: 80px; background: linear-gradient(270deg, #9b9a99, transparent); z-index: 2; pointer-events: none;"></div>
-    <div style="display: flex; gap: 12px; width: max-content; animation: galleryLeft 45s linear infinite;">
-      <div style="width: 270px; height: 480px; border-radius: 6px; overflow: hidden; flex-shrink: 0; position: relative; border: 1px solid rgba(26,26,26,0.1); background: #1a1a1a; transition: transform 0.4s cubic-bezier(.16,1,.3,1), border-color 0.3s;" style-hover="transform: scale(1.04); border-color: rgba(230,50,40,0.2);"><video src="assets/videos/ugc/agl-final.mp4" autoplay muted loop playsinline preload="metadata" style="width: 100%; height: 100%; object-fit: cover; display: block;"></video><div style="position: absolute; bottom: 0; left: 0; right: 0; padding: 24px 14px 10px; background: linear-gradient(to top, rgba(0,0,0,0.55), transparent); pointer-events: none;"><span style="font-family: 'JetBrains Mono', monospace; font-size: 9px; letter-spacing: 0.12em; color: rgba(255,255,255,0.85);">UGC_01 &middot; AGL</span></div></div><div style="width: 270px; height: 480px; border-radius: 6px; overflow: hidden; flex-shrink: 0; position: relative; border: 1px solid rgba(26,26,26,0.1); background: #1a1a1a; transition: transform 0.4s cubic-bezier(.16,1,.3,1), border-color 0.3s;" style-hover="transform: scale(1.04); border-color: rgba(230,50,40,0.2);"><video src="assets/videos/ugc/doctor-v1.mp4" autoplay muted loop playsinline preload="metadata" style="width: 100%; height: 100%; object-fit: cover; display: block;"></video><div style="position: absolute; bottom: 0; left: 0; right: 0; padding: 24px 14px 10px; background: linear-gradient(to top, rgba(0,0,0,0.55), transparent); pointer-events: none;"><span style="font-family: 'JetBrains Mono', monospace; font-size: 9px; letter-spacing: 0.12em; color: rgba(255,255,255,0.85);">UGC_02 &middot; DOCTOR</span></div></div><div style="width: 270px; height: 480px; border-radius: 6px; overflow: hidden; flex-shrink: 0; position: relative; border: 1px solid rgba(26,26,26,0.1); background: #1a1a1a; transition: transform 0.4s cubic-bezier(.16,1,.3,1), border-color 0.3s;" style-hover="transform: scale(1.04); border-color: rgba(230,50,40,0.2);"><video src="assets/videos/ugc/entrevista-junio15.mp4" autoplay muted loop playsinline preload="metadata" style="width: 100%; height: 100%; object-fit: cover; display: block;"></video><div style="position: absolute; bottom: 0; left: 0; right: 0; padding: 24px 14px 10px; background: linear-gradient(to top, rgba(0,0,0,0.55), transparent); pointer-events: none;"><span style="font-family: 'JetBrains Mono', monospace; font-size: 9px; letter-spacing: 0.12em; color: rgba(255,255,255,0.85);">UGC_03 &middot; ENTREVISTA</span></div></div><div style="width: 270px; height: 480px; border-radius: 6px; overflow: hidden; flex-shrink: 0; position: relative; border: 1px solid rgba(26,26,26,0.1); background: #1a1a1a; transition: transform 0.4s cubic-bezier(.16,1,.3,1), border-color 0.3s;" style-hover="transform: scale(1.04); border-color: rgba(230,50,40,0.2);"><video src="assets/videos/ugc/gshock2-final.mp4" autoplay muted loop playsinline preload="metadata" style="width: 100%; height: 100%; object-fit: cover; display: block;"></video><div style="position: absolute; bottom: 0; left: 0; right: 0; padding: 24px 14px 10px; background: linear-gradient(to top, rgba(0,0,0,0.55), transparent); pointer-events: none;"><span style="font-family: 'JetBrains Mono', monospace; font-size: 9px; letter-spacing: 0.12em; color: rgba(255,255,255,0.85);">UGC_04 &middot; G-SHOCK</span></div></div><div style="width: 270px; height: 480px; border-radius: 6px; overflow: hidden; flex-shrink: 0; position: relative; border: 1px solid rgba(26,26,26,0.1); background: #1a1a1a; transition: transform 0.4s cubic-bezier(.16,1,.3,1), border-color 0.3s;" style-hover="transform: scale(1.04); border-color: rgba(230,50,40,0.2);"><video src="assets/videos/ugc/ninja-female-v2-final.mp4" autoplay muted loop playsinline preload="metadata" style="width: 100%; height: 100%; object-fit: cover; display: block;"></video><div style="position: absolute; bottom: 0; left: 0; right: 0; padding: 24px 14px 10px; background: linear-gradient(to top, rgba(0,0,0,0.55), transparent); pointer-events: none;"><span style="font-family: 'JetBrains Mono', monospace; font-size: 9px; letter-spacing: 0.12em; color: rgba(255,255,255,0.85);">UGC_05 &middot; NINJA</span></div></div><div style="width: 270px; height: 480px; border-radius: 6px; overflow: hidden; flex-shrink: 0; position: relative; border: 1px solid rgba(26,26,26,0.1); background: #1a1a1a; transition: transform 0.4s cubic-bezier(.16,1,.3,1), border-color 0.3s;" style-hover="transform: scale(1.04); border-color: rgba(230,50,40,0.2);"><video src="assets/videos/ugc/protenina-final.mp4" autoplay muted loop playsinline preload="metadata" style="width: 100%; height: 100%; object-fit: cover; display: block;"></video><div style="position: absolute; bottom: 0; left: 0; right: 0; padding: 24px 14px 10px; background: linear-gradient(to top, rgba(0,0,0,0.55), transparent); pointer-events: none;"><span style="font-family: 'JetBrains Mono', monospace; font-size: 9px; letter-spacing: 0.12em; color: rgba(255,255,255,0.85);">UGC_06 &middot; PROTEINA</span></div></div><div style="width: 270px; height: 480px; border-radius: 6px; overflow: hidden; flex-shrink: 0; position: relative; border: 1px solid rgba(26,26,26,0.1); background: #1a1a1a; transition: transform 0.4s cubic-bezier(.16,1,.3,1), border-color 0.3s;" style-hover="transform: scale(1.04); border-color: rgba(230,50,40,0.2);"><video src="assets/videos/ugc/swagup-v1.mp4" autoplay muted loop playsinline preload="metadata" style="width: 100%; height: 100%; object-fit: cover; display: block;"></video><div style="position: absolute; bottom: 0; left: 0; right: 0; padding: 24px 14px 10px; background: linear-gradient(to top, rgba(0,0,0,0.55), transparent); pointer-events: none;"><span style="font-family: 'JetBrains Mono', monospace; font-size: 9px; letter-spacing: 0.12em; color: rgba(255,255,255,0.85);">UGC_07 &middot; SWAGUP</span></div></div><div style="width: 270px; height: 480px; border-radius: 6px; overflow: hidden; flex-shrink: 0; position: relative; border: 1px solid rgba(26,26,26,0.1); background: #1a1a1a; transition: transform 0.4s cubic-bezier(.16,1,.3,1), border-color 0.3s;" style-hover="transform: scale(1.04); border-color: rgba(230,50,40,0.2);"><video src="assets/videos/ugc/agl-final.mp4" autoplay muted loop playsinline preload="metadata" style="width: 100%; height: 100%; object-fit: cover; display: block;"></video><div style="position: absolute; bottom: 0; left: 0; right: 0; padding: 24px 14px 10px; background: linear-gradient(to top, rgba(0,0,0,0.55), transparent); pointer-events: none;"><span style="font-family: 'JetBrains Mono', monospace; font-size: 9px; letter-spacing: 0.12em; color: rgba(255,255,255,0.85);">UGC_01 &middot; AGL</span></div></div><div style="width: 270px; height: 480px; border-radius: 6px; overflow: hidden; flex-shrink: 0; position: relative; border: 1px solid rgba(26,26,26,0.1); background: #1a1a1a; transition: transform 0.4s cubic-bezier(.16,1,.3,1), border-color 0.3s;" style-hover="transform: scale(1.04); border-color: rgba(230,50,40,0.2);"><video src="assets/videos/ugc/doctor-v1.mp4" autoplay muted loop playsinline preload="metadata" style="width: 100%; height: 100%; object-fit: cover; display: block;"></video><div style="position: absolute; bottom: 0; left: 0; right: 0; padding: 24px 14px 10px; background: linear-gradient(to top, rgba(0,0,0,0.55), transparent); pointer-events: none;"><span style="font-family: 'JetBrains Mono', monospace; font-size: 9px; letter-spacing: 0.12em; color: rgba(255,255,255,0.85);">UGC_02 &middot; DOCTOR</span></div></div><div style="width: 270px; height: 480px; border-radius: 6px; overflow: hidden; flex-shrink: 0; position: relative; border: 1px solid rgba(26,26,26,0.1); background: #1a1a1a; transition: transform 0.4s cubic-bezier(.16,1,.3,1), border-color 0.3s;" style-hover="transform: scale(1.04); border-color: rgba(230,50,40,0.2);"><video src="assets/videos/ugc/entrevista-junio15.mp4" autoplay muted loop playsinline preload="metadata" style="width: 100%; height: 100%; object-fit: cover; display: block;"></video><div style="position: absolute; bottom: 0; left: 0; right: 0; padding: 24px 14px 10px; background: linear-gradient(to top, rgba(0,0,0,0.55), transparent); pointer-events: none;"><span style="font-family: 'JetBrains Mono', monospace; font-size: 9px; letter-spacing: 0.12em; color: rgba(255,255,255,0.85);">UGC_03 &middot; ENTREVISTA</span></div></div><div style="width: 270px; height: 480px; border-radius: 6px; overflow: hidden; flex-shrink: 0; position: relative; border: 1px solid rgba(26,26,26,0.1); background: #1a1a1a; transition: transform 0.4s cubic-bezier(.16,1,.3,1), border-color 0.3s;" style-hover="transform: scale(1.04); border-color: rgba(230,50,40,0.2);"><video src="assets/videos/ugc/gshock2-final.mp4" autoplay muted loop playsinline preload="metadata" style="width: 100%; height: 100%; object-fit: cover; display: block;"></video><div style="position: absolute; bottom: 0; left: 0; right: 0; padding: 24px 14px 10px; background: linear-gradient(to top, rgba(0,0,0,0.55), transparent); pointer-events: none;"><span style="font-family: 'JetBrains Mono', monospace; font-size: 9px; letter-spacing: 0.12em; color: rgba(255,255,255,0.85);">UGC_04 &middot; G-SHOCK</span></div></div><div style="width: 270px; height: 480px; border-radius: 6px; overflow: hidden; flex-shrink: 0; position: relative; border: 1px solid rgba(26,26,26,0.1); background: #1a1a1a; transition: transform 0.4s cubic-bezier(.16,1,.3,1), border-color 0.3s;" style-hover="transform: scale(1.04); border-color: rgba(230,50,40,0.2);"><video src="assets/videos/ugc/ninja-female-v2-final.mp4" autoplay muted loop playsinline preload="metadata" style="width: 100%; height: 100%; object-fit: cover; display: block;"></video><div style="position: absolute; bottom: 0; left: 0; right: 0; padding: 24px 14px 10px; background: linear-gradient(to top, rgba(0,0,0,0.55), transparent); pointer-events: none;"><span style="font-family: 'JetBrains Mono', monospace; font-size: 9px; letter-spacing: 0.12em; color: rgba(255,255,255,0.85);">UGC_05 &middot; NINJA</span></div></div><div style="width: 270px; height: 480px; border-radius: 6px; overflow: hidden; flex-shrink: 0; position: relative; border: 1px solid rgba(26,26,26,0.1); background: #1a1a1a; transition: transform 0.4s cubic-bezier(.16,1,.3,1), border-color 0.3s;" style-hover="transform: scale(1.04); border-color: rgba(230,50,40,0.2);"><video src="assets/videos/ugc/protenina-final.mp4" autoplay muted loop playsinline preload="metadata" style="width: 100%; height: 100%; object-fit: cover; display: block;"></video><div style="position: absolute; bottom: 0; left: 0; right: 0; padding: 24px 14px 10px; background: linear-gradient(to top, rgba(0,0,0,0.55), transparent); pointer-events: none;"><span style="font-family: 'JetBrains Mono', monospace; font-size: 9px; letter-spacing: 0.12em; color: rgba(255,255,255,0.85);">UGC_06 &middot; PROTEINA</span></div></div><div style="width: 270px; height: 480px; border-radius: 6px; overflow: hidden; flex-shrink: 0; position: relative; border: 1px solid rgba(26,26,26,0.1); background: #1a1a1a; transition: transform 0.4s cubic-bezier(.16,1,.3,1), border-color 0.3s;" style-hover="transform: scale(1.04); border-color: rgba(230,50,40,0.2);"><video src="assets/videos/ugc/swagup-v1.mp4" autoplay muted loop playsinline preload="metadata" style="width: 100%; height: 100%; object-fit: cover; display: block;"></video><div style="position: absolute; bottom: 0; left: 0; right: 0; padding: 24px 14px 10px; background: linear-gradient(to top, rgba(0,0,0,0.55), transparent); pointer-events: none;"><span style="font-family: 'JetBrains Mono', monospace; font-size: 9px; letter-spacing: 0.12em; color: rgba(255,255,255,0.85);">UGC_07 &middot; SWAGUP</span></div></div>
+  <p class="numbers-close" data-i18n="s3_close">El mismo resultado en cámara. Sin castings, sin envíos de producto, sin esperas — y con suficientes variantes para que tu media buyer encuentre la ganadora.</p>
+</section>
+
+<!-- ══════════ 04 POR QUÉ IA ══════════ -->
+<section class="block" id="porque">
+  <div class="section-head">
+    <span class="tag">— / 04 · <span data-i18n="s4_tag">POR QUÉ IA</span></span>
+    <h2 data-i18n="s4_h">Lo que la producción tradicional no puede hacer</h2>
+  </div>
+  <div class="why">
+    <div class="card">
+      <div class="n">01</div>
+      <h3 data-i18n="w1_t">Variantes ilimitadas</h3>
+      <p data-i18n="w1_d">Cada concepto sale con 15 variantes — distintos hooks, distintos ángulos, distintos cierres. Tu equipo de paid testea de verdad, no a ciegas.</p>
+    </div>
+    <div class="card">
+      <div class="n">02</div>
+      <h3 data-i18n="w2_t">Personajes consistentes</h3>
+      <p><span data-i18n="w2_d">El mismo rostro en cada video, campaña tras campaña. Construye una cara para tu marca sin contratar a nadie.</span> <a href="/avatars" data-i18n="w2_link">Mira cómo funcionan los avatars →</a></p>
+    </div>
+    <div class="card">
+      <div class="n">03</div>
+      <h3 data-i18n="w3_t">Cero logística</h3>
+      <p data-i18n="w3_d">Sin castings, sin estudios, sin permisos de rodaje, sin enviar producto. Un brief entra, los videos salen.</p>
     </div>
   </div>
 </section>
 
-<!-- ══════════ EDITORIAL ══════════ -->
-<section id="editorial" data-screen-label="Editorial" style="padding: 80px 0; position: relative; border-top: 1px solid rgba(26,26,26,0.1);">
-  <div style="padding: 0 40px; max-width: 1200px; margin: 0 auto 48px;">
-    <div style="text-align: center;">
-      <div style="font-family: 'JetBrains Mono', monospace; font-size: 11px; letter-spacing: 0.25em; color: #e63228; opacity: 0.7; margin-bottom: 12px;">{ CAMPAIGN VISUALS }</div>
-      <h2 style="font-family: 'Oxanium', sans-serif; font-size: 38px; font-weight: 700; color: #1a1a1a; line-height: 1.1; margin: 0;">Editorial</h2>
-    </div>
+<!-- ══════════ 05 PARA QUIÉN ══════════ -->
+<section class="block" id="paraquien">
+  <div class="section-head">
+    <span class="tag">— / 05 · <span data-i18n="s5_tag">PARA QUIÉN</span></span>
+    <h2 data-i18n="s5_h">Dos caminos, una puerta</h2>
   </div>
-  <div style="overflow: hidden; width: 100%; position: relative;">
-    <div style="position: absolute; left: 0; top: 0; bottom: 0; width: 80px; background: linear-gradient(90deg, #9b9a99, transparent); z-index: 2; pointer-events: none;"></div>
-    <div style="position: absolute; right: 0; top: 0; bottom: 0; width: 80px; background: linear-gradient(270deg, #9b9a99, transparent); z-index: 2; pointer-events: none;"></div>
-    <div style="display: flex; gap: 12px; width: max-content; animation: galleryRight 50s linear infinite;">
-      <div style="width: 270px; height: 480px; border-radius: 6px; overflow: hidden; flex-shrink: 0; position: relative; border: 1px solid rgba(26,26,26,0.1); background: #1a1a1a; transition: transform 0.4s cubic-bezier(.16,1,.3,1), border-color 0.3s;" style-hover="transform: scale(1.04); border-color: rgba(230,50,40,0.2);"><video src="assets/videos/editorial/bracaletes-v3-lento.mp4" autoplay muted loop playsinline preload="metadata" style="width: 100%; height: 100%; object-fit: cover; display: block;"></video><div style="position: absolute; bottom: 0; left: 0; right: 0; padding: 24px 14px 10px; background: linear-gradient(to top, rgba(0,0,0,0.55), transparent); pointer-events: none;"><span style="font-family: 'JetBrains Mono', monospace; font-size: 9px; letter-spacing: 0.12em; color: rgba(255,255,255,0.85);">EDITORIAL_01 &middot; BRAZALETES</span></div></div><div style="width: 270px; height: 480px; border-radius: 6px; overflow: hidden; flex-shrink: 0; position: relative; border: 1px solid rgba(26,26,26,0.1); background: #1a1a1a; transition: transform 0.4s cubic-bezier(.16,1,.3,1), border-color 0.3s;" style-hover="transform: scale(1.04); border-color: rgba(230,50,40,0.2);"><video src="assets/videos/editorial/casio-junio10.mp4" autoplay muted loop playsinline preload="metadata" style="width: 100%; height: 100%; object-fit: cover; display: block;"></video><div style="position: absolute; bottom: 0; left: 0; right: 0; padding: 24px 14px 10px; background: linear-gradient(to top, rgba(0,0,0,0.55), transparent); pointer-events: none;"><span style="font-family: 'JetBrains Mono', monospace; font-size: 9px; letter-spacing: 0.12em; color: rgba(255,255,255,0.85);">EDITORIAL_02 &middot; CASIO</span></div></div><div style="width: 270px; height: 480px; border-radius: 6px; overflow: hidden; flex-shrink: 0; position: relative; border: 1px solid rgba(26,26,26,0.1); background: #1a1a1a; transition: transform 0.4s cubic-bezier(.16,1,.3,1), border-color 0.3s;" style-hover="transform: scale(1.04); border-color: rgba(230,50,40,0.2);"><video src="assets/videos/editorial/esencia-v1.mp4" autoplay muted loop playsinline preload="metadata" style="width: 100%; height: 100%; object-fit: cover; display: block;"></video><div style="position: absolute; bottom: 0; left: 0; right: 0; padding: 24px 14px 10px; background: linear-gradient(to top, rgba(0,0,0,0.55), transparent); pointer-events: none;"><span style="font-family: 'JetBrains Mono', monospace; font-size: 9px; letter-spacing: 0.12em; color: rgba(255,255,255,0.85);">EDITORIAL_03 &middot; ESENCIA</span></div></div><div style="width: 270px; height: 480px; border-radius: 6px; overflow: hidden; flex-shrink: 0; position: relative; border: 1px solid rgba(26,26,26,0.1); background: #1a1a1a; transition: transform 0.4s cubic-bezier(.16,1,.3,1), border-color 0.3s;" style-hover="transform: scale(1.04); border-color: rgba(230,50,40,0.2);"><video src="assets/videos/editorial/gangla-v2-final.mp4" autoplay muted loop playsinline preload="metadata" style="width: 100%; height: 100%; object-fit: cover; display: block;"></video><div style="position: absolute; bottom: 0; left: 0; right: 0; padding: 24px 14px 10px; background: linear-gradient(to top, rgba(0,0,0,0.55), transparent); pointer-events: none;"><span style="font-family: 'JetBrains Mono', monospace; font-size: 9px; letter-spacing: 0.12em; color: rgba(255,255,255,0.85);">EDITORIAL_04 &middot; GANGLA</span></div></div><div style="width: 270px; height: 480px; border-radius: 6px; overflow: hidden; flex-shrink: 0; position: relative; border: 1px solid rgba(26,26,26,0.1); background: #1a1a1a; transition: transform 0.4s cubic-bezier(.16,1,.3,1), border-color 0.3s;" style-hover="transform: scale(1.04); border-color: rgba(230,50,40,0.2);"><video src="assets/videos/editorial/gods-final.mp4" autoplay muted loop playsinline preload="metadata" style="width: 100%; height: 100%; object-fit: cover; display: block;"></video><div style="position: absolute; bottom: 0; left: 0; right: 0; padding: 24px 14px 10px; background: linear-gradient(to top, rgba(0,0,0,0.55), transparent); pointer-events: none;"><span style="font-family: 'JetBrains Mono', monospace; font-size: 9px; letter-spacing: 0.12em; color: rgba(255,255,255,0.85);">EDITORIAL_05 &middot; GODS</span></div></div><div style="width: 270px; height: 480px; border-radius: 6px; overflow: hidden; flex-shrink: 0; position: relative; border: 1px solid rgba(26,26,26,0.1); background: #1a1a1a; transition: transform 0.4s cubic-bezier(.16,1,.3,1), border-color 0.3s;" style-hover="transform: scale(1.04); border-color: rgba(230,50,40,0.2);"><video src="assets/videos/editorial/maison-match-final.mp4" autoplay muted loop playsinline preload="metadata" style="width: 100%; height: 100%; object-fit: cover; display: block;"></video><div style="position: absolute; bottom: 0; left: 0; right: 0; padding: 24px 14px 10px; background: linear-gradient(to top, rgba(0,0,0,0.55), transparent); pointer-events: none;"><span style="font-family: 'JetBrains Mono', monospace; font-size: 9px; letter-spacing: 0.12em; color: rgba(255,255,255,0.85);">EDITORIAL_06 &middot; MAISON MATCH</span></div></div><div style="width: 270px; height: 480px; border-radius: 6px; overflow: hidden; flex-shrink: 0; position: relative; border: 1px solid rgba(26,26,26,0.1); background: #1a1a1a; transition: transform 0.4s cubic-bezier(.16,1,.3,1), border-color 0.3s;" style-hover="transform: scale(1.04); border-color: rgba(230,50,40,0.2);"><video src="assets/videos/editorial/popeyes-es-final.mp4" autoplay muted loop playsinline preload="metadata" style="width: 100%; height: 100%; object-fit: cover; display: block;"></video><div style="position: absolute; bottom: 0; left: 0; right: 0; padding: 24px 14px 10px; background: linear-gradient(to top, rgba(0,0,0,0.55), transparent); pointer-events: none;"><span style="font-family: 'JetBrains Mono', monospace; font-size: 9px; letter-spacing: 0.12em; color: rgba(255,255,255,0.85);">EDITORIAL_07 &middot; POPEYES</span></div></div><div style="width: 270px; height: 480px; border-radius: 6px; overflow: hidden; flex-shrink: 0; position: relative; border: 1px solid rgba(26,26,26,0.1); background: #1a1a1a; transition: transform 0.4s cubic-bezier(.16,1,.3,1), border-color 0.3s;" style-hover="transform: scale(1.04); border-color: rgba(230,50,40,0.2);"><video src="assets/videos/editorial/the-label-edition-v2.mp4" autoplay muted loop playsinline preload="metadata" style="width: 100%; height: 100%; object-fit: cover; display: block;"></video><div style="position: absolute; bottom: 0; left: 0; right: 0; padding: 24px 14px 10px; background: linear-gradient(to top, rgba(0,0,0,0.55), transparent); pointer-events: none;"><span style="font-family: 'JetBrains Mono', monospace; font-size: 9px; letter-spacing: 0.12em; color: rgba(255,255,255,0.85);">EDITORIAL_08 &middot; THE LABEL EDITION</span></div></div><div style="width: 270px; height: 480px; border-radius: 6px; overflow: hidden; flex-shrink: 0; position: relative; border: 1px solid rgba(26,26,26,0.1); background: #1a1a1a; transition: transform 0.4s cubic-bezier(.16,1,.3,1), border-color 0.3s;" style-hover="transform: scale(1.04); border-color: rgba(230,50,40,0.2);"><video src="assets/videos/editorial/bracaletes-v3-lento.mp4" autoplay muted loop playsinline preload="metadata" style="width: 100%; height: 100%; object-fit: cover; display: block;"></video><div style="position: absolute; bottom: 0; left: 0; right: 0; padding: 24px 14px 10px; background: linear-gradient(to top, rgba(0,0,0,0.55), transparent); pointer-events: none;"><span style="font-family: 'JetBrains Mono', monospace; font-size: 9px; letter-spacing: 0.12em; color: rgba(255,255,255,0.85);">EDITORIAL_01 &middot; BRAZALETES</span></div></div><div style="width: 270px; height: 480px; border-radius: 6px; overflow: hidden; flex-shrink: 0; position: relative; border: 1px solid rgba(26,26,26,0.1); background: #1a1a1a; transition: transform 0.4s cubic-bezier(.16,1,.3,1), border-color 0.3s;" style-hover="transform: scale(1.04); border-color: rgba(230,50,40,0.2);"><video src="assets/videos/editorial/casio-junio10.mp4" autoplay muted loop playsinline preload="metadata" style="width: 100%; height: 100%; object-fit: cover; display: block;"></video><div style="position: absolute; bottom: 0; left: 0; right: 0; padding: 24px 14px 10px; background: linear-gradient(to top, rgba(0,0,0,0.55), transparent); pointer-events: none;"><span style="font-family: 'JetBrains Mono', monospace; font-size: 9px; letter-spacing: 0.12em; color: rgba(255,255,255,0.85);">EDITORIAL_02 &middot; CASIO</span></div></div><div style="width: 270px; height: 480px; border-radius: 6px; overflow: hidden; flex-shrink: 0; position: relative; border: 1px solid rgba(26,26,26,0.1); background: #1a1a1a; transition: transform 0.4s cubic-bezier(.16,1,.3,1), border-color 0.3s;" style-hover="transform: scale(1.04); border-color: rgba(230,50,40,0.2);"><video src="assets/videos/editorial/esencia-v1.mp4" autoplay muted loop playsinline preload="metadata" style="width: 100%; height: 100%; object-fit: cover; display: block;"></video><div style="position: absolute; bottom: 0; left: 0; right: 0; padding: 24px 14px 10px; background: linear-gradient(to top, rgba(0,0,0,0.55), transparent); pointer-events: none;"><span style="font-family: 'JetBrains Mono', monospace; font-size: 9px; letter-spacing: 0.12em; color: rgba(255,255,255,0.85);">EDITORIAL_03 &middot; ESENCIA</span></div></div><div style="width: 270px; height: 480px; border-radius: 6px; overflow: hidden; flex-shrink: 0; position: relative; border: 1px solid rgba(26,26,26,0.1); background: #1a1a1a; transition: transform 0.4s cubic-bezier(.16,1,.3,1), border-color 0.3s;" style-hover="transform: scale(1.04); border-color: rgba(230,50,40,0.2);"><video src="assets/videos/editorial/gangla-v2-final.mp4" autoplay muted loop playsinline preload="metadata" style="width: 100%; height: 100%; object-fit: cover; display: block;"></video><div style="position: absolute; bottom: 0; left: 0; right: 0; padding: 24px 14px 10px; background: linear-gradient(to top, rgba(0,0,0,0.55), transparent); pointer-events: none;"><span style="font-family: 'JetBrains Mono', monospace; font-size: 9px; letter-spacing: 0.12em; color: rgba(255,255,255,0.85);">EDITORIAL_04 &middot; GANGLA</span></div></div><div style="width: 270px; height: 480px; border-radius: 6px; overflow: hidden; flex-shrink: 0; position: relative; border: 1px solid rgba(26,26,26,0.1); background: #1a1a1a; transition: transform 0.4s cubic-bezier(.16,1,.3,1), border-color 0.3s;" style-hover="transform: scale(1.04); border-color: rgba(230,50,40,0.2);"><video src="assets/videos/editorial/gods-final.mp4" autoplay muted loop playsinline preload="metadata" style="width: 100%; height: 100%; object-fit: cover; display: block;"></video><div style="position: absolute; bottom: 0; left: 0; right: 0; padding: 24px 14px 10px; background: linear-gradient(to top, rgba(0,0,0,0.55), transparent); pointer-events: none;"><span style="font-family: 'JetBrains Mono', monospace; font-size: 9px; letter-spacing: 0.12em; color: rgba(255,255,255,0.85);">EDITORIAL_05 &middot; GODS</span></div></div><div style="width: 270px; height: 480px; border-radius: 6px; overflow: hidden; flex-shrink: 0; position: relative; border: 1px solid rgba(26,26,26,0.1); background: #1a1a1a; transition: transform 0.4s cubic-bezier(.16,1,.3,1), border-color 0.3s;" style-hover="transform: scale(1.04); border-color: rgba(230,50,40,0.2);"><video src="assets/videos/editorial/maison-match-final.mp4" autoplay muted loop playsinline preload="metadata" style="width: 100%; height: 100%; object-fit: cover; display: block;"></video><div style="position: absolute; bottom: 0; left: 0; right: 0; padding: 24px 14px 10px; background: linear-gradient(to top, rgba(0,0,0,0.55), transparent); pointer-events: none;"><span style="font-family: 'JetBrains Mono', monospace; font-size: 9px; letter-spacing: 0.12em; color: rgba(255,255,255,0.85);">EDITORIAL_06 &middot; MAISON MATCH</span></div></div><div style="width: 270px; height: 480px; border-radius: 6px; overflow: hidden; flex-shrink: 0; position: relative; border: 1px solid rgba(26,26,26,0.1); background: #1a1a1a; transition: transform 0.4s cubic-bezier(.16,1,.3,1), border-color 0.3s;" style-hover="transform: scale(1.04); border-color: rgba(230,50,40,0.2);"><video src="assets/videos/editorial/popeyes-es-final.mp4" autoplay muted loop playsinline preload="metadata" style="width: 100%; height: 100%; object-fit: cover; display: block;"></video><div style="position: absolute; bottom: 0; left: 0; right: 0; padding: 24px 14px 10px; background: linear-gradient(to top, rgba(0,0,0,0.55), transparent); pointer-events: none;"><span style="font-family: 'JetBrains Mono', monospace; font-size: 9px; letter-spacing: 0.12em; color: rgba(255,255,255,0.85);">EDITORIAL_07 &middot; POPEYES</span></div></div><div style="width: 270px; height: 480px; border-radius: 6px; overflow: hidden; flex-shrink: 0; position: relative; border: 1px solid rgba(26,26,26,0.1); background: #1a1a1a; transition: transform 0.4s cubic-bezier(.16,1,.3,1), border-color 0.3s;" style-hover="transform: scale(1.04); border-color: rgba(230,50,40,0.2);"><video src="assets/videos/editorial/the-label-edition-v2.mp4" autoplay muted loop playsinline preload="metadata" style="width: 100%; height: 100%; object-fit: cover; display: block;"></video><div style="position: absolute; bottom: 0; left: 0; right: 0; padding: 24px 14px 10px; background: linear-gradient(to top, rgba(0,0,0,0.55), transparent); pointer-events: none;"><span style="font-family: 'JetBrains Mono', monospace; font-size: 9px; letter-spacing: 0.12em; color: rgba(255,255,255,0.85);">EDITORIAL_08 &middot; THE LABEL EDITION</span></div></div>
+  <div class="who">
+    <div class="col">
+      <h3><span class="dot"></span><span data-i18n="who1_t">AGENCIAS Y MARCAS</span></h3>
+      <ul>
+        <li data-i18n="who1_a">Creatividad para campañas de paid — volumen mensual constante</li>
+        <li data-i18n="who1_b">White-label: entregamos, tú firmas</li>
+        <li data-i18n="who1_c">Del brief a la entrega en días</li>
+        <li data-i18n="who1_d">Formatos y variantes pensados para testear y escalar</li>
+      </ul>
     </div>
-  </div>
-</section>
-
-<!-- ══════════ TUTORIALS ══════════ -->
-<section id="tutorials" data-screen-label="Tutorials" style="padding: 80px 0; position: relative; border-top: 1px solid rgba(26,26,26,0.1);">
-  <div style="padding: 0 40px; max-width: 1200px; margin: 0 auto 48px;">
-    <div style="text-align: center;">
-      <div style="font-family: 'JetBrains Mono', monospace; font-size: 11px; letter-spacing: 0.25em; color: #e63228; opacity: 0.7; margin-bottom: 12px;">{ PROCESS &amp; BTS }</div>
-      <h2 style="font-family: 'Oxanium', sans-serif; font-size: 38px; font-weight: 700; color: #1a1a1a; line-height: 1.1; margin: 0;">Tutorials</h2>
-    </div>
-  </div>
-  <div style="overflow: hidden; width: 100%; position: relative;">
-    <div style="position: absolute; left: 0; top: 0; bottom: 0; width: 80px; background: linear-gradient(90deg, #9b9a99, transparent); z-index: 2; pointer-events: none;"></div>
-    <div style="position: absolute; right: 0; top: 0; bottom: 0; width: 80px; background: linear-gradient(270deg, #9b9a99, transparent); z-index: 2; pointer-events: none;"></div>
-    <div style="display: flex; gap: 12px; width: max-content; animation: galleryLeft 55s linear infinite;">
-      <div style="width: 270px; height: 480px; border-radius: 6px; overflow: hidden; flex-shrink: 0; position: relative; border: 1px solid rgba(26,26,26,0.1); background: #1a1a1a; transition: transform 0.4s cubic-bezier(.16,1,.3,1), border-color 0.3s;" style-hover="transform: scale(1.04); border-color: rgba(230,50,40,0.2);"><video src="assets/videos/tutorials/final-junio16.mp4" autoplay muted loop playsinline preload="metadata" style="width: 100%; height: 100%; object-fit: cover; display: block;"></video><div style="position: absolute; bottom: 0; left: 0; right: 0; padding: 24px 14px 10px; background: linear-gradient(to top, rgba(0,0,0,0.55), transparent); pointer-events: none;"><span style="font-family: 'JetBrains Mono', monospace; font-size: 9px; letter-spacing: 0.12em; color: rgba(255,255,255,0.85);">TUTORIAL_01 &middot; PROCESS 01</span></div></div><div style="width: 270px; height: 480px; border-radius: 6px; overflow: hidden; flex-shrink: 0; position: relative; border: 1px solid rgba(26,26,26,0.1); background: #1a1a1a; transition: transform 0.4s cubic-bezier(.16,1,.3,1), border-color 0.3s;" style-hover="transform: scale(1.04); border-color: rgba(230,50,40,0.2);"><video src="assets/videos/tutorials/gym-junio22.mp4" autoplay muted loop playsinline preload="metadata" style="width: 100%; height: 100%; object-fit: cover; display: block;"></video><div style="position: absolute; bottom: 0; left: 0; right: 0; padding: 24px 14px 10px; background: linear-gradient(to top, rgba(0,0,0,0.55), transparent); pointer-events: none;"><span style="font-family: 'JetBrains Mono', monospace; font-size: 9px; letter-spacing: 0.12em; color: rgba(255,255,255,0.85);">TUTORIAL_02 &middot; GYM</span></div></div><div style="width: 270px; height: 480px; border-radius: 6px; overflow: hidden; flex-shrink: 0; position: relative; border: 1px solid rgba(26,26,26,0.1); background: #1a1a1a; transition: transform 0.4s cubic-bezier(.16,1,.3,1), border-color 0.3s;" style-hover="transform: scale(1.04); border-color: rgba(230,50,40,0.2);"><video src="assets/videos/tutorials/match-fonts-v2.mp4" autoplay muted loop playsinline preload="metadata" style="width: 100%; height: 100%; object-fit: cover; display: block;"></video><div style="position: absolute; bottom: 0; left: 0; right: 0; padding: 24px 14px 10px; background: linear-gradient(to top, rgba(0,0,0,0.55), transparent); pointer-events: none;"><span style="font-family: 'JetBrains Mono', monospace; font-size: 9px; letter-spacing: 0.12em; color: rgba(255,255,255,0.85);">TUTORIAL_03 &middot; MATCH FONTS</span></div></div><div style="width: 270px; height: 480px; border-radius: 6px; overflow: hidden; flex-shrink: 0; position: relative; border: 1px solid rgba(26,26,26,0.1); background: #1a1a1a; transition: transform 0.4s cubic-bezier(.16,1,.3,1), border-color 0.3s;" style-hover="transform: scale(1.04); border-color: rgba(230,50,40,0.2);"><video src="assets/videos/tutorials/pitbull-final.mp4" autoplay muted loop playsinline preload="metadata" style="width: 100%; height: 100%; object-fit: cover; display: block;"></video><div style="position: absolute; bottom: 0; left: 0; right: 0; padding: 24px 14px 10px; background: linear-gradient(to top, rgba(0,0,0,0.55), transparent); pointer-events: none;"><span style="font-family: 'JetBrains Mono', monospace; font-size: 9px; letter-spacing: 0.12em; color: rgba(255,255,255,0.85);">TUTORIAL_04 &middot; PITBULL</span></div></div><div style="width: 270px; height: 480px; border-radius: 6px; overflow: hidden; flex-shrink: 0; position: relative; border: 1px solid rgba(26,26,26,0.1); background: #1a1a1a; transition: transform 0.4s cubic-bezier(.16,1,.3,1), border-color 0.3s;" style-hover="transform: scale(1.04); border-color: rgba(230,50,40,0.2);"><video src="assets/videos/tutorials/utopico-final-1.mp4" autoplay muted loop playsinline preload="metadata" style="width: 100%; height: 100%; object-fit: cover; display: block;"></video><div style="position: absolute; bottom: 0; left: 0; right: 0; padding: 24px 14px 10px; background: linear-gradient(to top, rgba(0,0,0,0.55), transparent); pointer-events: none;"><span style="font-family: 'JetBrains Mono', monospace; font-size: 9px; letter-spacing: 0.12em; color: rgba(255,255,255,0.85);">TUTORIAL_05 &middot; UTOPICO</span></div></div><div style="width: 270px; height: 480px; border-radius: 6px; overflow: hidden; flex-shrink: 0; position: relative; border: 1px solid rgba(26,26,26,0.1); background: #1a1a1a; transition: transform 0.4s cubic-bezier(.16,1,.3,1), border-color 0.3s;" style-hover="transform: scale(1.04); border-color: rgba(230,50,40,0.2);"><video src="assets/videos/tutorials/vfx-final.mp4" autoplay muted loop playsinline preload="metadata" style="width: 100%; height: 100%; object-fit: cover; display: block;"></video><div style="position: absolute; bottom: 0; left: 0; right: 0; padding: 24px 14px 10px; background: linear-gradient(to top, rgba(0,0,0,0.55), transparent); pointer-events: none;"><span style="font-family: 'JetBrains Mono', monospace; font-size: 9px; letter-spacing: 0.12em; color: rgba(255,255,255,0.85);">TUTORIAL_06 &middot; VFX</span></div></div><div style="width: 270px; height: 480px; border-radius: 6px; overflow: hidden; flex-shrink: 0; position: relative; border: 1px solid rgba(26,26,26,0.1); background: #1a1a1a; transition: transform 0.4s cubic-bezier(.16,1,.3,1), border-color 0.3s;" style-hover="transform: scale(1.04); border-color: rgba(230,50,40,0.2);"><video src="assets/videos/tutorials/final-junio16.mp4" autoplay muted loop playsinline preload="metadata" style="width: 100%; height: 100%; object-fit: cover; display: block;"></video><div style="position: absolute; bottom: 0; left: 0; right: 0; padding: 24px 14px 10px; background: linear-gradient(to top, rgba(0,0,0,0.55), transparent); pointer-events: none;"><span style="font-family: 'JetBrains Mono', monospace; font-size: 9px; letter-spacing: 0.12em; color: rgba(255,255,255,0.85);">TUTORIAL_01 &middot; PROCESS 01</span></div></div><div style="width: 270px; height: 480px; border-radius: 6px; overflow: hidden; flex-shrink: 0; position: relative; border: 1px solid rgba(26,26,26,0.1); background: #1a1a1a; transition: transform 0.4s cubic-bezier(.16,1,.3,1), border-color 0.3s;" style-hover="transform: scale(1.04); border-color: rgba(230,50,40,0.2);"><video src="assets/videos/tutorials/gym-junio22.mp4" autoplay muted loop playsinline preload="metadata" style="width: 100%; height: 100%; object-fit: cover; display: block;"></video><div style="position: absolute; bottom: 0; left: 0; right: 0; padding: 24px 14px 10px; background: linear-gradient(to top, rgba(0,0,0,0.55), transparent); pointer-events: none;"><span style="font-family: 'JetBrains Mono', monospace; font-size: 9px; letter-spacing: 0.12em; color: rgba(255,255,255,0.85);">TUTORIAL_02 &middot; GYM</span></div></div><div style="width: 270px; height: 480px; border-radius: 6px; overflow: hidden; flex-shrink: 0; position: relative; border: 1px solid rgba(26,26,26,0.1); background: #1a1a1a; transition: transform 0.4s cubic-bezier(.16,1,.3,1), border-color 0.3s;" style-hover="transform: scale(1.04); border-color: rgba(230,50,40,0.2);"><video src="assets/videos/tutorials/match-fonts-v2.mp4" autoplay muted loop playsinline preload="metadata" style="width: 100%; height: 100%; object-fit: cover; display: block;"></video><div style="position: absolute; bottom: 0; left: 0; right: 0; padding: 24px 14px 10px; background: linear-gradient(to top, rgba(0,0,0,0.55), transparent); pointer-events: none;"><span style="font-family: 'JetBrains Mono', monospace; font-size: 9px; letter-spacing: 0.12em; color: rgba(255,255,255,0.85);">TUTORIAL_03 &middot; MATCH FONTS</span></div></div><div style="width: 270px; height: 480px; border-radius: 6px; overflow: hidden; flex-shrink: 0; position: relative; border: 1px solid rgba(26,26,26,0.1); background: #1a1a1a; transition: transform 0.4s cubic-bezier(.16,1,.3,1), border-color 0.3s;" style-hover="transform: scale(1.04); border-color: rgba(230,50,40,0.2);"><video src="assets/videos/tutorials/pitbull-final.mp4" autoplay muted loop playsinline preload="metadata" style="width: 100%; height: 100%; object-fit: cover; display: block;"></video><div style="position: absolute; bottom: 0; left: 0; right: 0; padding: 24px 14px 10px; background: linear-gradient(to top, rgba(0,0,0,0.55), transparent); pointer-events: none;"><span style="font-family: 'JetBrains Mono', monospace; font-size: 9px; letter-spacing: 0.12em; color: rgba(255,255,255,0.85);">TUTORIAL_04 &middot; PITBULL</span></div></div><div style="width: 270px; height: 480px; border-radius: 6px; overflow: hidden; flex-shrink: 0; position: relative; border: 1px solid rgba(26,26,26,0.1); background: #1a1a1a; transition: transform 0.4s cubic-bezier(.16,1,.3,1), border-color 0.3s;" style-hover="transform: scale(1.04); border-color: rgba(230,50,40,0.2);"><video src="assets/videos/tutorials/utopico-final-1.mp4" autoplay muted loop playsinline preload="metadata" style="width: 100%; height: 100%; object-fit: cover; display: block;"></video><div style="position: absolute; bottom: 0; left: 0; right: 0; padding: 24px 14px 10px; background: linear-gradient(to top, rgba(0,0,0,0.55), transparent); pointer-events: none;"><span style="font-family: 'JetBrains Mono', monospace; font-size: 9px; letter-spacing: 0.12em; color: rgba(255,255,255,0.85);">TUTORIAL_05 &middot; UTOPICO</span></div></div><div style="width: 270px; height: 480px; border-radius: 6px; overflow: hidden; flex-shrink: 0; position: relative; border: 1px solid rgba(26,26,26,0.1); background: #1a1a1a; transition: transform 0.4s cubic-bezier(.16,1,.3,1), border-color 0.3s;" style-hover="transform: scale(1.04); border-color: rgba(230,50,40,0.2);"><video src="assets/videos/tutorials/vfx-final.mp4" autoplay muted loop playsinline preload="metadata" style="width: 100%; height: 100%; object-fit: cover; display: block;"></video><div style="position: absolute; bottom: 0; left: 0; right: 0; padding: 24px 14px 10px; background: linear-gradient(to top, rgba(0,0,0,0.55), transparent); pointer-events: none;"><span style="font-family: 'JetBrains Mono', monospace; font-size: 9px; letter-spacing: 0.12em; color: rgba(255,255,255,0.85);">TUTORIAL_06 &middot; VFX</span></div></div>
+    <div class="col creators">
+      <h3><span class="dot"></span><span data-i18n="who2_t">CREADORES Y ENTUSIASTAS DE IA</span></h3>
+      <ul>
+        <li data-i18n="who2_a">¿Quieres aprender cómo hacemos esto? Apúntate igual</li>
+        <li data-i18n="who2_b">Colaboraciones y proyectos con otros creadores</li>
+        <li data-i18n="who2_c">Estamos preparando algo para ti — sé el primero en enterarte</li>
+      </ul>
     </div>
   </div>
 </section>
 
-<!-- ══════════ CONTACT ══════════ -->
-<section id="contact" data-screen-label="Contact" style="padding: 100px 40px 60px; border-top: 1px solid rgba(26,26,26,0.1);">
-  <div style="max-width: 1100px; margin: 0 auto;">
-    <h2 style="display: flex; align-items: baseline; gap: 16px; flex-wrap: wrap; margin: 0;">
-      <span style="font-family: 'Oxanium', sans-serif; font-size: clamp(44px, 6.5vw, 88px); font-weight: 800; color: #1a1a1a; letter-spacing: -0.03em; line-height: 1;">Let's work</span>
-      <span style="font-family: 'Oxanium', sans-serif; font-size: clamp(44px, 6.5vw, 88px); font-weight: 200; color: rgba(26,26,26,0.75); line-height: 1; letter-spacing: -0.02em;">together</span>
-    </h2>
-    <div style="margin-top: 44px; display: flex; gap: 16px; align-items: center; flex-wrap: wrap;">
-      <a href="mailto:felipe@kentro-ai.com" style="font-family: 'JetBrains Mono', monospace; font-size: 12px; padding: 13px 30px; border-radius: 40px; background: #e63228; color: #ffffff; text-decoration: none; font-weight: 500; transition: opacity 0.3s;" style-hover="opacity: 0.85; color: #ffffff;">Schedule a call</a>
-      <a href="mailto:felipe@kentro-ai.com" style="font-family: 'JetBrains Mono', monospace; font-size: 12px; padding: 13px 30px; border-radius: 40px; border: 1px solid rgba(26,26,26,0.1); color: rgba(26,26,26,0.75); text-decoration: none; transition: all 0.3s;" style-hover="border-color: #1a1a1a; color: #1a1a1a;">felipe@kentro-ai.com</a>
+<!-- ══════════ 06 APLICA ══════════ -->
+<section class="block" id="aplica">
+  <div class="section-head">
+    <span class="tag">— / 06 · <span data-i18n="s6_tag">APLICA</span></span>
+    <h2 data-i18n="s6_h">Cuéntanos qué necesitas</h2>
+    <p class="sub" data-i18n="s6_sub">Rellena el formulario y te contactamos en menos de 24 horas.</p>
+  </div>
+  <div class="survey">
+    <form id="lead-form" action="https://formsubmit.co/felipe@kentro-ai.com" method="POST">
+      <input type="hidden" name="_captcha" value="false">
+      <input type="hidden" name="_subject" id="subject-field" value="Nueva aplicación — kentro-ai.com">
+      <input type="hidden" name="_next" value="https://kentro-ai.com/?enviado=1#aplica">
+      <div>
+        <span class="tipo-label" data-i18n="f_tipo">¿CÓMO TE IDENTIFICAS?</span>
+        <div class="tipo-pills">
+          <span>
+            <input type="radio" name="tipo" id="tipo-empresa" value="Empresa / Agencia" required>
+            <label class="pill" for="tipo-empresa" data-i18n="f_tipo1">EMPRESA / AGENCIA</label>
+          </span>
+          <span>
+            <input type="radio" name="tipo" id="tipo-individual" value="Individual / Creador">
+            <label class="pill" for="tipo-individual" data-i18n="f_tipo2">INDIVIDUAL / CREADOR</label>
+          </span>
+        </div>
+      </div>
+      <div class="row2">
+        <div class="field">
+          <label for="f-nombre" data-i18n="f_name">Nombre</label>
+          <input id="f-nombre" name="nombre" type="text" required placeholder="Tu nombre" data-i18n-placeholder="f_name_ph">
+        </div>
+        <div class="field">
+          <label for="f-email">Email</label>
+          <input id="f-email" name="email" type="email" required placeholder="tu@email.com">
+        </div>
+      </div>
+      <div class="row2">
+        <div class="field">
+          <label for="f-empresa" data-i18n="f_company">Empresa (opcional)</label>
+          <input id="f-empresa" name="empresa" type="text" placeholder="Tu empresa o agencia" data-i18n-placeholder="f_company_ph">
+        </div>
+        <div class="field">
+          <label for="f-instagram">Instagram</label>
+          <input id="f-instagram" name="instagram" type="text" placeholder="@tuhandle">
+        </div>
+      </div>
+      <div class="field">
+        <label for="f-presupuesto" data-i18n="f_budget">Presupuesto mensual</label>
+        <select id="f-presupuesto" name="presupuesto" required>
+          <option value="" disabled selected data-i18n="f_select">Selecciona…</option>
+          <option data-i18n="f_b1">Menos de 500 €</option>
+          <option>500 € — 1.000 €</option>
+          <option>1.000 € — 2.500 €</option>
+          <option data-i18n="f_b4">Más de 2.500 €</option>
+          <option data-i18n="f_b5">Solo quiero aprender / colaborar</option>
+        </select>
+      </div>
+      <div class="field">
+        <label for="f-mensaje" data-i18n="f_msg">¿Qué necesitas?</label>
+        <textarea id="f-mensaje" name="mensaje" placeholder="Cuéntanos sobre tu marca, tus campañas o tu idea…" data-i18n-placeholder="f_msg_ph"></textarea>
+      </div>
+      <button type="submit" data-i18n="f_send">ENVIAR APLICACIÓN</button>
+      <div class="fine" data-i18n="f_fine">Sin spam. Solo te contactamos sobre tu proyecto.</div>
+    </form>
+    <div class="gracias" id="gracias">
+      <h3 data-i18n="f_thanks">Recibido ✦</h3>
+      <p data-i18n="f_thanks_sub">Te contactamos en menos de 24 horas.</p>
     </div>
-    <div style="margin-top: 40px; display: flex; gap: 24px;">
-      <a href="https://github.com/felipe2727" target="_blank" rel="noopener noreferrer" style="font-family: 'JetBrains Mono', monospace; font-size: 11px; color: rgba(26,26,26,0.5); text-decoration: none; transition: color 0.3s;" style-hover="color: #1a1a1a;">GitHub</a>
-      <a href="#" style="font-family: 'JetBrains Mono', monospace; font-size: 11px; color: rgba(26,26,26,0.5); text-decoration: none; transition: color 0.3s;" style-hover="color: #1a1a1a;">LinkedIn</a>
-      <a href="#" style="font-family: 'JetBrains Mono', monospace; font-size: 11px; color: rgba(26,26,26,0.5); text-decoration: none; transition: color 0.3s;" style-hover="color: #1a1a1a;">Instagram</a>
-      <a href="#" style="font-family: 'JetBrains Mono', monospace; font-size: 11px; color: rgba(26,26,26,0.5); text-decoration: none; transition: color 0.3s;" style-hover="color: #1a1a1a;">Dribbble</a>
+  </div>
+</section>
+
+<!-- ══════════ CTA / FOOTER ══════════ -->
+<section class="cta">
+  <div class="inner">
+    <h2><span class="strong" data-i18n="cta_a">Trabajemos</span> <span class="light" data-i18n="cta_b">juntos</span></h2>
+    <div class="row">
+      <a class="primary" href="mailto:felipe@kentro-ai.com" data-i18n="cta_call">Agenda una llamada</a>
+      <a class="secondary" href="mailto:felipe@kentro-ai.com">felipe@kentro-ai.com</a>
     </div>
-    <footer style="margin-top: 100px; padding-top: 20px; border-top: 1px solid rgba(26,26,26,0.1); display: flex; justify-content: space-between; font-family: 'JetBrains Mono', monospace; font-size: 9px; letter-spacing: 0.1em; color: rgba(26,26,26,0.5);">
+    <div class="socials">
+      <a href="https://github.com/felipe2727" target="_blank" rel="noopener noreferrer">GitHub</a>
+      <a href="#">LinkedIn</a>
+      <a href="#">Instagram</a>
+      <a href="#">Dribbble</a>
+    </div>
+    <footer>
       <span>© 2026</span>
-      <span>Madrid · {{ clock }} · 40.4168° N</span>
-      <span>All rights reserved</span>
+      <span>Madrid · <span id="clock-footer"></span> · 40.4168° N</span>
+      <span data-i18n="rights">All rights reserved</span>
     </footer>
   </div>
 </section>
-</x-dc>
-<script type="text/x-dc" data-dc-script="" data-props="{
-  &quot;show3dObject&quot;: { &quot;editor&quot;: &quot;boolean&quot;, &quot;default&quot;: true, &quot;tsType&quot;: &quot;boolean&quot;, &quot;section&quot;: &quot;Effects&quot; }
-}">
-class Component extends DCLogic {
-  state = { clock: "" };
 
-  componentDidMount() {
-    this._tick = () => {
-      const now = new Date();
-      const t = now.toLocaleTimeString("en-GB", { timeZone: "Europe/Madrid", hour: "2-digit", minute: "2-digit", second: "2-digit" });
-      this.setState({ clock: t });
-    };
-    this._tick();
-    this._interval = setInterval(this._tick, 1000);
+<script>window.__resources = { "threeJs": "../assets/asset-002.js" };</script>
+<script src="assets/asset-003.js"></script>
+<script>
+(function () {
+  /* ── clocks ── */
+  function tick() {
+    var t = new Date().toLocaleTimeString('en-GB', { timeZone: 'Europe/Madrid', hour: '2-digit', minute: '2-digit', second: '2-digit' });
+    var a = document.getElementById('clock'); if (a) a.textContent = t;
+    var b = document.getElementById('clock-footer'); if (b) b.textContent = t;
   }
+  tick(); setInterval(tick, 1000);
 
-  componentWillUnmount() {
-    clearInterval(this._interval);
-  }
+  /* ── i18n ── */
+  var I18N = {
+    es: {
+      nav_formats: "Formatos", nav_numbers: "Números", nav_apply: "Aplica",
+      tag_agencies: "AGENCIAS & MARCAS",
+      kicker: "ANUNCIOS CON IA",
+      hero_main: "Kéntro produce anuncios con IA para agencias y marcas — 8 formatos ganadores, hooks imposibles de rodar con cámara, y volumen de variantes que ningún equipo de producción puede igualar.",
+      hero_sub: "Del brief a la entrega en días, no semanas. Sin castings, sin estudios, sin logística — solo creatividad que para el scroll y vende.",
+      hero_cta: "QUIERO MIS ADS",
+      stat1: "VARIANTES POR CONCEPTO: 15", stat2: "FORMATOS: 8 · HOOKS: ILIMITADOS", avail: "DISPONIBLE",
+      marquee: "ADS CON IA ✦ 8 FORMATOS ✦ HOOKS IMPOSIBLES ✦ VOLUMEN SIN LOGÍSTICA ✦ MADRID ✦ ADS CON IA ✦ 8 FORMATOS ✦ HOOKS IMPOSIBLES ✦ VOLUMEN SIN LOGÍSTICA ✦ MADRID ✦ ADS CON IA ✦ 8 FORMATOS ✦ HOOKS IMPOSIBLES ✦ VOLUMEN SIN LOGÍSTICA ✦ MADRID ✦ ",
+      s1_tag: "FORMATOS", s1_h: "8 formatos. Un solo proveedor.", s1_sub: "Todos los formatos que funcionan hoy en paid y orgánico — producidos con IA, listos para publicar.",
+      f1_b: "PRUEBA SOCIAL", f1_d: "Entrevistas en la calle que convencen al que duda. Prueba social sin salir a la calle.",
+      f2_b: "AUTORIDAD", f2_d: "Clips de podcast que posicionan a la marca como experto — sin estudio ni invitados.",
+      f3_b: "CONVERSACIÓN", f3_d: "Dos personas conversando sobre tu producto. Cercanía que vende sin parecer anuncio.",
+      f4_b: "ALCANCE", f4_d: "Tu producto montado en los trends de TikTok y Reels antes de que mueran.",
+      f5_b: "EL MÁS DEMANDADO", f5_d: "Personas reales recomendando tu producto. El formato que más convierte, a volumen.",
+      f6_b: "SPOT DE MARCA", f6_d: "El anuncio clásico con look cinematográfico — spots de marca producidos enteramente con IA.",
+      f7_b: "EL MÁS ORIGINAL", f7_t: "Animados", f7_d: "Estilo Pixar, objetos que hablan, mundos imposibles. Creatividad que destaca entre miles.",
+      f8_b: "IMAGE ADS", f8_t: "Estáticos", f8_d: "Imagen de alta conversión para feed — sin sesión de fotos ni producto físico.",
+      s2_h: "Hooks que solo la IA puede rodar", s2_sub: "Los primeros 2 segundos deciden todo. Nosotros los rodamos donde ninguna cámara puede: escenas físicamente imposibles que paran el scroll en seco.",
+      s2_note1: "SIN LÍMITES DE FÍSICA · SIN PERMISOS DE RODAJE · SIN PRESUPUESTO DE VFX", s2_note2: "SI LO PUEDES IMAGINAR, ES UN HOOK",
+      s3_tag: "LOS NÚMEROS", s3_h: "Haz la cuenta.", s3_sub: "Lo que cuesta un solo video UGC tradicional contra lo que entregamos nosotros por el mismo presupuesto.",
+      n1_label: "UGC TRADICIONAL · INFLUENCER", n1_per: "/video",
+      n1_a: "ENTREGA EN 2–3 SEMANAS", n1_b: "2–3 VIDEOS AL MES, MÁXIMO", n1_c: "CASTINGS · ENVÍOS · IDAS Y VUELTAS", n1_d: "UNA SOLA VERSIÓN POR VIDEO",
+      n2_big: "Fracción", n2_per: " del coste",
+      n2_a: "ENTREGA EN DÍAS, NO SEMANAS", n2_b: "VOLUMEN 10× · TODOS LOS FORMATOS", n2_c: "CERO LOGÍSTICA · CERO CASTINGS", n2_d: "15 VARIANTES POR CONCEPTO PARA TESTEAR",
+      s3_close: "El mismo resultado en cámara. Sin castings, sin envíos de producto, sin esperas — y con suficientes variantes para que tu media buyer encuentre la ganadora.",
+      s4_tag: "POR QUÉ IA", s4_h: "Lo que la producción tradicional no puede hacer",
+      w1_t: "Variantes ilimitadas", w1_d: "Cada concepto sale con 15 variantes — distintos hooks, distintos ángulos, distintos cierres. Tu equipo de paid testea de verdad, no a ciegas.",
+      w2_t: "Personajes consistentes", w2_d: "El mismo rostro en cada video, campaña tras campaña. Construye una cara para tu marca sin contratar a nadie.", w2_link: "Mira cómo funcionan los avatars →",
+      w3_t: "Cero logística", w3_d: "Sin castings, sin estudios, sin permisos de rodaje, sin enviar producto. Un brief entra, los videos salen.",
+      s5_tag: "PARA QUIÉN", s5_h: "Dos caminos, una puerta",
+      who1_t: "AGENCIAS Y MARCAS",
+      who1_a: "Creatividad para campañas de paid — volumen mensual constante", who1_b: "White-label: entregamos, tú firmas", who1_c: "Del brief a la entrega en días", who1_d: "Formatos y variantes pensados para testear y escalar",
+      who2_t: "CREADORES Y ENTUSIASTAS DE IA",
+      who2_a: "¿Quieres aprender cómo hacemos esto? Apúntate igual", who2_b: "Colaboraciones y proyectos con otros creadores", who2_c: "Estamos preparando algo para ti — sé el primero en enterarte",
+      s6_tag: "APLICA", s6_h: "Cuéntanos qué necesitas", s6_sub: "Rellena el formulario y te contactamos en menos de 24 horas.",
+      f_tipo: "¿CÓMO TE IDENTIFICAS?", f_tipo1: "EMPRESA / AGENCIA", f_tipo2: "INDIVIDUAL / CREADOR",
+      f_name: "Nombre", f_name_ph: "Tu nombre",
+      f_company: "Empresa (opcional)", f_company_ph: "Tu empresa o agencia",
+      f_budget: "Presupuesto mensual", f_select: "Selecciona…", f_b1: "Menos de 500 €", f_b4: "Más de 2.500 €", f_b5: "Solo quiero aprender / colaborar",
+      f_msg: "¿Qué necesitas?", f_msg_ph: "Cuéntanos sobre tu marca, tus campañas o tu idea…",
+      f_send: "ENVIAR APLICACIÓN", f_fine: "Sin spam. Solo te contactamos sobre tu proyecto.",
+      f_thanks: "Recibido ✦", f_thanks_sub: "Te contactamos en menos de 24 horas.",
+      cta_a: "Trabajemos", cta_b: "juntos", cta_call: "Agenda una llamada", rights: "All rights reserved"
+    },
+    en: {
+      nav_formats: "Formats", nav_numbers: "Numbers", nav_apply: "Apply",
+      tag_agencies: "AGENCIES & BRANDS",
+      kicker: "AI-POWERED ADS",
+      hero_main: "Kéntro produces AI ads for agencies and brands — 8 winning formats, hooks impossible to shoot with a camera, and a volume of variants no production team can match.",
+      hero_sub: "From brief to delivery in days, not weeks. No castings, no studios, no logistics — just creative that stops the scroll and sells.",
+      hero_cta: "I WANT MY ADS",
+      stat1: "VARIANTS PER CONCEPT: 15", stat2: "FORMATS: 8 · HOOKS: UNLIMITED", avail: "AVAILABLE",
+      marquee: "AI ADS ✦ 8 FORMATS ✦ IMPOSSIBLE HOOKS ✦ VOLUME WITHOUT LOGISTICS ✦ MADRID ✦ AI ADS ✦ 8 FORMATS ✦ IMPOSSIBLE HOOKS ✦ VOLUME WITHOUT LOGISTICS ✦ MADRID ✦ AI ADS ✦ 8 FORMATS ✦ IMPOSSIBLE HOOKS ✦ VOLUME WITHOUT LOGISTICS ✦ MADRID ✦ ",
+      s1_tag: "FORMATS", s1_h: "8 formats. One vendor.", s1_sub: "Every format that works today in paid and organic — AI-produced, ready to publish.",
+      f1_b: "SOCIAL PROOF", f1_d: "Street interviews that convince the skeptic. Social proof without leaving the studio.",
+      f2_b: "AUTHORITY", f2_d: "Podcast clips that position the brand as the expert — no studio, no guests.",
+      f3_b: "CONVERSATION", f3_d: "Two people talking about your product. Closeness that sells without feeling like an ad.",
+      f4_b: "REACH", f4_d: "Your product riding TikTok and Reels trends before they die.",
+      f5_b: "MOST IN-DEMAND", f5_d: "Real people recommending your product. The highest-converting format, at volume.",
+      f6_b: "BRAND SPOT", f6_d: "The classic ad with a cinematic look — brand spots produced entirely with AI.",
+      f7_b: "MOST ORIGINAL", f7_t: "Animated", f7_d: "Pixar style, talking objects, impossible worlds. Creative that stands out among thousands.",
+      f8_b: "IMAGE ADS", f8_t: "Statics", f8_d: "High-converting image ads for feed — no photo shoot, no physical product.",
+      s2_h: "Hooks only AI can shoot", s2_sub: "The first 2 seconds decide everything. We shoot them where no camera can: physically impossible scenes that stop the scroll dead.",
+      s2_note1: "NO PHYSICS LIMITS · NO FILMING PERMITS · NO VFX BUDGET", s2_note2: "IF YOU CAN IMAGINE IT, IT'S A HOOK",
+      s3_tag: "THE NUMBERS", s3_h: "Do the math.", s3_sub: "What a single traditional UGC video costs versus what we deliver for the same budget.",
+      n1_label: "TRADITIONAL UGC · INFLUENCER", n1_per: "/video",
+      n1_a: "DELIVERY IN 2–3 WEEKS", n1_b: "2–3 VIDEOS PER MONTH, MAX", n1_c: "CASTINGS · SHIPPING · BACK-AND-FORTH", n1_d: "ONE SINGLE VERSION PER VIDEO",
+      n2_big: "Fraction", n2_per: " of the cost",
+      n2_a: "DELIVERY IN DAYS, NOT WEEKS", n2_b: "10× VOLUME · EVERY FORMAT", n2_c: "ZERO LOGISTICS · ZERO CASTINGS", n2_d: "15 VARIANTS PER CONCEPT TO TEST",
+      s3_close: "The same on-camera result. No castings, no product shipping, no waiting — and enough variants for your media buyer to find the winner.",
+      s4_tag: "WHY AI", s4_h: "What traditional production can't do",
+      w1_t: "Unlimited variants", w1_d: "Every concept ships with 15 variants — different hooks, angles, and closers. Your paid team tests for real, not blind.",
+      w2_t: "Consistent characters", w2_d: "The same face in every video, campaign after campaign. Build a face for your brand without hiring anyone.", w2_link: "See how avatars work →",
+      w3_t: "Zero logistics", w3_d: "No castings, no studios, no filming permits, no shipping product. A brief goes in, videos come out.",
+      s5_tag: "WHO IT'S FOR", s5_h: "Two paths, one door",
+      who1_t: "AGENCIES & BRANDS",
+      who1_a: "Creative for paid campaigns — consistent monthly volume", who1_b: "White-label: we deliver, you sign", who1_c: "From brief to delivery in days", who1_d: "Formats and variants built to test and scale",
+      who2_t: "CREATORS & AI ENTHUSIASTS",
+      who2_a: "Want to learn how we do this? Sign up anyway", who2_b: "Collaborations and projects with other creators", who2_c: "We're building something for you — be the first to know",
+      s6_tag: "APPLY", s6_h: "Tell us what you need", s6_sub: "Fill out the form and we'll contact you within 24 hours.",
+      f_tipo: "HOW DO YOU IDENTIFY?", f_tipo1: "COMPANY / AGENCY", f_tipo2: "INDIVIDUAL / CREATOR",
+      f_name: "Name", f_name_ph: "Your name",
+      f_company: "Company (optional)", f_company_ph: "Your company or agency",
+      f_budget: "Monthly budget", f_select: "Select…", f_b1: "Under €500", f_b4: "Over €2,500", f_b5: "I just want to learn / collaborate",
+      f_msg: "What do you need?", f_msg_ph: "Tell us about your brand, your campaigns or your idea…",
+      f_send: "SEND APPLICATION", f_fine: "No spam. We only contact you about your project.",
+      f_thanks: "Received ✦", f_thanks_sub: "We'll contact you within 24 hours.",
+      cta_a: "Let's work", cta_b: "together", cta_call: "Schedule a call", rights: "All rights reserved"
+    }
+  };
 
-  renderVals() {
-    const row1 = [
-      { src: "vintage-1.webp", alt: "Vintage luxury car with elegant fashion styling" },
-      { src: "sarku-1.webp", alt: "Comic-style ramen warrior illustration for Sarku brand" },
-      { src: "casio-1.webp", alt: "Ukiyo-e wave artwork featuring G-Shock watch" },
-      { src: "isaac-1.webp", alt: "Parisian street portrait with leather bag" },
-      { src: "vintage-3.webp", alt: "Coastal couple with vintage convertible car" },
-      { src: "sarku-3.webp", alt: "Crispy tempura product photography" },
-      { src: "casio-3.webp", alt: "Korean tiger tattoo art with Casio watch" },
-      { src: "isaac-3.webp", alt: "Brutalist circular dome architecture portrait" },
-      { src: "vintage-5.webp", alt: "Green classic car duo portrait" },
-      { src: "sarku-5.webp", alt: "Moody ramen with steam in night setting" },
-      { src: "casio-5.webp", alt: "Neon cyberpunk kaiju scene with watch" },
-      { src: "casio-7.webp", alt: "Jungle overgrowth nature watch photography" },
-    ];
-    const row2 = [
-      { src: "vintage-2.webp", alt: "Full-length vintage fashion portrait with car" },
-      { src: "sarku-2.webp", alt: "Red sushi boat hero product shot" },
-      { src: "casio-2.webp", alt: "Vintage comic cover Godzilla style watch art" },
-      { src: "isaac-2.webp", alt: "Brown camo velvet jacket grid-ceiling shoot" },
-      { src: "vintage-4.webp", alt: "Luxury car interior detail shot" },
-      { src: "sarku-4.webp", alt: "Vegan bowl with bright yellow background" },
-      { src: "casio-4.webp", alt: "Soviet constructivist poster style watch design" },
-      { src: "isaac-4.webp", alt: "Greenhouse plants fashion portrait" },
-      { src: "vintage-6.webp", alt: "Leather bag detail in luxury car interior" },
-      { src: "sarku-6.webp", alt: "Red sushi burrito hands-on food shot" },
-      { src: "casio-6.webp", alt: "Matrix digital rain watch visualization" },
-      { src: "isaac-5.webp", alt: "Desert dunes camera adventure portrait" },
-    ];
-    const placeholders = (prefix) => {
-      const items = [];
-      for (let i = 1; i <= 6; i++) items.push({ label: prefix + "_0" + i + " · DROP VIDEO" });
-      return [...items, ...items];
-    };
-    return {
-      clock: this.state.clock,
-      ugcItems: placeholders("UGC"),
-      editorialItems: placeholders("EDITORIAL"),
-      tutorialItems: placeholders("TUTORIAL"),
-      show3dObject: this.props.show3dObject ?? true,
-    };
+  var lang = localStorage.getItem('kentro-lang') || 'es';
+  var toggle = document.getElementById('lang-toggle');
+
+  function applyLang(l) {
+    var dict = I18N[l];
+    document.querySelectorAll('[data-i18n]').forEach(function (el) {
+      var k = el.getAttribute('data-i18n');
+      if (dict[k] !== undefined) el.textContent = dict[k];
+    });
+    document.querySelectorAll('[data-i18n-placeholder]').forEach(function (el) {
+      var k = el.getAttribute('data-i18n-placeholder');
+      if (dict[k] !== undefined) el.setAttribute('placeholder', dict[k]);
+    });
+    document.documentElement.lang = l;
+    toggle.textContent = l === 'es' ? 'EN' : 'ES';
+    localStorage.setItem('kentro-lang', l);
+    lang = l;
   }
-}
+  toggle.addEventListener('click', function () { applyLang(lang === 'es' ? 'en' : 'es'); });
+  if (lang !== 'es') applyLang(lang);
+
+  /* ── form: subject includes tipo ── */
+  var form = document.getElementById('lead-form');
+  form.addEventListener('submit', function () {
+    var tipo = (form.querySelector('input[name="tipo"]:checked') || {}).value || 'Sin tipo';
+    document.getElementById('subject-field').value = 'Nueva aplicación [' + tipo + '] — kentro-ai.com';
+  });
+  if (new URLSearchParams(location.search).get('enviado') === '1') {
+    form.style.display = 'none';
+    document.getElementById('gracias').style.display = 'block';
+  }
+})();
 </script>
 
+<div class="vid-lightbox" id="vid-lightbox"><button class="close" id="vid-close">[ CERRAR × ]</button></div>
 
 <script>
 (function () {
-  var scheduled = false;
-  function kick() {
-    scheduled = false;
-    document.querySelectorAll('video').forEach(function (v) {
-      v.muted = true;
-      v.loop = true;
-      v.setAttribute('playsinline', '');
-      if (!v.__loopGuard) {
-        v.__loopGuard = true;
-        v.addEventListener('ended', function () {
-          v.currentTime = 0;
-          v.play().catch(function () {});
-        });
-      }
-      if (v.paused) v.play().catch(function () {});
-    });
+  var lb = document.getElementById('vid-lightbox');
+  var player = null;
+  function open(src) {
+    close();
+    player = document.createElement('video');
+    player.src = src;
+    player.controls = true;
+    player.setAttribute('controlsList', 'nodownload');
+    player.loop = true;
+    player.playsInline = true;
+    player.autoplay = true;
+    lb.appendChild(player);
+    lb.classList.add('open');
+    document.body.style.overflow = 'hidden';
+    player.play().catch(function () {});
   }
-  function schedule() {
-    if (scheduled) return;
-    scheduled = true;
-    requestAnimationFrame(kick);
+  function close() {
+    if (player) { player.pause(); player.remove(); player = null; }
+    lb.classList.remove('open');
+    document.body.style.overflow = '';
   }
-  new MutationObserver(schedule).observe(document.documentElement, { childList: true, subtree: true });
-  document.addEventListener('visibilitychange', schedule);
-  window.addEventListener('pointerdown', schedule);
-  schedule();
+  document.querySelectorAll('.formats .media video, .hooks-grid .slot video').forEach(function (v) {
+    v.addEventListener('click', function (e) { e.preventDefault(); open(v.currentSrc || v.src); });
+  });
+  lb.addEventListener('click', function (e) { if (e.target === lb) close(); });
+  document.getElementById('vid-close').addEventListener('click', close);
+  document.addEventListener('keydown', function (e) { if (e.key === 'Escape') close(); });
+  document.addEventListener('contextmenu', function (e) { if (e.target.tagName === 'VIDEO') e.preventDefault(); });
 })();
 </script>
-</body></html>
+
+</body>
+</html>

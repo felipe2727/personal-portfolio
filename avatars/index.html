@@ -1,0 +1,449 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Avatars — Kéntro AI Content Studio</title>
+<style>
+@font-face { font-family: 'JetBrains Mono'; font-style: normal; font-weight: 300 500; font-display: swap; src: url("../assets/asset-012.woff2") format('woff2'); unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD; }
+@font-face { font-family: 'JetBrains Mono'; font-style: normal; font-weight: 300 500; font-display: swap; src: url("../assets/asset-011.woff2") format('woff2'); unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF; }
+@font-face { font-family: 'Oxanium'; font-style: normal; font-weight: 200 800; font-display: swap; src: url("../assets/asset-014.woff2") format('woff2'); unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD; }
+@font-face { font-family: 'Oxanium'; font-style: normal; font-weight: 200 800; font-display: swap; src: url("../assets/asset-013.woff2") format('woff2'); unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF; }
+@font-face { font-family: 'Zen Dots'; font-style: normal; font-weight: 400; font-display: swap; src: url("../assets/asset-016.woff2") format('woff2'); unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD; }
+@font-face { font-family: 'Zen Dots'; font-style: normal; font-weight: 400; font-display: swap; src: url("../assets/asset-015.woff2") format('woff2'); unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF; }
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body { background: #9b9a99; color: #1a1a1a; -webkit-font-smoothing: antialiased; overflow-x: hidden; font-family: 'Oxanium', sans-serif; }
+::selection { background: rgba(230,50,40,0.15); color: #1a1a1a; }
+a { color: rgba(26,26,26,0.75); }
+a:hover { color: #1a1a1a; }
+img, video { display: block; }
+::-webkit-scrollbar { width: 3px; }
+::-webkit-scrollbar-track { background: #9b9a99; }
+::-webkit-scrollbar-thumb { background: rgba(26,26,26,0.12); border-radius: 3px; }
+@keyframes marquee { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+
+nav { position: fixed; top: 0; left: 0; right: 0; z-index: 200; padding: 0 40px; height: 56px; display: flex; justify-content: space-between; align-items: center; background: rgba(155,154,153,0.92); backdrop-filter: blur(20px) saturate(1.3); border-bottom: 1px solid rgba(0,0,0,0.06); }
+nav .logo { font-size: 20px; font-weight: 700; color: #1a1a1a; text-decoration: none; font-family: 'Oxanium', sans-serif; }
+nav .links { display: flex; gap: 6px; }
+nav .links a { font-size: 13px; color: rgba(26,26,26,0.75); text-decoration: none; padding: 6px 16px; border-radius: 30px; border: 1px solid transparent; font-family: 'Oxanium', sans-serif; }
+nav .links a:hover { color: #1a1a1a; border-color: rgba(230,50,40,0.2); background: rgba(230,50,40,0.04); }
+nav .links a.active { color: #1a1a1a; border-color: rgba(230,50,40,0.35); background: rgba(230,50,40,0.06); }
+nav .meta { font-family: 'JetBrains Mono', monospace; font-size: 10px; color: rgba(26,26,26,0.5); }
+
+.tag { font-family: 'JetBrains Mono', monospace; font-size: 11px; letter-spacing: 0.25em; color: #e63228; opacity: 0.7; }
+.section-head { text-align: center; margin-bottom: 48px; padding: 0 20px; }
+.section-head .tag { display: block; margin-bottom: 12px; }
+.section-head h2 { font-size: clamp(28px, 4vw, 38px); font-weight: 700; line-height: 1.15; }
+.section-head .sub { max-width: 520px; margin: 14px auto 0; font-size: 13px; line-height: 1.8; opacity: 0.6; font-weight: 500; }
+
+.hero { padding: 150px 40px 60px; text-align: center; position: relative; overflow: hidden; }
+.hero .noise { position: absolute; inset: 0; opacity: 0.06; pointer-events: none; mix-blend-mode: multiply; background: url("data:image/svg+xml,%3Csvg viewBox='0 0 512 512' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='5' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E"); }
+.hero .tag { display: block; margin-bottom: 14px; }
+.hero h1 { font-size: clamp(56px, 11vw, 150px); font-weight: 700; letter-spacing: 0.05em; line-height: 1; position: relative; }
+.hero h1 .ai { font-family: 'Zen Dots', cursive; font-size: 0.28em; letter-spacing: 0.08em; background: linear-gradient(135deg, #e63228, #d4392b, #e63228); -webkit-background-clip: text; -webkit-text-fill-color: transparent; vertical-align: super; }
+.hero .lead { max-width: 620px; margin: 26px auto 0; font-size: 15px; line-height: 1.9; opacity: 0.7; font-weight: 500; }
+.hero .lead b { color: #e63228; font-weight: 700; }
+.hero .cta-btn { display: inline-block; margin-top: 36px; font-family: 'JetBrains Mono', monospace; font-size: 12px; padding: 14px 34px; border-radius: 40px; background: #e63228; color: #fff; text-decoration: none; font-weight: 500; letter-spacing: 0.05em; transition: opacity 0.3s; }
+.hero .cta-btn:hover { opacity: 0.85; color: #fff; }
+
+.marquee { overflow: hidden; white-space: nowrap; border-top: 1px solid rgba(26,26,26,0.1); border-bottom: 1px solid rgba(26,26,26,0.1); padding: 16px 0; }
+.marquee div { display: inline-block; animation: marquee 32s linear infinite; font-size: 13px; font-weight: 700; letter-spacing: 0.1em; color: rgba(230,50,40,0.12); text-transform: uppercase; }
+
+section.block { padding: 90px 40px; border-top: 1px solid rgba(26,26,26,0.1); }
+.inner { max-width: 1100px; margin: 0 auto; }
+
+/* ── 1. character sheet → video ── */
+.transform { display: grid; grid-template-columns: 1fr auto 1fr; gap: 28px; align-items: center; max-width: 980px; margin: 0 auto; }
+.sheet { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+.slot { border-radius: 6px; overflow: hidden; position: relative; border: 1px solid rgba(26,26,26,0.12); background: repeating-linear-gradient(45deg, rgba(26,26,26,0.05) 0px, rgba(26,26,26,0.05) 10px, transparent 10px, transparent 20px); display: flex; align-items: center; justify-content: center; }
+.slot span { font-family: 'JetBrains Mono', monospace; font-size: 9px; letter-spacing: 0.12em; color: rgba(26,26,26,0.5); }
+.slot img, .slot video { width: 100%; height: 100%; object-fit: cover; position: absolute; inset: 0; }
+.sheet .slot { aspect-ratio: 3/4; }
+.arrow { font-size: 30px; color: #e63228; font-weight: 200; text-align: center; }
+.result .slot { aspect-ratio: 9/16; max-width: 300px; margin: 0 auto; }
+.transform .col-label { margin-top: 14px; text-align: center; font-family: 'JetBrains Mono', monospace; font-size: 9px; letter-spacing: 0.14em; color: rgba(26,26,26,0.5); }
+.transform .col-label b { color: #e63228; font-weight: 500; }
+
+/* ── 2. formatos ── */
+.formats { display: grid; grid-template-columns: repeat(auto-fit, minmax(230px, 1fr)); gap: 16px; }
+.format { border: 1px solid rgba(26,26,26,0.12); border-radius: 6px; padding: 26px 22px; transition: border-color 0.3s, transform 0.4s cubic-bezier(.16,1,.3,1); background: rgba(255,255,255,0.04); }
+.format:hover { border-color: rgba(230,50,40,0.3); transform: translateY(-3px); }
+.format .num { font-family: 'JetBrains Mono', monospace; font-size: 9px; letter-spacing: 0.14em; color: #e63228; }
+.format h3 { font-size: 19px; font-weight: 700; margin-top: 10px; letter-spacing: 0.02em; }
+.format p { font-size: 12.5px; line-height: 1.8; opacity: 0.65; margin-top: 10px; font-weight: 500; }
+.format .media { margin-top: 18px; aspect-ratio: 9/16; }
+
+/* ── 3. plan ── */
+.plan { max-width: 860px; margin: 0 auto; display: flex; flex-direction: column; gap: 14px; }
+.step { display: grid; grid-template-columns: 70px 1fr 280px; gap: 22px; border: 1px solid rgba(26,26,26,0.12); border-radius: 6px; padding: 28px 26px; align-items: center; background: rgba(255,255,255,0.04); }
+.step .shot { border: 1px solid rgba(26,26,26,0.12); border-radius: 6px; overflow: hidden; }
+.step .shot img { width: 100%; height: auto; cursor: zoom-in; transition: opacity 0.3s; }
+.step .shot img:hover { opacity: 0.88; }
+.lightbox { position: fixed; inset: 0; z-index: 500; background: rgba(20,20,20,0.92); backdrop-filter: blur(8px); display: none; align-items: center; justify-content: center; padding: 40px; cursor: zoom-out; }
+.lightbox.open { display: flex; }
+.lightbox img { max-width: 100%; max-height: 100%; border-radius: 6px; box-shadow: 0 20px 80px rgba(0,0,0,0.5); }
+.lightbox .close { position: absolute; top: 18px; right: 26px; font-family: 'JetBrains Mono', monospace; font-size: 13px; color: rgba(255,255,255,0.7); letter-spacing: 0.1em; }
+.step .n { font-family: 'JetBrains Mono', monospace; font-size: 26px; color: #e63228; opacity: 0.85; }
+.step h3 { font-size: 18px; font-weight: 700; }
+.step p { font-size: 13px; line-height: 1.8; opacity: 0.65; margin-top: 8px; font-weight: 500; }
+.step ul { margin: 12px 0 0 0; list-style: none; }
+.step ul li { font-family: 'JetBrains Mono', monospace; font-size: 10px; letter-spacing: 0.08em; color: rgba(26,26,26,0.6); padding: 4px 0; }
+.step ul li::before { content: "→ "; color: #e63228; }
+
+/* ── 4. para quién ── */
+.who { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; max-width: 980px; margin: 0 auto; }
+.who .col { border: 1px solid rgba(26,26,26,0.12); border-radius: 6px; padding: 30px 26px; background: rgba(255,255,255,0.04); }
+.who .col.no { opacity: 0.75; }
+.who h3 { font-size: 16px; font-weight: 700; letter-spacing: 0.04em; display: flex; align-items: center; gap: 10px; }
+.who h3 .dot { width: 8px; height: 8px; border-radius: 50%; display: inline-block; }
+.who .col.si h3 .dot { background: #e63228; }
+.who .col.no h3 .dot { background: rgba(26,26,26,0.3); }
+.who ul { margin-top: 18px; list-style: none; }
+.who ul li { font-size: 13px; line-height: 1.7; padding: 8px 0; border-top: 1px solid rgba(26,26,26,0.07); opacity: 0.75; font-weight: 500; }
+.who ul li::before { content: "✓  "; color: #e63228; font-weight: 700; }
+.who .col.no ul li::before { content: "✕  "; color: rgba(26,26,26,0.4); }
+
+/* ── 5. survey ── */
+.survey { max-width: 640px; margin: 0 auto; }
+.survey form { display: flex; flex-direction: column; gap: 14px; }
+.field label { display: block; font-family: 'JetBrains Mono', monospace; font-size: 9px; letter-spacing: 0.16em; color: rgba(26,26,26,0.55); margin-bottom: 7px; text-transform: uppercase; }
+.field input, .field select, .field textarea { width: 100%; background: rgba(255,255,255,0.25); border: 1px solid rgba(26,26,26,0.15); border-radius: 6px; padding: 13px 15px; font-family: 'Oxanium', sans-serif; font-size: 14px; color: #1a1a1a; outline: none; transition: border-color 0.3s; }
+.field input:focus, .field select:focus, .field textarea:focus { border-color: rgba(230,50,40,0.5); }
+.field textarea { min-height: 110px; resize: vertical; }
+.row2 { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+.survey button { font-family: 'JetBrains Mono', monospace; font-size: 12px; padding: 15px 34px; border-radius: 40px; background: #e63228; color: #fff; border: none; cursor: pointer; font-weight: 500; letter-spacing: 0.05em; margin-top: 8px; transition: opacity 0.3s; }
+.survey button:hover { opacity: 0.85; }
+.survey .fine { font-family: 'JetBrains Mono', monospace; font-size: 9px; letter-spacing: 0.08em; color: rgba(26,26,26,0.45); text-align: center; margin-top: 14px; }
+.gracias { display: none; text-align: center; padding: 40px 0; }
+.gracias h3 { font-size: 24px; font-weight: 700; }
+.gracias p { margin-top: 10px; font-size: 13px; opacity: 0.65; }
+
+/* ── cta footer ── */
+.cta { padding: 100px 40px 60px; border-top: 1px solid rgba(26,26,26,0.1); }
+.cta .inner { max-width: 1100px; margin: 0 auto; }
+.cta h2 { display: flex; align-items: baseline; gap: 16px; flex-wrap: wrap; margin: 0; }
+.cta h2 .strong { font-size: clamp(44px, 6.5vw, 88px); font-weight: 800; color: #1a1a1a; letter-spacing: -0.03em; line-height: 1; }
+.cta h2 .light { font-size: clamp(44px, 6.5vw, 88px); font-weight: 200; color: rgba(26,26,26,0.75); line-height: 1; letter-spacing: -0.02em; }
+.cta .row { margin-top: 44px; display: flex; gap: 16px; align-items: center; flex-wrap: wrap; }
+.cta .row a { font-family: 'JetBrains Mono', monospace; font-size: 12px; padding: 13px 30px; border-radius: 40px; text-decoration: none; transition: all 0.3s; }
+.cta .row a.primary { background: #e63228; color: #ffffff; font-weight: 500; }
+.cta .row a.primary:hover { opacity: 0.85; color: #ffffff; }
+.cta .row a.secondary { border: 1px solid rgba(26,26,26,0.1); color: rgba(26,26,26,0.75); }
+.cta .row a.secondary:hover { border-color: #1a1a1a; color: #1a1a1a; }
+.cta .socials { margin-top: 40px; display: flex; gap: 24px; }
+.cta .socials a { font-family: 'JetBrains Mono', monospace; font-size: 11px; color: rgba(26,26,26,0.5); text-decoration: none; transition: color 0.3s; }
+.cta .socials a:hover { color: #1a1a1a; }
+.cta footer { margin-top: 100px; padding-top: 20px; border-top: 1px solid rgba(26,26,26,0.1); display: flex; justify-content: space-between; gap: 10px; flex-wrap: wrap; font-family: 'JetBrains Mono', monospace; font-size: 9px; letter-spacing: 0.1em; color: rgba(26,26,26,0.5); }
+
+@media (max-width: 768px) {
+  nav { padding: 0 8px; }
+  nav .meta { display: none; }
+  nav .logo { font-size: 17px; }
+  nav .links { gap: 0; }
+  nav .links a { padding: 6px 5px; font-size: 11px; }
+  .hero { padding: 120px 20px 48px; }
+  section.block { padding: 60px 18px; }
+  .transform { grid-template-columns: 1fr; gap: 20px; }
+  .arrow { transform: rotate(90deg); }
+  .step { grid-template-columns: 1fr; }
+  .step .shot { max-width: 100%; }
+  .who { grid-template-columns: 1fr; }
+  .row2 { grid-template-columns: 1fr; }
+  .cta { padding: 64px 20px 40px; }
+}
+</style>
+</head>
+<body>
+
+<nav>
+  <a class="logo" href="/">Ké.</a>
+  <div class="links">
+    <a href="/avatars" class="active">Avatars</a>
+    <a href="/#formatos">Formatos</a>
+    <a href="/#hooks">Hooks</a>
+    <a href="/#numeros">Números</a>
+    <a href="/#aplica">Aplica</a>
+  </div>
+  <div class="meta">Madrid</div>
+</nav>
+
+<!-- ══════════ HERO ══════════ -->
+<section class="hero">
+  <div class="noise"></div>
+  <span class="tag">{ CLONES HIPERREALISTAS }</span>
+  <h1>AVATARS<span class="ai">AI</span></h1>
+  <p class="lead">Videos con <b>tu avatar</b> para médicos, abogados y agentes inmobiliarios. Contenido constante en redes — <b>sin volver a grabar</b> ni un solo video.</p>
+  <a class="cta-btn" href="#aplica">QUIERO MI AVATAR</a>
+</section>
+
+<!-- ══════════ MARQUEE ══════════ -->
+<div class="marquee" aria-hidden="true">
+  <div>NUNCA VUELVAS A GRABAR ✦ TU CARA · TU VOZ · CERO CÁMARA ✦ CONTENIDO EN PILOTO AUTOMÁTICO ✦ UNA SESIÓN · CONTENIDO ILIMITADO ✦ MADRID ✦ NUNCA VUELVAS A GRABAR ✦ TU CARA · TU VOZ · CERO CÁMARA ✦ CONTENIDO EN PILOTO AUTOMÁTICO ✦ UNA SESIÓN · CONTENIDO ILIMITADO ✦ MADRID ✦ </div>
+</div>
+
+<!-- ══════════ 1. CHARACTER SHEET → VIDEO ══════════ -->
+<section class="block" id="clon">
+  <div class="section-head">
+    <span class="tag">{ ASÍ FUNCIONA }</span>
+    <h2>De un character sheet a un video real</h2>
+    <p class="sub">Construimos tu avatar desde varios ángulos — y a partir de ahí, cada video sale idéntico a ti. Sin cámaras, sin estudios, sin repetir tomas.</p>
+  </div>
+  <div class="transform">
+    <div>
+      <div class="sheet">
+        <div class="slot"><img src="../assets/avatars/char-01.jpg" alt="Character sheet — ángulo 1"></div>
+        <div class="slot"><img src="../assets/avatars/char-02.jpg" alt="Character sheet — ángulo 2"></div>
+      </div>
+      <div class="col-label"><b>CHARACTER SHEET</b> · VARIOS ÁNGULOS</div>
+    </div>
+    <div class="arrow">→</div>
+    <div class="result">
+      <div class="slot"><video src="../assets/avatars/rinolift.mp4" autoplay muted loop playsinline controls controlslist="nodownload" preload="metadata"></video></div>
+      <div class="col-label"><b>TALKING HEAD</b> · VIDEO REAL</div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════ 2. FORMATOS ══════════ -->
+<section class="block" id="formatos">
+  <div class="section-head">
+    <span class="tag">{ FORMATOS }</span>
+    <h2>Un avatar. Cuatro formatos.</h2>
+    <p class="sub">La misma persona, la misma voz — en todos los formatos que funcionan hoy en redes.</p>
+  </div>
+  <div class="inner formats">
+    <div class="format">
+      <span class="num">F_01</span>
+      <h3>Talking Head</h3>
+      <p>Tu avatar hablando directo a cámara. Consejos, novedades de tu clínica o despacho, y contenido educativo que genera confianza.</p>
+      <div class="media slot"><video src="../assets/avatars/fmt-talking-head.mp4" autoplay muted loop playsinline controls controlslist="nodownload" preload="metadata"></video></div>
+    </div>
+    <div class="format">
+      <span class="num">F_02</span>
+      <h3>Q&amp;A</h3>
+      <p>Tu avatar responde las preguntas que tus pacientes o clientes hacen todos los días. El formato que más engagement genera.</p>
+      <div class="media slot"><video src="../assets/avatars/fmt-qa.mp4" autoplay muted loop playsinline controls controlslist="nodownload" preload="metadata"></video></div>
+    </div>
+    <div class="format">
+      <span class="num">F_03</span>
+      <h3>Podcast</h3>
+      <p>Conversaciones con un paciente, un colega u otro avatar. Posicionamiento de experto sin agendar una sola grabación.</p>
+      <div class="media slot"><video src="../assets/avatars/fmt-podcast.mp4" autoplay muted loop playsinline controls controlslist="nodownload" preload="metadata"></video></div>
+    </div>
+    <div class="format">
+      <span class="num">F_04</span>
+      <h3>Reviews &amp; Rankings</h3>
+      <p>Tu avatar analiza y clasifica tratamientos, productos o servicios. Contenido que educa y vende al mismo tiempo.</p>
+      <div class="media slot"><video src="../assets/avatars/fmt-ranking.mp4" autoplay muted loop playsinline controls controlslist="nodownload" preload="metadata"></video></div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════ 3. PLAN Y ROADMAP ══════════ -->
+<section class="block" id="plan">
+  <div class="section-head">
+    <span class="tag">{ QUÉ RECIBES }</span>
+    <h2>Un sistema de contenido, no videos sueltos</h2>
+    <p class="sub">Esto es exactamente lo que construimos contigo, paso a paso.</p>
+  </div>
+  <div class="plan">
+    <div class="step">
+      <div class="n">01</div>
+      <div>
+        <h3>Tu avatar + auditoría de contenido</h3>
+        <p>Creamos tu avatar hiperrealista desde una sesión de fotos, y auditamos tu presencia actual para detectar qué contenido te está costando pacientes o clientes.</p>
+        <ul>
+          <li>CHARACTER SHEET COMPLETO · VARIOS ÁNGULOS Y ESCENARIOS</li>
+          <li>VOZ CLONADA EN ESPAÑOL</li>
+          <li>AUDITORÍA DE TU INSTAGRAM ACTUAL</li>
+        </ul>
+      </div>
+      <div class="shot"><img src="../assets/avatars/plan-01.jpg" alt="Paso 01" loading="lazy"></div>
+    </div>
+    <div class="step">
+      <div class="n">02</div>
+      <div>
+        <h3>Plan de contenido mensual</h3>
+        <p>Un calendario completo: qué publica tu avatar, en qué formato, con qué guion y en qué plataforma. Tú solo apruebas.</p>
+        <ul>
+          <li>CALENDARIO MENSUAL DE PUBLICACIONES</li>
+          <li>GUIONES ESCRITOS PARA TU NICHO</li>
+          <li>MEZCLA DE FORMATOS: TALKING HEAD · Q&amp;A · PODCAST · REVIEWS</li>
+        </ul>
+      </div>
+      <div class="shot"><img src="../assets/avatars/plan-02.jpg" alt="Paso 02" loading="lazy"></div>
+    </div>
+    <div class="step">
+      <div class="n">03</div>
+      <div>
+        <h3>Producción y roadmap de crecimiento</h3>
+        <p>Producimos, entregamos y medimos. Cada mes revisamos qué funcionó y ajustamos el plan para crecer de forma constante.</p>
+        <ul>
+          <li>VIDEOS LISTOS PARA PUBLICAR CADA MES</li>
+          <li>REVISIÓN MENSUAL DE MÉTRICAS</li>
+          <li>ROADMAP DE CRECIMIENTO TRIMESTRAL</li>
+        </ul>
+      </div>
+      <div class="shot"><img src="../assets/avatars/plan-03.jpg" alt="Paso 03" loading="lazy"></div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════ 4. PARA QUIÉN ══════════ -->
+<section class="block" id="para-quien">
+  <div class="section-head">
+    <span class="tag">{ ¿PARA QUIÉN ES? }</span>
+    <h2>Esto es para ti — o no</h2>
+  </div>
+  <div class="who">
+    <div class="col si">
+      <h3><span class="dot"></span>ES PARA TI SI…</h3>
+      <ul>
+        <li>Eres médico, abogado o agente inmobiliario con consulta o negocio activo</li>
+        <li>Sabes que necesitas contenido, pero no tienes tiempo para grabar</li>
+        <li>Quieres atraer pacientes o clientes de forma constante, no de vez en cuando</li>
+        <li>Prefieres invertir en un sistema y no en videos sueltos</li>
+      </ul>
+    </div>
+    <div class="col no">
+      <h3><span class="dot"></span>NO ES PARA TI SI…</h3>
+      <ul>
+        <li>Todavía no tienes un negocio o consulta funcionando</li>
+        <li>Buscas resultados en una semana sin constancia</li>
+        <li>No estás dispuesto a invertir en tu presencia digital</li>
+        <li>La idea de un avatar creando contenido por ti no te convence</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════ 5. SURVEY ══════════ -->
+<section class="block" id="aplica">
+  <div class="section-head">
+    <span class="tag">{ APLICA }</span>
+    <h2>Cuéntanos sobre ti</h2>
+    <p class="sub">Rellena el formulario y te contactamos en menos de 24 horas.</p>
+  </div>
+  <div class="survey">
+    <form id="lead-form" action="https://formsubmit.co/felipe@kentro-ai.com" method="POST">
+      <input type="hidden" name="_captcha" value="false">
+      <input type="hidden" name="_subject" value="Nueva aplicación — kentro-ai.com/avatars">
+      <input type="hidden" name="_next" value="https://kentro-ai.com/avatars?enviado=1#aplica">
+      <div class="row2">
+        <div class="field">
+          <label for="f-nombre">Nombre</label>
+          <input id="f-nombre" name="nombre" type="text" required placeholder="Tu nombre">
+        </div>
+        <div class="field">
+          <label for="f-email">Email</label>
+          <input id="f-email" name="email" type="email" required placeholder="tu@email.com">
+        </div>
+      </div>
+      <div class="row2">
+        <div class="field">
+          <label for="f-instagram">Instagram</label>
+          <input id="f-instagram" name="instagram" type="text" placeholder="@tuhandle">
+        </div>
+        <div class="field">
+          <label for="f-profesion">Profesión</label>
+          <select id="f-profesion" name="profesion" required>
+            <option value="" disabled selected>Selecciona…</option>
+            <option>Médico / Clínica</option>
+            <option>Abogado / Despacho</option>
+            <option>Agente inmobiliario</option>
+            <option>Otro</option>
+          </select>
+        </div>
+      </div>
+      <div class="field">
+        <label for="f-presupuesto">Presupuesto mensual</label>
+        <select id="f-presupuesto" name="presupuesto" required>
+          <option value="" disabled selected>Selecciona…</option>
+          <option>Menos de 500 €</option>
+          <option>500 € — 1.000 €</option>
+          <option>1.000 € — 2.000 €</option>
+          <option>Más de 2.000 €</option>
+        </select>
+      </div>
+      <div class="field">
+        <label for="f-expectativas">¿Qué esperas conseguir?</label>
+        <textarea id="f-expectativas" name="expectativas" placeholder="Cuéntanos qué quieres lograr con tu avatar…"></textarea>
+      </div>
+      <button type="submit">ENVIAR APLICACIÓN</button>
+      <div class="fine">Sin spam. Solo te contactamos sobre tu proyecto.</div>
+    </form>
+    <div class="gracias" id="gracias">
+      <h3>Recibido ✦</h3>
+      <p>Te contactamos en menos de 24 horas.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════ CTA / FOOTER ══════════ -->
+<section class="cta">
+  <div class="inner">
+    <h2><span class="strong">Trabajemos</span> <span class="light">juntos</span></h2>
+    <div class="row">
+      <a class="primary" href="mailto:felipe@kentro-ai.com">Agenda una llamada</a>
+      <a class="secondary" href="mailto:felipe@kentro-ai.com">felipe@kentro-ai.com</a>
+    </div>
+    <div class="socials">
+      <a href="https://github.com/felipe2727" target="_blank" rel="noopener noreferrer">GitHub</a>
+      <a href="#">LinkedIn</a>
+      <a href="#">Instagram</a>
+      <a href="#">Dribbble</a>
+    </div>
+    <footer>
+      <span>© 2026</span>
+      <span>Madrid · <span id="clock"></span> · 40.4168° N</span>
+      <span>All rights reserved</span>
+    </footer>
+  </div>
+</section>
+
+<script>
+(function () {
+  var el = document.getElementById('clock');
+  function tick() {
+    el.textContent = new Date().toLocaleTimeString('en-GB', { timeZone: 'Europe/Madrid', hour: '2-digit', minute: '2-digit', second: '2-digit' });
+  }
+  tick();
+  setInterval(tick, 1000);
+
+  if (new URLSearchParams(location.search).get('enviado') === '1') {
+    document.getElementById('lead-form').style.display = 'none';
+    document.getElementById('gracias').style.display = 'block';
+  }
+})();
+</script>
+
+<div class="lightbox" id="lightbox"><span class="close">[ CERRAR × ]</span><img id="lightbox-img" src="" alt=""></div>
+
+<script>
+(function () {
+  var lb = document.getElementById('lightbox');
+  var lbImg = document.getElementById('lightbox-img');
+  document.querySelectorAll('.step .shot img').forEach(function (img) {
+    img.addEventListener('click', function () {
+      lbImg.src = img.src;
+      lbImg.alt = img.alt;
+      lb.classList.add('open');
+      document.body.style.overflow = 'hidden';
+    });
+  });
+  function close() {
+    lb.classList.remove('open');
+    document.body.style.overflow = '';
+  }
+  lb.addEventListener('click', close);
+  document.addEventListener('keydown', function (e) { if (e.key === 'Escape') close(); });
+})();
+</script>
+
+<script>
+document.addEventListener('contextmenu', function (e) { if (e.target.tagName === 'VIDEO') e.preventDefault(); });
+</script>
+</body>
+</html>
