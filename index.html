@@ -1,6 +1,14 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
+<!-- Google Tag Manager -->
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-MTZPXMMQ');</script>
+<!-- End Google Tag Manager -->
+
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Kéntro — AI Ad Lab · Madrid</title>
@@ -214,8 +222,30 @@ section.block { padding: 90px 40px; border-top: 1px solid rgba(26,26,26,0.1); }
   .cta { padding: 64px 20px 40px; }
 }
 </style>
+<!-- Meta Pixel Code -->
+<script>
+!function(f,b,e,v,n,t,s)
+{if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+n.queue=[];t=b.createElement(e);t.async=!0;
+t.src=v;s=b.getElementsByTagName(e)[0];
+s.parentNode.insertBefore(t,s)}(window, document,'script',
+'https://connect.facebook.net/en_US/fbevents.js');
+fbq('init', '1397163875180350');
+fbq('track', 'PageView');
+</script>
+<noscript><img height="1" width="1" style="display:none"
+src="https://www.facebook.com/tr?id=1397163875180350&ev=PageView&noscript=1"
+/></noscript>
+<!-- End Meta Pixel Code -->
 </head>
 <body>
+<!-- Google Tag Manager (noscript) -->
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-MTZPXMMQ"
+height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<!-- End Google Tag Manager (noscript) -->
+
 
 <nav>
   <a class="logo" href="/">Ké.</a>
@@ -305,7 +335,7 @@ section.block { padding: 90px 40px; border-top: 1px solid rgba(26,26,26,0.1); }
   <div class="formats">
     <div class="format"><span class="badge" data-i18n="f1_b">PRUEBA SOCIAL</span><span class="num">F_01</span><h3>Street Interviews</h3><p data-i18n="f1_d">Entrevistas en la calle que convencen al que duda. Prueba social sin salir a la calle.</p><div class="media slot"><video src="assets/ads/fmt-street.mp4" autoplay muted loop playsinline preload="metadata"></video></div></div>
     <div class="format"><span class="badge" data-i18n="f2_b">AUTORIDAD</span><span class="num">F_02</span><h3>Podcasts</h3><p data-i18n="f2_d">Clips de podcast que posicionan a la marca como experto — sin estudio ni invitados.</p><div class="media slot"><video src="assets/ads/fmt-podcast.mp4" autoplay muted loop playsinline preload="metadata"></video></div></div>
-    <div class="format"><span class="badge" data-i18n="f3_b">CONVERSACIÓN</span><span class="num">F_03</span><h3>Dual Casts</h3><p data-i18n="f3_d">Dos personas conversando sobre tu producto. Cercanía que vende sin parecer anuncio.</p><div class="media slot"><video src="assets/ads/fmt-dualcast.mp4" autoplay muted loop playsinline preload="metadata"></video></div></div>
+    <div class="format"><span class="badge" data-i18n="f3_b">CONVERSACIÓN</span><span class="num">F_03</span><h3>Live Stream</h3><p data-i18n="f3_d">Dos personas conversando sobre tu producto. Cercanía que vende sin parecer anuncio.</p><div class="media slot"><video src="assets/ads/fmt-dualcast.mp4" autoplay muted loop playsinline preload="metadata"></video></div></div>
     <div class="format"><span class="badge" data-i18n="f4_b">ALCANCE</span><span class="num">F_04</span><h3>Trends Virales</h3><p data-i18n="f4_d">Tu producto montado en los trends de TikTok y Reels antes de que mueran.</p><div class="media slot"><video src="assets/ads/fmt-trends.mp4" autoplay muted loop playsinline preload="metadata"></video></div></div>
     <div class="format"><span class="badge" data-i18n="f5_b">EL MÁS DEMANDADO</span><span class="num">F_05</span><h3>UGC</h3><p data-i18n="f5_d">Personas reales recomendando tu producto. El formato que más convierte, a volumen.</p><div class="media slot"><video src="assets/ads/fmt-ugc.mp4" autoplay muted loop playsinline preload="metadata"></video></div></div>
     <div class="format"><span class="badge" data-i18n="f6_b">SPOT DE MARCA</span><span class="num">F_06</span><h3>Commercials</h3><p data-i18n="f6_d">El anuncio clásico con look cinematográfico — spots de marca producidos enteramente con IA.</p><div class="media slot"><video src="assets/ads/fmt-commercial.mp4" autoplay muted loop playsinline preload="metadata"></video></div></div>
@@ -425,6 +455,7 @@ section.block { padding: 90px 40px; border-top: 1px solid rgba(26,26,26,0.1); }
   <div class="survey">
     <form id="lead-form" action="https://formsubmit.co/felipe@kentro-ai.com" method="POST">
       <input type="hidden" name="_captcha" value="false">
+      <input type="text" name="_honey" style="display:none" tabindex="-1" autocomplete="off">
       <input type="hidden" name="_subject" id="subject-field" value="Nueva aplicación — kentro-ai.com">
       <input type="hidden" name="_next" value="https://kentro-ai.com/?enviado=1#aplica">
       <div>
@@ -637,6 +668,7 @@ section.block { padding: 90px 40px; border-top: 1px solid rgba(26,26,26,0.1); }
   /* ── form: subject includes tipo ── */
   var form = document.getElementById('lead-form');
   form.addEventListener('submit', function () {
+    if (typeof fbq === 'function') fbq('track', 'Lead');
     var tipo = (form.querySelector('input[name="tipo"]:checked') || {}).value || 'Sin tipo';
     document.getElementById('subject-field').value = 'Nueva aplicación [' + tipo + '] — kentro-ai.com';
   });
