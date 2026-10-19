@@ -1,0 +1,9 @@
+{
+  "redirects": [
+    {
+      "source": "/avatars",
+      "destination": "/doctors",
+      "permanent": true
+    }
+  ]
+}

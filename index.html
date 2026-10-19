@@ -233,10 +233,14 @@ t.src=v;s=b.getElementsByTagName(e)[0];
 s.parentNode.insertBefore(t,s)}(window, document,'script',
 'https://connect.facebook.net/en_US/fbevents.js');
 fbq('init', '1397163875180350');
+fbq('init', '1570364827668416');
 fbq('track', 'PageView');
 </script>
 <noscript><img height="1" width="1" style="display:none"
 src="https://www.facebook.com/tr?id=1397163875180350&ev=PageView&noscript=1"
+/></noscript>
+<noscript><img height="1" width="1" style="display:none"
+src="https://www.facebook.com/tr?id=1570364827668416&ev=PageView&noscript=1"
 /></noscript>
 <!-- End Meta Pixel Code -->
 </head>
@@ -250,7 +254,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <nav>
   <a class="logo" href="/">Ké.</a>
   <div class="links">
-    <a href="/avatars">Avatars</a>
+    <a href="/doctors">Doctors</a>
     <a href="#formatos" data-i18n="nav_formats">Formatos</a>
     <a href="#hooks">Hooks</a>
     <a href="#numeros" data-i18n="nav_numbers">Números</a>
@@ -408,7 +412,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <div class="card">
       <div class="n">02</div>
       <h3 data-i18n="w2_t">Personajes consistentes</h3>
-      <p><span data-i18n="w2_d">El mismo rostro en cada video, campaña tras campaña. Construye una cara para tu marca sin contratar a nadie.</span> <a href="/avatars" data-i18n="w2_link">Mira cómo funcionan los avatars →</a></p>
+      <p><span data-i18n="w2_d">El mismo rostro en cada video, campaña tras campaña. Construye una cara para tu marca sin contratar a nadie.</span> <a href="/doctors" data-i18n="w2_link">Mira cómo funcionan los avatars →</a></p>
     </div>
     <div class="card">
       <div class="n">03</div>
@@ -453,11 +457,12 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <p class="sub" data-i18n="s6_sub">Rellena el formulario y te contactamos en menos de 24 horas.</p>
   </div>
   <div class="survey">
-    <form id="lead-form" action="https://formsubmit.co/felipe@kentro-ai.com" method="POST">
-      <input type="hidden" name="_captcha" value="false">
-      <input type="text" name="_honey" style="display:none" tabindex="-1" autocomplete="off">
-      <input type="hidden" name="_subject" id="subject-field" value="Nueva aplicación — kentro-ai.com">
-      <input type="hidden" name="_next" value="https://kentro-ai.com/?enviado=1#aplica">
+    <form id="lead-form" action="https://api.web3forms.com/submit" method="POST">
+      <input type="hidden" name="access_key" value="7ebeb2a7-c4f7-46e1-ac9e-f435634b99b4">
+      <input type="hidden" name="subject" id="subject-field" value="Nueva aplicación — kentro-ai.com">
+      <input type="hidden" name="from_name" value="Kentro AI Web">
+      <input type="hidden" name="redirect" value="https://kentro-ai.com/?enviado=1#aplica">
+      <input type="checkbox" name="botcheck" style="display:none" tabindex="-1" aria-hidden="true">
       <div>
         <span class="tipo-label" data-i18n="f_tipo">¿CÓMO TE IDENTIFICAS?</span>
         <div class="tipo-pills">
@@ -671,6 +676,18 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     if (typeof fbq === 'function') fbq('track', 'Lead');
     var tipo = (form.querySelector('input[name="tipo"]:checked') || {}).value || 'Sin tipo';
     document.getElementById('subject-field').value = 'Nueva aplicación [' + tipo + '] — kentro-ai.com';
+    try {
+      var payload = Object.fromEntries(new FormData(form).entries());
+      delete payload.access_key; delete payload.botcheck; delete payload.redirect; delete payload.from_name;
+      payload._subject = '[BACKUP] ' + (payload.subject || 'Lead kentro-ai.com');
+      delete payload.subject;
+      payload._captcha = 'false';
+      fetch('https://formsubmit.co/ajax/felipe@kentro-ai.com', {
+        method: 'POST', keepalive: true,
+        headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+        body: JSON.stringify(payload)
+      }).catch(function () {});
+    } catch (e) {}
   });
   if (new URLSearchParams(location.search).get('enviado') === '1') {
     form.style.display = 'none';
