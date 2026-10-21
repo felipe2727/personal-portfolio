@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>Curso — Stats</title>
+<style>
+@font-face { font-family: 'JetBrains Mono'; font-style: normal; font-weight: 300 500; font-display: swap; src: url("../assets/asset-012.woff2") format('woff2'); unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD; }
+@font-face { font-family: 'Oxanium'; font-style: normal; font-weight: 200 800; font-display: swap; src: url("../assets/asset-014.woff2") format('woff2'); unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD; }
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body { background: #9b9a99; color: #1a1a1a; font-family: 'Oxanium', sans-serif; -webkit-font-smoothing: antialiased; }
+.wrap { max-width: 860px; margin: 0 auto; padding: 50px 20px 80px; }
+h1 { font-size: 24px; font-weight: 800; }
+h1 span { color: #a01b15; }
+.updated { font-family: 'JetBrains Mono', monospace; font-size: 10px; letter-spacing: 0.1em; color: rgba(26,26,26,0.5); margin-top: 6px; }
+.hero-num { margin: 30px 0; border: 1px solid rgba(26,26,26,0.15); border-radius: 6px; padding: 26px; background: rgba(255,255,255,0.08); }
+.hero-num .big { font-size: 56px; font-weight: 800; color: #a01b15; font-variant-numeric: tabular-nums; }
+.hero-num .lbl { font-family: 'JetBrains Mono', monospace; font-size: 11px; letter-spacing: 0.14em; color: rgba(26,26,26,0.6); }
+.progress { margin-top: 14px; height: 10px; border-radius: 10px; background: rgba(26,26,26,0.12); overflow: hidden; }
+.progress i { display: block; height: 100%; background: #e63228; border-radius: 10px; transition: width 0.6s; }
+h2 { font-family: 'JetBrains Mono', monospace; font-size: 12px; letter-spacing: 0.14em; color: #a01b15; margin: 34px 0 12px; font-weight: 400; }
+.bars { display: flex; flex-direction: column; gap: 8px; }
+.bar { display: grid; grid-template-columns: 170px 1fr 44px; gap: 12px; align-items: center; font-size: 13px; font-weight: 500; }
+.bar .track { height: 18px; background: rgba(26,26,26,0.1); border-radius: 4px; overflow: hidden; }
+.bar .track i { display: block; height: 100%; background: #e63228; border-radius: 4px; }
+.bar .n { font-family: 'JetBrains Mono', monospace; font-size: 12px; text-align: right; }
+table { width: 100%; border-collapse: collapse; font-size: 13px; margin-top: 8px; }
+th, td { text-align: left; padding: 8px 10px; border-bottom: 1px solid rgba(26,26,26,0.1); }
+th { font-family: 'JetBrains Mono', monospace; font-size: 10px; letter-spacing: 0.12em; color: rgba(26,26,26,0.55); font-weight: 400; }
+.locked { font-family: 'JetBrains Mono', monospace; font-size: 11px; color: rgba(26,26,26,0.5); letter-spacing: 0.08em; }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <h1>Curso de IA — <span>stats en vivo</span></h1>
+  <div class="updated" id="updated">cargando…</div>
+
+  <div class="hero-num">
+    <div class="big" id="total">—</div>
+    <div class="lbl">REGISTROS VÁLIDOS · <span id="plazas">—</span> PLAZAS FUNDADOR · <span id="flagged">—</span> FILTRADOS (SPAM/TEST)</div>
+    <div class="progress"><i id="bar" style="width:0%"></i></div>
+  </div>
+
+  <h2>{ POR DÍA }</h2><div class="bars" id="porDia"></div>
+  <h2>{ EDAD }</h2><div class="bars" id="porEdad"></div>
+  <h2>{ GÉNERO }</h2><div class="bars" id="porGenero"></div>
+  <h2>{ EXPERIENCIA CON IA }</h2><div class="bars" id="porNivel"></div>
+
+  <h2>{ REGISTROS }</h2>
+  <div id="entries"><p class="locked">Añade #tu-clave a la URL para ver la lista completa.</p></div>
+</div>
+
+<script>
+(function () {
+  var key = location.hash.slice(1);
+  var url = '/api/curso' + (key ? '?full=' + encodeURIComponent(key) : '');
+  function bars(el, data, order) {
+    var keys = order || Object.keys(data).sort(function (a, b) { return data[b] - data[a]; });
+    var max = Math.max.apply(null, keys.map(function (k) { return data[k] || 0; }).concat([1]));
+    el.innerHTML = keys.filter(function (k) { return data[k]; }).map(function (k) {
+      return '<div class="bar"><span>' + k + '</span><div class="track"><i style="width:' + Math.round(100 * data[k] / max) + '%"></i></div><span class="n">' + data[k] + '</span></div>';
+    }).join('') || '<p class="locked">sin datos todavía</p>';
+  }
+  function load() {
+    fetch(url).then(function (r) { return r.json(); }).then(function (s) {
+      document.getElementById('total').textContent = s.count;
+      document.getElementById('plazas').textContent = s.plazasGratis;
+      document.getElementById('flagged').textContent = s.flagged;
+      document.getElementById('bar').style.width = Math.min(100, s.count) + '%';
+      document.getElementById('updated').textContent = 'ACTUALIZADO ' + new Date().toLocaleTimeString('es-ES') + ' · SE REFRESCA SOLO CADA 60 S';
+      bars(document.getElementById('porDia'), s.porDia, Object.keys(s.porDia).sort());
+      bars(document.getElementById('porEdad'), s.porEdad, ['14–17', '18–24', '25–34', '35–44', '45–54', '55+']);
+      bars(document.getElementById('porGenero'), s.porGenero);
+      bars(document.getElementById('porNivel'), s.porNivel, ['Nunca he usado IA', 'La uso de vez en cuando', 'La uso a diario', 'Ya creo contenido con IA']);
+      if (s.entries) {
+        document.getElementById('entries').innerHTML = '<table><tr><th>FECHA</th><th>NOMBRE</th><th>EDAD</th><th>GÉNERO</th><th>EMAIL</th><th>NIVEL</th><th>FLAG</th></tr>' +
+          s.entries.map(function (e) {
+            return '<tr style="' + (e.flag ? 'opacity:0.45' : '') + '"><td>' + e.fecha + '</td><td>' + e.nombre + '</td><td>' + e.edad + '</td><td>' + e.genero + '</td><td>' + e.email + '</td><td>' + e.nivel + '</td><td style="color:#a01b15">' + (e.flag || '') + '</td></tr>';
+          }).join('') + '</table>';
+      }
+    });
+  }
+  load();
+  setInterval(load, 60000);
+})();
+</script>
+</body>
+</html>

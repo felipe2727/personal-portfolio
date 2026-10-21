@@ -12,6 +12,11 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Kéntro — AI Ad Lab · Madrid</title>
+<meta name="description" content="Anuncios con IA para agencias y marcas: 8 formatos, variantes ilimitadas de hook y entrega en 7 días. Desde 120 USD/mes. Madrid.">
+<meta property="og:title" content="Kéntro — AI Ad Lab · Madrid">
+<meta property="og:description" content="Anuncios con IA para agencias y marcas: 8 formatos, entrega en 7 días. Desde 120 USD/mes.">
+<meta property="og:url" content="https://kentro-ai.com/">
+<meta property="og:type" content="website">
 <style>
 @font-face { font-family: 'JetBrains Mono'; font-style: normal; font-weight: 300 500; font-display: swap; src: url("assets/asset-012.woff2") format('woff2'); unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD; }
 @font-face { font-family: 'JetBrains Mono'; font-style: normal; font-weight: 300 500; font-display: swap; src: url("assets/asset-011.woff2") format('woff2'); unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF; }
@@ -31,9 +36,6 @@ img, video, canvas { display: block; }
 ::-webkit-scrollbar-track { background: #9b9a99; }
 ::-webkit-scrollbar-thumb { background: rgba(26,26,26,0.12); border-radius: 3px; }
 @keyframes marquee { from { transform: translateX(0); } to { transform: translateX(-50%); } }
-@keyframes pulse { 0%, 100% { opacity: 1; box-shadow: 0 0 0 0 rgba(230,50,40,0.3); } 50% { opacity: 0.6; box-shadow: 0 0 0 5px rgba(230,50,40,0); } }
-@keyframes felipeGlow { 0%, 100% { opacity: 0.5; transform: scale(1); } 50% { opacity: 1; transform: scale(1.15); } }
-@keyframes felipeSlide { 0% { opacity: 0; transform: translateX(20px); letter-spacing: 0.25em; } 60% { opacity: 1; } 100% { opacity: 1; transform: translateX(0); letter-spacing: 0.08em; } }
 
 /* ══ NAV ══ */
 nav { position: fixed; top: 0; left: 0; right: 0; z-index: 200; padding: 0 40px; height: 56px; display: flex; justify-content: space-between; align-items: center; background: rgba(155,154,153,0.92); backdrop-filter: blur(20px) saturate(1.3); border-bottom: 1px solid rgba(0,0,0,0.06); }
@@ -46,43 +48,13 @@ nav .meta .clock { color: rgba(26,26,26,0.75); font-variant-numeric: tabular-num
 #lang-toggle { font-family: 'JetBrains Mono', monospace; font-size: 10px; letter-spacing: 0.1em; color: rgba(26,26,26,0.75); background: none; border: 1px solid rgba(26,26,26,0.2); border-radius: 30px; padding: 4px 12px; cursor: pointer; transition: all 0.3s; }
 #lang-toggle:hover { border-color: rgba(230,50,40,0.4); color: #1a1a1a; }
 
-/* ══ HERO (4 quadrants) ══ */
-.hero { height: 100vh; position: relative; overflow: hidden; display: grid; grid-template-columns: 280px 1fr; grid-template-rows: minmax(0, 2fr) minmax(0, 3fr); background: #9b9a99; }
-.hero .noise { position: absolute; inset: 0; opacity: 0.06; pointer-events: none; z-index: 0; mix-blend-mode: multiply; background: url("data:image/svg+xml,%3Csvg viewBox='0 0 512 512' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='5' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E"); }
-.q1 { border-right: 1px solid rgba(230,50,40,0.08); border-bottom: 1px solid rgba(230,50,40,0.08); position: relative; z-index: 10; overflow: hidden; background: #9b9a99; }
-.q1 img { width: 100%; height: 100%; object-fit: cover; object-position: center; filter: brightness(0.95) contrast(1.05); }
-.q1 .fade { position: absolute; bottom: 0; left: 0; right: 0; height: 25%; background: linear-gradient(to top, #9b9a99, transparent); pointer-events: none; }
-.q2 { border-bottom: 1px solid rgba(230,50,40,0.08); display: flex; flex-direction: column; align-items: center; justify-content: center; position: relative; padding: 72px 20px 16px; overflow: hidden; }
-.q2 .title-wrap { perspective: 1200px; cursor: pointer; position: relative; width: 100%; display: flex; align-items: center; justify-content: center; overflow: hidden; }
-.q2 h1 { font-size: clamp(72px, 13vw, 200px); font-weight: 700; letter-spacing: 0.05em; color: #1a1a1a; text-align: center; user-select: none; margin: 0; transform-style: preserve-3d; transition: transform 0.4s cubic-bezier(.16,1,.3,1), text-shadow 0.4s; position: relative; z-index: 2; }
-.q2 h1:hover { transform: rotateY(12deg) rotateX(-3deg) scale(1.02); text-shadow: 0 0 80px rgba(230,50,40,0.1), 0 0 160px rgba(230,50,40,0.04); }
-.q2 .reflection { position: absolute; bottom: -6px; left: 0; right: 0; height: 50%; display: flex; align-items: flex-start; justify-content: center; font-size: clamp(72px, 13vw, 200px); font-weight: 700; letter-spacing: 0.05em; color: #1a1a1a; transform: scaleY(-1); opacity: 0.04; mask-image: linear-gradient(to bottom, rgba(0,0,0,0.3), transparent); -webkit-mask-image: linear-gradient(to bottom, rgba(0,0,0,0.3), transparent); pointer-events: none; z-index: 1; }
-.q2 .ai-badge { position: absolute; bottom: 36px; right: 32px; z-index: 20; }
-.q2 .ai-badge .glow { position: absolute; inset: -20px -30px; background: radial-gradient(ellipse, rgba(230,80,40,0.08) 0%, transparent 70%); border-radius: 50%; pointer-events: none; animation: felipeGlow 3s ease-in-out infinite; }
-.q2 .ai-badge span { font-family: 'Zen Dots', cursive; font-size: clamp(28px, 4vw, 52px); font-weight: 400; letter-spacing: 0.08em; background: linear-gradient(135deg, #e63228, #d4392b, #e63228); -webkit-background-clip: text; -webkit-text-fill-color: transparent; position: relative; display: inline-block; animation: felipeSlide 1.5s cubic-bezier(.16,1,.3,1) 0.6s both; }
-.q2 .tagline { display: flex; align-items: center; gap: 14px; font-family: 'JetBrains Mono', monospace; font-size: 9px; letter-spacing: 0.12em; color: rgba(26,26,26,0.5); margin-top: 12px; flex-wrap: wrap; justify-content: center; }
-.q2 .tagline .dot { color: #e63228; opacity: 0.5; }
-.q3 { border-right: 1px solid rgba(26,26,26,0.1); padding: 20px 24px; display: flex; flex-direction: column; justify-content: space-between; overflow: hidden; }
-.q3 .kicker { font-family: 'Zen Dots', cursive; font-size: 12px; letter-spacing: 0.06em; background: linear-gradient(135deg, #e63228, #d4392b, #e63228); -webkit-background-clip: text; -webkit-text-fill-color: transparent; margin-bottom: 10px; }
-.q3 p.main { font-size: 12px; line-height: 1.8; color: #1a1a1a; opacity: 0.72; font-weight: 500; }
-.q3 p.sub { font-size: 12px; line-height: 1.8; color: #1a1a1a; opacity: 0.55; font-weight: 400; margin-top: 10px; }
-.q3 .cta { display: block; margin-top: 14px; padding: 10px 0; font-family: 'JetBrains Mono', monospace; font-size: 10px; letter-spacing: 0.12em; color: #fff; background: #e63228; border-radius: 30px; text-decoration: none; text-align: center; font-weight: 500; transition: opacity 0.3s; }
-.q3 .cta:hover { opacity: 0.85; color: #fff; }
-.q3 .stats { font-family: 'JetBrains Mono', monospace; font-size: 9px; letter-spacing: 0.1em; color: rgba(26,26,26,0.5); }
-.q3 .stats .rows { line-height: 2; }
-.q3 .stats .avail { margin-top: 10px; display: flex; align-items: center; justify-content: space-between; }
-.q3 .stats .avail .left { display: flex; align-items: center; gap: 6px; color: #e63228; }
-.q3 .stats .avail .pulse-dot { width: 6px; height: 6px; border-radius: 50%; background: #e63228; display: inline-block; animation: pulse 2s ease infinite; }
-.q3 .stats .avail .ver { color: #e63228; opacity: 0.5; }
-.q4 { position: relative; overflow: hidden; background: linear-gradient(135deg, rgba(0,0,0,0.02), rgba(0,0,0,0.06)); }
-.q4 scene-object { position: absolute; inset: 0; }
-.q4 .gridlines { position: absolute; inset: 0; pointer-events: none; z-index: 2; opacity: 0.07; background-image: linear-gradient(#e63228 1px, transparent 1px), linear-gradient(90deg, #e63228 1px, transparent 1px); background-size: 60px 60px; }
-.q4 .hud-tr { position: absolute; top: 16px; right: 24px; font-family: 'JetBrains Mono', monospace; font-size: 9px; letter-spacing: 0.1em; color: rgba(26,26,26,0.5); text-align: right; line-height: 2.2; z-index: 3; }
-.q4 .hud-tr .ok { color: #e63228; }
-.q4 .hud-bl { position: absolute; bottom: 16px; left: 24px; font-family: 'JetBrains Mono', monospace; font-size: 8px; letter-spacing: 0.15em; color: rgba(26,26,26,0.5); z-index: 3; }
-.q4 .hud-br { position: absolute; bottom: 16px; right: 24px; font-family: 'JetBrains Mono', monospace; font-size: 8px; letter-spacing: 0.15em; color: rgba(26,26,26,0.5); z-index: 3; display: flex; align-items: center; gap: 6px; }
-.q4 .hud-br .dot { width: 4px; height: 4px; border-radius: 50%; background: #e63228; display: inline-block; }
-.q4 .vignette { position: absolute; inset: 0; pointer-events: none; z-index: 1; background: radial-gradient(ellipse at center, transparent 40%, rgba(155,154,153,0.35) 100%); }
+/* ══ VSL HERO ══ */
+.vsl { padding: 110px 24px 40px; text-align: center; }
+.vsl .tag { display: block; font-family: 'JetBrains Mono', monospace; font-size: 12px; letter-spacing: 0.12em; color: #a01b15; margin-bottom: 14px; }
+.vsl h1 { max-width: 860px; margin: 0 auto; font-size: clamp(26px, 4.2vw, 42px); font-weight: 700; line-height: 1.2; }
+.vsl-proof { margin-top: 14px; font-family: 'JetBrains Mono', monospace; font-size: 12px; letter-spacing: 0.1em; color: #a01b15; }
+.vsl-frame { max-width: 880px; margin: 26px auto 0; }
+.vsl-frame video { width: 100%; border-radius: 6px; border: 1px solid rgba(26,26,26,0.12); display: block; background: #141414; }
 
 /* ══ SHARED SECTIONS ══ */
 .marquee { overflow: hidden; white-space: nowrap; border-top: 1px solid rgba(26,26,26,0.1); border-bottom: 1px solid rgba(26,26,26,0.1); padding: 16px 0; }
@@ -90,7 +62,7 @@ nav .meta .clock { color: rgba(26,26,26,0.75); font-variant-numeric: tabular-num
 section.block { padding: 90px 40px; border-top: 1px solid rgba(26,26,26,0.1); }
 .inner { max-width: 1100px; margin: 0 auto; }
 .section-head { text-align: center; margin-bottom: 48px; padding: 0 20px; }
-.section-head .tag { display: block; font-family: 'JetBrains Mono', monospace; font-size: 11px; letter-spacing: 0.25em; color: #e63228; opacity: 0.7; margin-bottom: 12px; }
+.section-head .tag { display: block; font-family: 'JetBrains Mono', monospace; font-size: 12px; letter-spacing: 0.12em; color: #a01b15; margin-bottom: 12px; }
 .section-head h2 { font-size: clamp(28px, 4vw, 38px); font-weight: 700; line-height: 1.15; }
 .section-head .sub { max-width: 560px; margin: 14px auto 0; font-size: 13px; line-height: 1.8; opacity: 0.6; font-weight: 500; }
 .slot { border-radius: 6px; overflow: hidden; position: relative; border: 1px solid rgba(26,26,26,0.12); background: repeating-linear-gradient(45deg, rgba(26,26,26,0.05) 0px, rgba(26,26,26,0.05) 10px, transparent 10px, transparent 20px); display: flex; align-items: center; justify-content: center; }
@@ -101,8 +73,8 @@ section.block { padding: 90px 40px; border-top: 1px solid rgba(26,26,26,0.1); }
 .formats { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; max-width: 1200px; margin: 0 auto; }
 .format { border: 1px solid rgba(26,26,26,0.12); border-radius: 6px; padding: 24px 20px; transition: border-color 0.3s, transform 0.4s cubic-bezier(.16,1,.3,1); background: rgba(255,255,255,0.04); display: flex; flex-direction: column; }
 .format:hover { border-color: rgba(230,50,40,0.3); transform: translateY(-3px); }
-.format .badge { display: inline-block; font-family: 'JetBrains Mono', monospace; font-size: 8px; letter-spacing: 0.14em; color: #e63228; border: 1px solid rgba(230,50,40,0.3); border-radius: 20px; padding: 3px 10px; margin-bottom: 12px; align-self: flex-start; }
-.format .num { font-family: 'JetBrains Mono', monospace; font-size: 9px; letter-spacing: 0.14em; color: rgba(26,26,26,0.45); }
+.format .badge { display: inline-block; font-family: 'JetBrains Mono', monospace; font-size: 10px; letter-spacing: 0.12em; color: #a01b15; border: 1px solid rgba(160,27,21,0.45); border-radius: 20px; padding: 3px 10px; margin-bottom: 12px; align-self: flex-start; }
+.format .num { font-family: 'JetBrains Mono', monospace; font-size: 10px; letter-spacing: 0.12em; color: rgba(26,26,26,0.65); }
 .format h3 { font-size: 18px; font-weight: 700; margin-top: 8px; letter-spacing: 0.02em; }
 .format p { font-size: 12px; line-height: 1.75; opacity: 0.65; margin-top: 8px; font-weight: 500; flex: 1; }
 .format .media { margin-top: 16px; aspect-ratio: 9/16; }
@@ -110,23 +82,28 @@ section.block { padding: 90px 40px; border-top: 1px solid rgba(26,26,26,0.1); }
 /* ══ 02 HOOKS ══ */
 .hooks-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; max-width: 1200px; margin: 0 auto; }
 .hooks-grid .slot { aspect-ratio: 9/16; }
-.hooks-note { max-width: 640px; margin: 36px auto 0; text-align: center; font-family: 'JetBrains Mono', monospace; font-size: 10px; letter-spacing: 0.1em; line-height: 2; color: rgba(26,26,26,0.55); }
-.hooks-note b { color: #e63228; font-weight: 500; }
+.hooks-note { max-width: 640px; margin: 36px auto 0; text-align: center; font-family: 'JetBrains Mono', monospace; font-size: 12px; letter-spacing: 0.1em; line-height: 2; color: rgba(26,26,26,0.55); }
+.hooks-note b { color: #a01b15; font-weight: 500; }
 
-/* ══ 03 NÚMEROS ══ */
-.numbers { display: grid; grid-template-columns: 1fr auto 1fr; gap: 24px; align-items: stretch; max-width: 980px; margin: 0 auto; }
-.num-card { border: 1px solid rgba(26,26,26,0.12); border-radius: 6px; padding: 34px 30px; background: rgba(255,255,255,0.04); }
-.num-card.kentro { border-color: rgba(230,50,40,0.35); }
-.num-card .label { font-family: 'JetBrains Mono', monospace; font-size: 9px; letter-spacing: 0.16em; color: rgba(26,26,26,0.5); }
-.num-card.kentro .label { color: #e63228; }
-.num-card .big { font-size: clamp(40px, 5vw, 64px); font-weight: 800; letter-spacing: -0.02em; line-height: 1.1; margin-top: 12px; }
-.num-card .big small { font-size: 0.35em; font-weight: 500; opacity: 0.6; letter-spacing: 0; }
-.num-card ul { list-style: none; margin-top: 18px; }
-.num-card ul li { font-family: 'JetBrains Mono', monospace; font-size: 10px; letter-spacing: 0.08em; color: rgba(26,26,26,0.6); padding: 5px 0; }
-.num-card ul li::before { content: "→ "; color: rgba(26,26,26,0.35); }
-.num-card.kentro ul li::before { color: #e63228; }
-.numbers .vs { display: flex; align-items: center; justify-content: center; font-family: 'Zen Dots', cursive; font-size: 18px; color: #e63228; }
-.numbers-close { max-width: 640px; margin: 36px auto 0; text-align: center; font-size: 13px; line-height: 1.8; opacity: 0.65; font-weight: 500; }
+/* ══ 03 PLANES ══ */
+.plans { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; max-width: 980px; margin: 0 auto; align-items: stretch; }
+.plan { border: 1px solid rgba(26,26,26,0.12); border-radius: 6px; padding: 30px 26px; background: rgba(255,255,255,0.04); display: flex; flex-direction: column; position: relative; }
+.plan .tier { font-family: 'JetBrains Mono', monospace; font-size: 11px; letter-spacing: 0.2em; color: rgba(26,26,26,0.6); }
+.plan .price { font-size: clamp(34px, 4vw, 44px); font-weight: 800; letter-spacing: -0.02em; margin-top: 10px; color: #1a1a1a; }
+.plan .per { font-family: 'JetBrains Mono', monospace; font-size: 11px; letter-spacing: 0.16em; color: rgba(26,26,26,0.5); margin-top: 4px; }
+.plan ul { list-style: none; margin: 18px 0 0; flex: 1; }
+.plan ul li { font-size: 13px; line-height: 1.7; padding: 6px 0; opacity: 0.8; font-weight: 500; }
+.plan ul li::before { content: "→ "; color: #e63228; }
+.plan .unit { margin-top: 18px; padding-top: 14px; border-top: 1px dashed rgba(26,26,26,0.2); font-family: 'JetBrains Mono', monospace; font-size: 11px; letter-spacing: 0.16em; color: rgba(26,26,26,0.55); }
+.plan.featured { background: #e63228; border-color: #e63228; }
+.plan.featured .tier, .plan.featured .per, .plan.featured .unit { color: #ffffff; }
+.plan.featured .price { color: #ffffff; }
+.plan.featured ul li { color: #ffffff; opacity: 0.95; }
+.plan.featured ul li::before { color: #ffffff; }
+.plan.featured .unit { border-top-color: rgba(255,255,255,0.35); }
+.plan .popular { position: absolute; top: 24px; right: 20px; font-family: 'JetBrains Mono', monospace; font-size: 8px; letter-spacing: 0.14em; background: #ffffff; color: #e63228; border-radius: 20px; padding: 4px 10px; font-weight: 500; }
+.delivery-note { max-width: 980px; margin: 28px auto 0; text-align: center; font-family: 'JetBrains Mono', monospace; font-size: 12px; letter-spacing: 0.16em; color: rgba(26,26,26,0.6); }
+.delivery-note b { color: #a01b15; font-weight: 500; }
 
 /* ══ 04 POR QUÉ IA ══ */
 .why { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; max-width: 1100px; margin: 0 auto; }
@@ -151,7 +128,7 @@ section.block { padding: 90px 40px; border-top: 1px solid rgba(26,26,26,0.1); }
 /* ══ 06 APLICA ══ */
 .survey { max-width: 640px; margin: 0 auto; }
 .survey form { display: flex; flex-direction: column; gap: 14px; }
-.field label, .tipo-label { display: block; font-family: 'JetBrains Mono', monospace; font-size: 9px; letter-spacing: 0.16em; color: rgba(26,26,26,0.55); margin-bottom: 7px; text-transform: uppercase; }
+.field label, .tipo-label { display: block; font-family: 'JetBrains Mono', monospace; font-size: 11px; letter-spacing: 0.16em; color: rgba(26,26,26,0.55); margin-bottom: 7px; text-transform: uppercase; }
 .field input, .field select, .field textarea { width: 100%; background: rgba(255,255,255,0.25); border: 1px solid rgba(26,26,26,0.15); border-radius: 6px; padding: 13px 15px; font-family: 'Oxanium', sans-serif; font-size: 14px; color: #1a1a1a; outline: none; transition: border-color 0.3s; }
 .field input:focus, .field select:focus, .field textarea:focus { border-color: rgba(230,50,40,0.5); }
 .field textarea { min-height: 100px; resize: vertical; }
@@ -163,7 +140,7 @@ section.block { padding: 90px 40px; border-top: 1px solid rgba(26,26,26,0.1); }
 .tipo-pills input[type="radio"]:checked + label.pill { border-color: #e63228; color: #e63228; background: rgba(230,50,40,0.06); font-weight: 500; }
 .survey button { font-family: 'JetBrains Mono', monospace; font-size: 12px; padding: 15px 34px; border-radius: 40px; background: #e63228; color: #fff; border: none; cursor: pointer; font-weight: 500; letter-spacing: 0.05em; margin-top: 8px; transition: opacity 0.3s; }
 .survey button:hover { opacity: 0.85; }
-.survey .fine { font-family: 'JetBrains Mono', monospace; font-size: 9px; letter-spacing: 0.08em; color: rgba(26,26,26,0.45); text-align: center; margin-top: 14px; }
+.survey .fine { font-family: 'JetBrains Mono', monospace; font-size: 11px; letter-spacing: 0.08em; color: rgba(26,26,26,0.45); text-align: center; margin-top: 14px; }
 .gracias { display: none; text-align: center; padding: 40px 0; }
 .gracias h3 { font-size: 24px; font-weight: 700; }
 .gracias p { margin-top: 10px; font-size: 13px; opacity: 0.65; }
@@ -176,6 +153,16 @@ section.block { padding: 90px 40px; border-top: 1px solid rgba(26,26,26,0.1); }
 .vid-lightbox .close { position: absolute; top: 18px; right: 26px; font-family: 'JetBrains Mono', monospace; font-size: 13px; color: rgba(255,255,255,0.7); letter-spacing: 0.1em; cursor: pointer; background: none; border: none; }
 .vid-lightbox .close:hover { color: #fff; }
 
+/* big cta */
+.cta-big-wrap { text-align: center; margin: 48px auto 0; }
+.cta-big { display: inline-block; font-family: 'JetBrains Mono', monospace; font-size: 15px; padding: 17px 46px; border-radius: 40px; background: #e63228; color: #fff; text-decoration: none; font-weight: 500; letter-spacing: 0.04em; transition: opacity 0.3s; }
+.cta-big:hover { opacity: 0.85; color: #fff; }
+.cta-big-wrap .micro { margin-top: 10px; font-family: 'JetBrains Mono', monospace; font-size: 11px; letter-spacing: 0.08em; color: rgba(26,26,26,0.6); }
+.pasos { max-width: 640px; margin: 0 auto 26px; text-align: center; font-family: 'JetBrains Mono', monospace; font-size: 12px; letter-spacing: 0.08em; line-height: 2; color: rgba(26,26,26,0.7); }
+.pasos b { color: #a01b15; font-weight: 500; }
+.consent { display: flex; gap: 10px; align-items: flex-start; font-size: 12px; opacity: 0.7; line-height: 1.5; }
+.consent input { width: auto; margin-top: 2px; }
+
 /* ══ CTA FOOTER ══ */
 .cta { padding: 100px 40px 60px; border-top: 1px solid rgba(26,26,26,0.1); }
 .cta .inner { max-width: 1100px; margin: 0 auto; }
@@ -183,7 +170,7 @@ section.block { padding: 90px 40px; border-top: 1px solid rgba(26,26,26,0.1); }
 .cta h2 .strong { font-size: clamp(44px, 6.5vw, 88px); font-weight: 800; color: #1a1a1a; letter-spacing: -0.03em; line-height: 1; }
 .cta h2 .light { font-size: clamp(44px, 6.5vw, 88px); font-weight: 200; color: rgba(26,26,26,0.75); line-height: 1; letter-spacing: -0.02em; }
 .cta .row { margin-top: 44px; display: flex; gap: 16px; align-items: center; flex-wrap: wrap; }
-.cta .row a { font-family: 'JetBrains Mono', monospace; font-size: 12px; padding: 13px 30px; border-radius: 40px; text-decoration: none; transition: all 0.3s; }
+.cta .row a { font-family: 'JetBrains Mono', monospace; font-size: 14px; padding: 13px 30px; border-radius: 40px; text-decoration: none; transition: all 0.3s; }
 .cta .row a.primary { background: #e63228; color: #ffffff; font-weight: 500; }
 .cta .row a.primary:hover { opacity: 0.85; color: #ffffff; }
 .cta .row a.secondary { border: 1px solid rgba(26,26,26,0.1); color: rgba(26,26,26,0.75); }
@@ -200,22 +187,13 @@ section.block { padding: 90px 40px; border-top: 1px solid rgba(26,26,26,0.1); }
   nav .meta { gap: 6px; }
   nav .logo { font-size: 17px; }
   nav .links { gap: 0; }
-  nav .links a { padding: 6px 5px; font-size: 11px; }
+  nav .links a { padding: 11px 5px; font-size: 11px; }
   #lang-toggle { padding: 3px 8px; font-size: 9px; }
-  .hero { display: flex; flex-direction: column; height: auto; padding-top: 56px; }
-  .q1 { height: 340px; border-right: none; }
-  .q2 { padding: 48px 16px 20px; border-bottom: 1px solid rgba(230,50,40,0.08); }
-  .q2 h1 { font-size: clamp(44px, 16.5vw, 72px); }
-  .q2 .reflection { font-size: clamp(44px, 16.5vw, 72px); }
-  .q2 .ai-badge { bottom: 72px; right: 16px; }
-  .q3 { border-right: none; }
-  .q4 { height: 340px; min-height: 340px; }
-  .q4 .hud-br { display: none; }
+  .vsl { padding: 96px 16px 32px; }
   section.block { padding: 60px 18px; }
   .formats { grid-template-columns: repeat(2, 1fr); gap: 10px; }
   .hooks-grid { grid-template-columns: repeat(2, 1fr); gap: 10px; }
-  .numbers { grid-template-columns: 1fr; }
-  .numbers .vs { transform: rotate(90deg); padding: 4px 0; }
+  .plans { grid-template-columns: 1fr; }
   .why { grid-template-columns: 1fr; }
   .who { grid-template-columns: 1fr; }
   .row2 { grid-template-columns: 1fr; }
@@ -257,7 +235,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <a href="/doctors">Doctors</a>
     <a href="#formatos" data-i18n="nav_formats">Formatos</a>
     <a href="#hooks">Hooks</a>
-    <a href="#numeros" data-i18n="nav_numbers">Números</a>
+    <a href="#numeros" data-i18n="nav_numbers">Planes</a>
     <a href="#aplica" data-i18n="nav_apply">Aplica</a>
   </div>
   <div class="meta">
@@ -267,60 +245,13 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   </div>
 </nav>
 
-<!-- ══════════ HERO ══════════ -->
-<section class="hero" id="top">
-  <div class="noise"></div>
-  <div class="q1">
-    <img src="assets/asset-001.gif" alt="Animated portrait of Felipe Echeverri">
-    <div class="fade"></div>
-  </div>
-  <div class="q2">
-    <div class="title-wrap">
-      <h1>KENTRO</h1>
-      <div class="reflection">KENTRO</div>
-    </div>
-    <div class="ai-badge"><div class="glow"></div><span>AI</span></div>
-    <div class="tagline">
-      <span>AI AD LAB</span>
-      <span class="dot">·</span>
-      <span data-i18n="tag_agencies">AGENCIAS &amp; MARCAS</span>
-      <span class="dot">·</span>
-      <span>MADRID</span>
-      <span class="dot">·</span>
-      <span>2018 — 26</span>
-    </div>
-  </div>
-  <div class="q3">
-    <div>
-      <div class="kicker" data-i18n="kicker">ANUNCIOS CON IA</div>
-      <p class="main" data-i18n="hero_main">Kéntro produce anuncios con IA para agencias y marcas — 8 formatos ganadores, hooks imposibles de rodar con cámara, y volumen de variantes que ningún equipo de producción puede igualar.</p>
-      <p class="sub" data-i18n="hero_sub">Del brief a la entrega en días, no semanas. Sin castings, sin estudios, sin logística — solo creatividad que para el scroll y vende.</p>
-      <a href="#aplica" class="cta" data-i18n="hero_cta">QUIERO MIS ADS</a>
-    </div>
-    <div class="stats">
-      <div class="rows">
-        <div data-i18n="stat1">VARIANTES POR CONCEPTO: 15</div>
-        <div data-i18n="stat2">FORMATOS: 8 · HOOKS: ILIMITADOS</div>
-        <div>40.4168° N, 3.7038° W</div>
-      </div>
-      <div class="avail">
-        <div class="left"><span class="pulse-dot"></span><span data-i18n="avail">DISPONIBLE</span></div>
-        <span class="ver">V3.0</span>
-      </div>
-    </div>
-  </div>
-  <div class="q4">
-    <scene-object></scene-object>
-    <div class="gridlines"></div>
-    <div class="hud-tr">
-      <div>SYS.INIT ████████ <span class="ok">OK</span></div>
-      <div>NEURAL_MESH: ACTIVE</div>
-      <div>AGENTS: 2_ONLINE</div>
-      <div>LLM_ROUTER: <span class="ok">NOMINAL</span></div>
-    </div>
-    <div class="hud-bl">COGNITIVE ARCHITECTURE · V3.0</div>
-    <div class="hud-br"><span class="dot"></span>INTERACTIVE · HOVER TO EXPLORE</div>
-    <div class="vignette"></div>
+<!-- ══════════ VSL HERO ══════════ -->
+<section class="vsl" id="top">
+  <span class="tag" data-i18n="kicker">ANUNCIOS CON IA</span>
+  <h1 data-i18n="hero_main">Anuncios con IA para agencias y marcas: 8 formatos ganadores, variantes ilimitadas de hook y entrega en 7 días.</h1>
+  <p class="vsl-proof" data-i18n="proof">+430K VIEWS GENERADOS CON ESTE SISTEMA EN 2026</p>
+  <div class="vsl-frame">
+    <video src="assets/vsl-home.mp4" autoplay muted loop playsinline controls controlslist="nodownload" preload="metadata"></video>
   </div>
 </section>
 
@@ -328,6 +259,80 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <div class="marquee" aria-hidden="true">
   <div data-i18n="marquee">ADS CON IA ✦ 8 FORMATOS ✦ HOOKS IMPOSIBLES ✦ VOLUMEN SIN LOGÍSTICA ✦ MADRID ✦ ADS CON IA ✦ 8 FORMATOS ✦ HOOKS IMPOSIBLES ✦ VOLUMEN SIN LOGÍSTICA ✦ MADRID ✦ ADS CON IA ✦ 8 FORMATOS ✦ HOOKS IMPOSIBLES ✦ VOLUMEN SIN LOGÍSTICA ✦ MADRID ✦ </div>
 </div>
+
+<!-- ══════════ APLICA ══════════ -->
+<section class="block" id="aplica">
+  <div class="section-head">
+    <span class="tag">— / 06 · <span data-i18n="s6_tag">APLICA</span></span>
+    <h2 data-i18n="s6_h">Cuéntanos qué necesitas</h2>
+    <p class="sub" data-i18n="s6_sub">Rellena el formulario y te contactamos en menos de 24 horas.</p>
+  </div>
+  <p class="pasos"><b>01</b> <span data-i18n="ps1">Aplicas (2 min)</span> → <b>02</b> <span data-i18n="ps2">Llamada de 15 min</span> → <b>03</b> <span data-i18n="ps3">Primeros vídeos en 7 días</span></p>
+  <div class="survey">
+    <form id="lead-form" action="https://api.web3forms.com/submit" method="POST">
+      <input type="hidden" name="access_key" value="7ebeb2a7-c4f7-46e1-ac9e-f435634b99b4">
+      <input type="hidden" name="subject" id="subject-field" value="Nueva aplicación — kentro-ai.com">
+      <input type="hidden" name="from_name" value="Kentro AI Web">
+      <input type="hidden" name="redirect" value="https://kentro-ai.com/?enviado=1#aplica">
+      <input type="checkbox" name="botcheck" style="display:none" tabindex="-1" aria-hidden="true">
+      <div>
+        <span class="tipo-label" data-i18n="f_tipo">¿CÓMO TE IDENTIFICAS?</span>
+        <div class="tipo-pills">
+          <span>
+            <input type="radio" name="tipo" id="tipo-empresa" value="Empresa / Agencia" required>
+            <label class="pill" for="tipo-empresa" data-i18n="f_tipo1">EMPRESA / AGENCIA</label>
+          </span>
+          <span>
+            <input type="radio" name="tipo" id="tipo-individual" value="Individual / Creador">
+            <label class="pill" for="tipo-individual" data-i18n="f_tipo2">INDIVIDUAL / CREADOR</label>
+          </span>
+        </div>
+      </div>
+      <div class="row2">
+        <div class="field">
+          <label for="f-nombre" data-i18n="f_name">Nombre</label>
+          <input id="f-nombre" name="nombre" type="text" required placeholder="Tu nombre" data-i18n-placeholder="f_name_ph">
+        </div>
+        <div class="field">
+          <label for="f-email">Email</label>
+          <input id="f-email" name="email" type="email" required placeholder="tu@email.com">
+        </div>
+      </div>
+      <div class="row2">
+        <div class="field">
+          <label for="f-empresa" data-i18n="f_company">Empresa (opcional)</label>
+          <input id="f-empresa" name="empresa" type="text" placeholder="Tu empresa o agencia" data-i18n-placeholder="f_company_ph">
+        </div>
+        <div class="field">
+          <label for="f-instagram">Instagram</label>
+          <input id="f-instagram" name="instagram" type="text" placeholder="@tuhandle">
+        </div>
+      </div>
+      <div class="field">
+        <label for="f-presupuesto" data-i18n="f_budget">Presupuesto mensual</label>
+        <select id="f-presupuesto" name="presupuesto" required>
+          <option value="" disabled selected data-i18n="f_select">Selecciona…</option>
+          <option data-i18n="f_b1">Menos de 500 USD</option>
+          <option>500 — 1.000 USD</option>
+          <option>1.000 — 2.500 USD</option>
+          <option data-i18n="f_b4">Más de 2.500 USD</option>
+          <option data-i18n="f_b5">Solo quiero aprender / colaborar</option>
+        </select>
+      </div>
+      <div class="field">
+        <label for="f-mensaje" data-i18n="f_msg">¿Qué necesitas?</label>
+        <textarea id="f-mensaje" name="mensaje" placeholder="Cuéntanos sobre tu marca, tus campañas o tu idea…" data-i18n-placeholder="f_msg_ph"></textarea>
+      </div>
+      <label class="consent"><input type="checkbox" name="consentimiento" required><span data-i18n="f_consent">Acepto que Kéntro use mis datos para responder a mi solicitud.</span></label>
+      <button type="submit" data-i18n="f_send">ENVIAR APLICACIÓN</button>
+      <div class="fine" data-i18n="f_fine">Sin spam. Solo te contactamos sobre tu proyecto.</div>
+    </form>
+    <div class="gracias" id="gracias">
+      <h3 data-i18n="f_thanks">Recibido ✦</h3>
+      <p data-i18n="f_thanks_sub">Te contactamos en menos de 24 horas.</p>
+    </div>
+  </div>
+</section>
 
 <!-- ══════════ 01 FORMATOS ══════════ -->
 <section class="block" id="formatos">
@@ -346,6 +351,11 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <div class="format"><span class="badge" data-i18n="f7_b">EL MÁS ORIGINAL</span><span class="num">F_07</span><h3 data-i18n="f7_t">Animados</h3><p data-i18n="f7_d">Estilo Pixar, objetos que hablan, mundos imposibles. Creatividad que destaca entre miles.</p><div class="media slot"><video src="assets/ads/fmt-animated.mp4" autoplay muted loop playsinline preload="metadata"></video></div></div>
     <div class="format"><span class="badge" data-i18n="f8_b">IMAGE ADS</span><span class="num">F_08</span><h3 data-i18n="f8_t">Estáticos</h3><p data-i18n="f8_d">Imagen de alta conversión para feed — sin sesión de fotos ni producto físico.</p><div class="media slot"><img src="assets/ads/fmt-static.jpg" alt="Static ad example" loading="lazy"></div></div>
   </div>
+
+  <div class="cta-big-wrap">
+    <a class="cta-big" href="#aplica" data-i18n="big_cta">QUIERO MIS ANUNCIOS · DESDE 120 USD/MES</a>
+    <div class="micro" data-i18n="big_micro">Sin permanencia · Respuesta en 24 h</div>
+  </div>
 </section>
 
 <!-- ══════════ 02 HOOKS ══════════ -->
@@ -362,39 +372,62 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <div class="slot"><video src="assets/ads/hook-04.mp4" autoplay muted loop playsinline preload="metadata"></video></div>
   </div>
   <div class="hooks-note"><span data-i18n="s2_note1">SIN LÍMITES DE FÍSICA · SIN PERMISOS DE RODAJE · SIN PRESUPUESTO DE VFX</span><br><b data-i18n="s2_note2">SI LO PUEDES IMAGINAR, ES UN HOOK</b></div>
+
+  <div class="cta-big-wrap">
+    <a class="cta-big" href="#aplica" data-i18n="big_cta">QUIERO MIS ANUNCIOS · DESDE 120 USD/MES</a>
+    <div class="micro" data-i18n="big_micro">Sin permanencia · Respuesta en 24 h</div>
+  </div>
 </section>
 
-<!-- ══════════ 03 NÚMEROS ══════════ -->
+<!-- ══════════ 03 PLANES ══════════ -->
 <section class="block" id="numeros">
   <div class="section-head">
-    <span class="tag">— / 03 · <span data-i18n="s3_tag">LOS NÚMEROS</span></span>
-    <h2 data-i18n="s3_h">Haz la cuenta.</h2>
-    <p class="sub" data-i18n="s3_sub">Lo que cuesta un solo video UGC tradicional contra lo que entregamos nosotros por el mismo presupuesto.</p>
+    <span class="tag">— / 03 · <span data-i18n="s3_tag">PLANES MENSUALES</span></span>
+    <h2 data-i18n="s3_h">Elige tu plan</h2>
   </div>
-  <div class="numbers">
-    <div class="num-card">
-      <div class="label" data-i18n="n1_label">UGC TRADICIONAL · INFLUENCER</div>
-      <div class="big">300 €<small data-i18n="n1_per">/video</small></div>
+  <div class="plans">
+    <div class="plan">
+      <div class="tier">ESENCIAL</div>
+      <div class="price">120 USD</div>
+      <div class="per" data-i18n="pl_month">AL MES</div>
       <ul>
-        <li data-i18n="n1_a">ENTREGA EN 2–3 SEMANAS</li>
-        <li data-i18n="n1_b">2–3 VIDEOS AL MES, MÁXIMO</li>
-        <li data-i18n="n1_c">CASTINGS · ENVÍOS · IDAS Y VUELTAS</li>
-        <li data-i18n="n1_d">UNA SOLA VERSIÓN POR VIDEO</li>
+        <li data-i18n="pl_v4">4 vídeos editados</li>
+        <li data-i18n="pl_formats">Todos los formatos</li>
+        <li data-i18n="pl_rev">1 revisión por vídeo</li>
       </ul>
+      <div class="unit" data-i18n="pl_u30">30 USD POR VÍDEO</div>
     </div>
-    <div class="vs">VS</div>
-    <div class="num-card kentro">
-      <div class="label">KÉNTRO AI</div>
-      <div class="big" data-i18n="n2_big">Fracción<small data-i18n="n2_per"> del coste</small></div>
+    <div class="plan featured">
+      <div class="tier">PRO</div>
+      <span class="popular" data-i18n="pl_popular">MÁS POPULAR</span>
+      <div class="price">200 USD</div>
+      <div class="per" data-i18n="pl_month2">AL MES</div>
       <ul>
-        <li data-i18n="n2_a">ENTREGA EN DÍAS, NO SEMANAS</li>
-        <li data-i18n="n2_b">VOLUMEN 10× · TODOS LOS FORMATOS</li>
-        <li data-i18n="n2_c">CERO LOGÍSTICA · CERO CASTINGS</li>
-        <li data-i18n="n2_d">15 VARIANTES POR CONCEPTO PARA TESTEAR</li>
+        <li data-i18n="pl_v8">8 vídeos editados</li>
+        <li data-i18n="pl_statics">Estáticos ilimitados</li>
+        <li data-i18n="pl_rev2">1 revisión por vídeo</li>
       </ul>
+      <div class="unit" data-i18n="pl_u25">25 USD POR VÍDEO</div>
+    </div>
+    <div class="plan">
+      <div class="tier">TOTAL</div>
+      <div class="price">240 USD</div>
+      <div class="per" data-i18n="pl_month3">AL MES</div>
+      <ul>
+        <li data-i18n="pl_v12">12 vídeos editados</li>
+        <li data-i18n="pl_statics2">Estáticos ilimitados</li>
+        <li data-i18n="pl_rev3">1 revisión por vídeo</li>
+      </ul>
+      <div class="unit" data-i18n="pl_u20">20 USD POR VÍDEO</div>
     </div>
   </div>
-  <p class="numbers-close" data-i18n="s3_close">El mismo resultado en cámara. Sin castings, sin envíos de producto, sin esperas — y con suficientes variantes para que tu media buyer encuentre la ganadora.</p>
+  <p class="delivery-note">→ <b data-i18n="pl_del1">ENTREGA EN 7 DÍAS</b> <span data-i18n="pl_del2">· DEL BRIEF AL RENDER FINAL</span></p>
+  <p class="delivery-note" style="margin-top: 10px; letter-spacing: 0.06em;" data-i18n="pl_def">Cada vídeo: 15–40 s · vertical 9:16 · guion y voz incluidos · variantes de hook incluidas. Estáticos: hasta 20/mes.</p>
+
+  <div class="cta-big-wrap">
+    <a class="cta-big" href="#aplica" data-i18n="big_cta">QUIERO MIS ANUNCIOS · DESDE 120 USD/MES</a>
+    <div class="micro" data-i18n="big_micro">Sin permanencia · Respuesta en 24 h</div>
+  </div>
 </section>
 
 <!-- ══════════ 04 POR QUÉ IA ══════════ -->
@@ -447,93 +480,25 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       </ul>
     </div>
   </div>
+
+  <div class="cta-big-wrap">
+    <a class="cta-big" href="#aplica" data-i18n="big_cta">QUIERO MIS ANUNCIOS · DESDE 120 USD/MES</a>
+    <div class="micro" data-i18n="big_micro">Sin permanencia · Respuesta en 24 h</div>
+  </div>
 </section>
 
-<!-- ══════════ 06 APLICA ══════════ -->
-<section class="block" id="aplica">
-  <div class="section-head">
-    <span class="tag">— / 06 · <span data-i18n="s6_tag">APLICA</span></span>
-    <h2 data-i18n="s6_h">Cuéntanos qué necesitas</h2>
-    <p class="sub" data-i18n="s6_sub">Rellena el formulario y te contactamos en menos de 24 horas.</p>
-  </div>
-  <div class="survey">
-    <form id="lead-form" action="https://api.web3forms.com/submit" method="POST">
-      <input type="hidden" name="access_key" value="7ebeb2a7-c4f7-46e1-ac9e-f435634b99b4">
-      <input type="hidden" name="subject" id="subject-field" value="Nueva aplicación — kentro-ai.com">
-      <input type="hidden" name="from_name" value="Kentro AI Web">
-      <input type="hidden" name="redirect" value="https://kentro-ai.com/?enviado=1#aplica">
-      <input type="checkbox" name="botcheck" style="display:none" tabindex="-1" aria-hidden="true">
-      <div>
-        <span class="tipo-label" data-i18n="f_tipo">¿CÓMO TE IDENTIFICAS?</span>
-        <div class="tipo-pills">
-          <span>
-            <input type="radio" name="tipo" id="tipo-empresa" value="Empresa / Agencia" required>
-            <label class="pill" for="tipo-empresa" data-i18n="f_tipo1">EMPRESA / AGENCIA</label>
-          </span>
-          <span>
-            <input type="radio" name="tipo" id="tipo-individual" value="Individual / Creador">
-            <label class="pill" for="tipo-individual" data-i18n="f_tipo2">INDIVIDUAL / CREADOR</label>
-          </span>
-        </div>
-      </div>
-      <div class="row2">
-        <div class="field">
-          <label for="f-nombre" data-i18n="f_name">Nombre</label>
-          <input id="f-nombre" name="nombre" type="text" required placeholder="Tu nombre" data-i18n-placeholder="f_name_ph">
-        </div>
-        <div class="field">
-          <label for="f-email">Email</label>
-          <input id="f-email" name="email" type="email" required placeholder="tu@email.com">
-        </div>
-      </div>
-      <div class="row2">
-        <div class="field">
-          <label for="f-empresa" data-i18n="f_company">Empresa (opcional)</label>
-          <input id="f-empresa" name="empresa" type="text" placeholder="Tu empresa o agencia" data-i18n-placeholder="f_company_ph">
-        </div>
-        <div class="field">
-          <label for="f-instagram">Instagram</label>
-          <input id="f-instagram" name="instagram" type="text" placeholder="@tuhandle">
-        </div>
-      </div>
-      <div class="field">
-        <label for="f-presupuesto" data-i18n="f_budget">Presupuesto mensual</label>
-        <select id="f-presupuesto" name="presupuesto" required>
-          <option value="" disabled selected data-i18n="f_select">Selecciona…</option>
-          <option data-i18n="f_b1">Menos de 500 €</option>
-          <option>500 € — 1.000 €</option>
-          <option>1.000 € — 2.500 €</option>
-          <option data-i18n="f_b4">Más de 2.500 €</option>
-          <option data-i18n="f_b5">Solo quiero aprender / colaborar</option>
-        </select>
-      </div>
-      <div class="field">
-        <label for="f-mensaje" data-i18n="f_msg">¿Qué necesitas?</label>
-        <textarea id="f-mensaje" name="mensaje" placeholder="Cuéntanos sobre tu marca, tus campañas o tu idea…" data-i18n-placeholder="f_msg_ph"></textarea>
-      </div>
-      <button type="submit" data-i18n="f_send">ENVIAR APLICACIÓN</button>
-      <div class="fine" data-i18n="f_fine">Sin spam. Solo te contactamos sobre tu proyecto.</div>
-    </form>
-    <div class="gracias" id="gracias">
-      <h3 data-i18n="f_thanks">Recibido ✦</h3>
-      <p data-i18n="f_thanks_sub">Te contactamos en menos de 24 horas.</p>
-    </div>
-  </div>
-</section>
+
 
 <!-- ══════════ CTA / FOOTER ══════════ -->
 <section class="cta">
   <div class="inner">
     <h2><span class="strong" data-i18n="cta_a">Trabajemos</span> <span class="light" data-i18n="cta_b">juntos</span></h2>
     <div class="row">
-      <a class="primary" href="mailto:felipe@kentro-ai.com" data-i18n="cta_call">Agenda una llamada</a>
+      <a class="primary" href="mailto:felipe@kentro-ai.com" data-i18n="cta_call">Escríbenos</a>
       <a class="secondary" href="mailto:felipe@kentro-ai.com">felipe@kentro-ai.com</a>
     </div>
     <div class="socials">
-      <a href="https://github.com/felipe2727" target="_blank" rel="noopener noreferrer">GitHub</a>
-      <a href="#">LinkedIn</a>
-      <a href="#">Instagram</a>
-      <a href="#">Dribbble</a>
+      <a href="https://www.instagram.com/kentro.studio/" target="_blank" rel="noopener noreferrer">Instagram</a>
     </div>
     <footer>
       <span>© 2026</span>
@@ -543,8 +508,6 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   </div>
 </section>
 
-<script>window.__resources = { "threeJs": "../assets/asset-002.js" };</script>
-<script src="assets/asset-003.js"></script>
 <script>
 (function () {
   /* ── clocks ── */
@@ -558,11 +521,11 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   /* ── i18n ── */
   var I18N = {
     es: {
-      nav_formats: "Formatos", nav_numbers: "Números", nav_apply: "Aplica",
+      nav_formats: "Formatos", nav_numbers: "Planes", nav_apply: "Aplica",
       tag_agencies: "AGENCIAS & MARCAS",
       kicker: "ANUNCIOS CON IA",
-      hero_main: "Kéntro produce anuncios con IA para agencias y marcas — 8 formatos ganadores, hooks imposibles de rodar con cámara, y volumen de variantes que ningún equipo de producción puede igualar.",
-      hero_sub: "Del brief a la entrega en días, no semanas. Sin castings, sin estudios, sin logística — solo creatividad que para el scroll y vende.",
+      hero_main: "Anuncios con IA para agencias y marcas: 8 formatos ganadores, variantes ilimitadas de hook y entrega en 7 días.",
+      hero_sub: "Del brief al render final sin rodajes, actores ni estudios. Madrid · ES/EN.",
       hero_cta: "QUIERO MIS ADS",
       stat1: "VARIANTES POR CONCEPTO: 15", stat2: "FORMATOS: 8 · HOOKS: ILIMITADOS", avail: "DISPONIBLE",
       marquee: "ADS CON IA ✦ 8 FORMATOS ✦ HOOKS IMPOSIBLES ✦ VOLUMEN SIN LOGÍSTICA ✦ MADRID ✦ ADS CON IA ✦ 8 FORMATOS ✦ HOOKS IMPOSIBLES ✦ VOLUMEN SIN LOGÍSTICA ✦ MADRID ✦ ADS CON IA ✦ 8 FORMATOS ✦ HOOKS IMPOSIBLES ✦ VOLUMEN SIN LOGÍSTICA ✦ MADRID ✦ ",
@@ -577,12 +540,13 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       f8_b: "IMAGE ADS", f8_t: "Estáticos", f8_d: "Imagen de alta conversión para feed — sin sesión de fotos ni producto físico.",
       s2_h: "Hooks que solo la IA puede rodar", s2_sub: "Los primeros 2 segundos deciden todo. Nosotros los rodamos donde ninguna cámara puede: escenas físicamente imposibles que paran el scroll en seco.",
       s2_note1: "SIN LÍMITES DE FÍSICA · SIN PERMISOS DE RODAJE · SIN PRESUPUESTO DE VFX", s2_note2: "SI LO PUEDES IMAGINAR, ES UN HOOK",
-      s3_tag: "LOS NÚMEROS", s3_h: "Haz la cuenta.", s3_sub: "Lo que cuesta un solo video UGC tradicional contra lo que entregamos nosotros por el mismo presupuesto.",
-      n1_label: "UGC TRADICIONAL · INFLUENCER", n1_per: "/video",
-      n1_a: "ENTREGA EN 2–3 SEMANAS", n1_b: "2–3 VIDEOS AL MES, MÁXIMO", n1_c: "CASTINGS · ENVÍOS · IDAS Y VUELTAS", n1_d: "UNA SOLA VERSIÓN POR VIDEO",
-      n2_big: "Fracción", n2_per: " del coste",
-      n2_a: "ENTREGA EN DÍAS, NO SEMANAS", n2_b: "VOLUMEN 10× · TODOS LOS FORMATOS", n2_c: "CERO LOGÍSTICA · CERO CASTINGS", n2_d: "15 VARIANTES POR CONCEPTO PARA TESTEAR",
-      s3_close: "El mismo resultado en cámara. Sin castings, sin envíos de producto, sin esperas — y con suficientes variantes para que tu media buyer encuentre la ganadora.",
+      s3_tag: "PLANES MENSUALES", s3_h: "Elige tu plan",
+      pl_month: "AL MES", pl_month2: "AL MES", pl_month3: "AL MES",
+      pl_v4: "4 vídeos editados", pl_v8: "8 vídeos editados", pl_v12: "12 vídeos editados",
+      pl_formats: "Todos los formatos", pl_statics: "Estáticos ilimitados", pl_statics2: "Estáticos ilimitados",
+      pl_rev: "1 revisión por vídeo", pl_rev2: "1 revisión por vídeo", pl_rev3: "1 revisión por vídeo",
+      pl_u30: "30 USD POR VÍDEO", pl_u25: "25 USD POR VÍDEO", pl_u20: "20 USD POR VÍDEO",
+      pl_popular: "MÁS POPULAR", pl_del1: "ENTREGA EN 7 DÍAS", pl_del2: "· DEL BRIEF AL RENDER FINAL",
       s4_tag: "POR QUÉ IA", s4_h: "Lo que la producción tradicional no puede hacer",
       w1_t: "Variantes ilimitadas", w1_d: "Cada concepto sale con 15 variantes — distintos hooks, distintos ángulos, distintos cierres. Tu equipo de paid testea de verdad, no a ciegas.",
       w2_t: "Personajes consistentes", w2_d: "El mismo rostro en cada video, campaña tras campaña. Construye una cara para tu marca sin contratar a nadie.", w2_link: "Mira cómo funcionan los avatars →",
@@ -596,18 +560,23 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       f_tipo: "¿CÓMO TE IDENTIFICAS?", f_tipo1: "EMPRESA / AGENCIA", f_tipo2: "INDIVIDUAL / CREADOR",
       f_name: "Nombre", f_name_ph: "Tu nombre",
       f_company: "Empresa (opcional)", f_company_ph: "Tu empresa o agencia",
-      f_budget: "Presupuesto mensual", f_select: "Selecciona…", f_b1: "Menos de 500 €", f_b4: "Más de 2.500 €", f_b5: "Solo quiero aprender / colaborar",
+      f_budget: "Presupuesto mensual", f_select: "Selecciona…", f_b1: "Menos de 500 USD", f_b4: "Más de 2.500 USD", f_b5: "Solo quiero aprender / colaborar",
       f_msg: "¿Qué necesitas?", f_msg_ph: "Cuéntanos sobre tu marca, tus campañas o tu idea…",
       f_send: "ENVIAR APLICACIÓN", f_fine: "Sin spam. Solo te contactamos sobre tu proyecto.",
       f_thanks: "Recibido ✦", f_thanks_sub: "Te contactamos en menos de 24 horas.",
-      cta_a: "Trabajemos", cta_b: "juntos", cta_call: "Agenda una llamada", rights: "All rights reserved"
+      cta_a: "Trabajemos", cta_b: "juntos", cta_call: "Escríbenos", rights: "All rights reserved",
+      proof: "+430K VIEWS GENERADOS CON ESTE SISTEMA EN 2026",
+      big_cta: "QUIERO MIS ANUNCIOS · DESDE 120 USD/MES", big_micro: "Sin permanencia · Respuesta en 24 h",
+      ps1: "Aplicas (2 min)", ps2: "Llamada de 15 min", ps3: "Primeros vídeos en 7 días",
+      pl_def: "Cada vídeo: 15–40 s · vertical 9:16 · guion y voz incluidos · variantes de hook incluidas. Estáticos: hasta 20/mes.",
+      f_consent: "Acepto que Kéntro use mis datos para responder a mi solicitud."
     },
     en: {
-      nav_formats: "Formats", nav_numbers: "Numbers", nav_apply: "Apply",
+      nav_formats: "Formats", nav_numbers: "Plans", nav_apply: "Apply",
       tag_agencies: "AGENCIES & BRANDS",
       kicker: "AI-POWERED ADS",
-      hero_main: "Kéntro produces AI ads for agencies and brands — 8 winning formats, hooks impossible to shoot with a camera, and a volume of variants no production team can match.",
-      hero_sub: "From brief to delivery in days, not weeks. No castings, no studios, no logistics — just creative that stops the scroll and sells.",
+      hero_main: "AI ads for agencies and brands: 8 winning formats, unlimited hook variants, 7-day delivery.",
+      hero_sub: "From brief to final render with no shoots, actors or studios. Madrid · ES/EN.",
       hero_cta: "I WANT MY ADS",
       stat1: "VARIANTS PER CONCEPT: 15", stat2: "FORMATS: 8 · HOOKS: UNLIMITED", avail: "AVAILABLE",
       marquee: "AI ADS ✦ 8 FORMATS ✦ IMPOSSIBLE HOOKS ✦ VOLUME WITHOUT LOGISTICS ✦ MADRID ✦ AI ADS ✦ 8 FORMATS ✦ IMPOSSIBLE HOOKS ✦ VOLUME WITHOUT LOGISTICS ✦ MADRID ✦ AI ADS ✦ 8 FORMATS ✦ IMPOSSIBLE HOOKS ✦ VOLUME WITHOUT LOGISTICS ✦ MADRID ✦ ",
@@ -622,12 +591,13 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       f8_b: "IMAGE ADS", f8_t: "Statics", f8_d: "High-converting image ads for feed — no photo shoot, no physical product.",
       s2_h: "Hooks only AI can shoot", s2_sub: "The first 2 seconds decide everything. We shoot them where no camera can: physically impossible scenes that stop the scroll dead.",
       s2_note1: "NO PHYSICS LIMITS · NO FILMING PERMITS · NO VFX BUDGET", s2_note2: "IF YOU CAN IMAGINE IT, IT'S A HOOK",
-      s3_tag: "THE NUMBERS", s3_h: "Do the math.", s3_sub: "What a single traditional UGC video costs versus what we deliver for the same budget.",
-      n1_label: "TRADITIONAL UGC · INFLUENCER", n1_per: "/video",
-      n1_a: "DELIVERY IN 2–3 WEEKS", n1_b: "2–3 VIDEOS PER MONTH, MAX", n1_c: "CASTINGS · SHIPPING · BACK-AND-FORTH", n1_d: "ONE SINGLE VERSION PER VIDEO",
-      n2_big: "Fraction", n2_per: " of the cost",
-      n2_a: "DELIVERY IN DAYS, NOT WEEKS", n2_b: "10× VOLUME · EVERY FORMAT", n2_c: "ZERO LOGISTICS · ZERO CASTINGS", n2_d: "15 VARIANTS PER CONCEPT TO TEST",
-      s3_close: "The same on-camera result. No castings, no product shipping, no waiting — and enough variants for your media buyer to find the winner.",
+      s3_tag: "MONTHLY PLANS", s3_h: "Pick your plan",
+      pl_month: "PER MONTH", pl_month2: "PER MONTH", pl_month3: "PER MONTH",
+      pl_v4: "4 edited videos", pl_v8: "8 edited videos", pl_v12: "12 edited videos",
+      pl_formats: "All formats", pl_statics: "Unlimited statics", pl_statics2: "Unlimited statics",
+      pl_rev: "1 revision per video", pl_rev2: "1 revision per video", pl_rev3: "1 revision per video",
+      pl_u30: "30 USD PER VIDEO", pl_u25: "25 USD PER VIDEO", pl_u20: "20 USD PER VIDEO",
+      pl_popular: "MOST POPULAR", pl_del1: "7-DAY DELIVERY", pl_del2: "· FROM BRIEF TO FINAL RENDER",
       s4_tag: "WHY AI", s4_h: "What traditional production can't do",
       w1_t: "Unlimited variants", w1_d: "Every concept ships with 15 variants — different hooks, angles, and closers. Your paid team tests for real, not blind.",
       w2_t: "Consistent characters", w2_d: "The same face in every video, campaign after campaign. Build a face for your brand without hiring anyone.", w2_link: "See how avatars work →",
@@ -641,11 +611,16 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       f_tipo: "HOW DO YOU IDENTIFY?", f_tipo1: "COMPANY / AGENCY", f_tipo2: "INDIVIDUAL / CREATOR",
       f_name: "Name", f_name_ph: "Your name",
       f_company: "Company (optional)", f_company_ph: "Your company or agency",
-      f_budget: "Monthly budget", f_select: "Select…", f_b1: "Under €500", f_b4: "Over €2,500", f_b5: "I just want to learn / collaborate",
+      f_budget: "Monthly budget", f_select: "Select…", f_b1: "Under 500 USD", f_b4: "Over 2,500 USD", f_b5: "I just want to learn / collaborate",
       f_msg: "What do you need?", f_msg_ph: "Tell us about your brand, your campaigns or your idea…",
       f_send: "SEND APPLICATION", f_fine: "No spam. We only contact you about your project.",
       f_thanks: "Received ✦", f_thanks_sub: "We'll contact you within 24 hours.",
-      cta_a: "Let's work", cta_b: "together", cta_call: "Schedule a call", rights: "All rights reserved"
+      cta_a: "Let's work", cta_b: "together", cta_call: "Write to us", rights: "All rights reserved",
+      proof: "+430K VIEWS GENERATED WITH THIS SYSTEM IN 2026",
+      big_cta: "I WANT MY ADS · FROM 120 USD/MO", big_micro: "No lock-in · Reply within 24 h",
+      ps1: "Apply (2 min)", ps2: "15-min call", ps3: "First videos in 7 days",
+      pl_def: "Each video: 15–40 s · vertical 9:16 · script and voice included · hook variants included. Statics: up to 20/mo.",
+      f_consent: "I agree that Kéntro uses my data to respond to my request."
     }
   };
 

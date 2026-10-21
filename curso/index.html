@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>Curso de IA — Kéntro</title>
+<!-- Meta Pixel Code -->
+<script>
+!function(f,b,e,v,n,t,s)
+{if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+n.queue=[];t=b.createElement(e);t.async=!0;
+t.src=v;s=b.getElementsByTagName(e)[0];
+s.parentNode.insertBefore(t,s)}(window, document,'script',
+'https://connect.facebook.net/en_US/fbevents.js');
+fbq('init', '1397163875180350');
+fbq('init', '1570364827668416');
+fbq('track', 'PageView');
+</script>
+<!-- End Meta Pixel Code -->
+<style>
+@font-face { font-family: 'JetBrains Mono'; font-style: normal; font-weight: 300 500; font-display: swap; src: url("../assets/asset-012.woff2") format('woff2'); unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD; }
+@font-face { font-family: 'Oxanium'; font-style: normal; font-weight: 200 800; font-display: swap; src: url("../assets/asset-014.woff2") format('woff2'); unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD; }
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body { background: #9b9a99; color: #1a1a1a; font-family: 'Oxanium', sans-serif; -webkit-font-smoothing: antialiased; min-height: 100vh; }
+.noise { position: fixed; inset: 0; opacity: 0.06; pointer-events: none; mix-blend-mode: multiply; background: url("data:image/svg+xml,%3Csvg viewBox='0 0 512 512' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='5' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E"); }
+.wrap { max-width: 620px; margin: 0 auto; padding: 70px 20px 80px; position: relative; }
+.logo { font-size: 20px; font-weight: 700; margin-bottom: 44px; }
+.logo span { color: #e63228; }
+.tag { font-family: 'JetBrains Mono', monospace; font-size: 12px; letter-spacing: 0.12em; color: #a01b15; margin-bottom: 14px; }
+h1 { font-size: clamp(30px, 6vw, 46px); font-weight: 800; line-height: 1.15; letter-spacing: -0.01em; }
+h1 em { font-style: normal; color: #a01b15; }
+.sub { margin-top: 12px; font-size: 16px; font-weight: 500; opacity: 0.75; line-height: 1.6; }
+.perks { margin: 18px 0 0; list-style: none; }
+.perks li { font-size: 15px; font-weight: 500; padding: 7px 0; opacity: 0.85; }
+.perks li::before { content: "\2192  "; color: #a01b15; font-weight: 700; }
+.counter { margin: 26px 0 0; border: 2px dashed rgba(230,50,40,0.5); border-radius: 6px; padding: 14px 18px; display: flex; align-items: center; gap: 14px; }
+.counter .num { font-size: 30px; font-weight: 800; color: #a01b15; font-variant-numeric: tabular-nums; min-width: 56px; }
+.counter .lbl { font-family: 'JetBrains Mono', monospace; font-size: 11px; letter-spacing: 0.1em; color: rgba(26,26,26,0.65); line-height: 1.7; }
+form { margin-top: 36px; display: flex; flex-direction: column; gap: 14px; }
+label { display: block; font-family: 'JetBrains Mono', monospace; font-size: 11px; letter-spacing: 0.14em; color: rgba(26,26,26,0.6); margin-bottom: 7px; text-transform: uppercase; }
+input, select { width: 100%; background: rgba(255,255,255,0.25); border: 1px solid rgba(26,26,26,0.15); border-radius: 6px; padding: 13px 15px; font-family: 'Oxanium', sans-serif; font-size: 15px; color: #1a1a1a; outline: none; transition: border-color 0.3s; }
+input:focus, select:focus { border-color: rgba(230,50,40,0.5); }
+.row2 { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+button { font-family: 'JetBrains Mono', monospace; font-size: 14px; padding: 17px 34px; border-radius: 40px; background: #e63228; color: #fff; border: none; cursor: pointer; font-weight: 500; letter-spacing: 0.05em; margin-top: 10px; transition: opacity 0.3s; }
+button:hover { opacity: 0.85; }
+button:disabled { opacity: 0.5; cursor: wait; }
+.fine { font-family: 'JetBrains Mono', monospace; font-size: 11px; letter-spacing: 0.06em; color: rgba(26,26,26,0.5); text-align: center; margin-top: 6px; line-height: 1.8; }
+.gracias { display: none; text-align: center; padding: 60px 0; }
+.gracias h2 { font-size: 28px; font-weight: 800; }
+.gracias p { margin-top: 12px; font-size: 14px; opacity: 0.7; line-height: 1.8; }
+.err { display: none; font-family: 'JetBrains Mono', monospace; font-size: 11px; color: #a01b15; text-align: center; margin-top: 8px; }
+</style>
+</head>
+<body>
+<div class="noise"></div>
+<div class="wrap">
+  <div class="logo">Ké<span>.</span></div>
+  <div class="tag">{ CURSO DE IA — LISTA DE ESPERA }</div>
+  <h1><em>9,99 € para siempre</em> si eres de los primeros 100 — después, 9,99 € al mes</h1>
+  <p class="sub">Aprende a crear contenido con IA como el que ves en esta cuenta. Reserva tu plaza de fundador: un solo pago de 9,99 € y acceso para siempre.</p>
+  <ul class="perks">
+    <li>1 masterclass gratis a la semana — para todos</li>
+    <li>Recursos gratis en la comunidad de Skool</li>
+  </ul>
+
+
+  <div class="counter">
+    <div class="num" id="plazas">&mdash;</div>
+    <div class="lbl">PLAZAS A 9,99 € PARA SIEMPRE<br>DE LAS 100 INICIALES</div>
+  </div>
+
+  <form id="curso-form">
+    <input type="text" name="website" style="display:none" tabindex="-1" autocomplete="off">
+    <div class="row2">
+      <div><label for="f-nombre">Nombre</label><input id="f-nombre" name="nombre" type="text" required placeholder="Tu nombre"></div>
+      <div><label for="f-edad">Edad</label><input id="f-edad" name="edad" type="number" min="14" max="99" required placeholder="28"></div>
+    </div>
+    <div class="row2">
+      <div><label for="f-genero">Género</label><select id="f-genero" name="genero" required>
+        <option value="" disabled selected>Selecciona…</option>
+        <option>Mujer</option><option>Hombre</option><option>Otro</option><option>Prefiero no decirlo</option>
+      </select></div>
+      <div><label for="f-email">Email</label><input id="f-email" name="email" type="email" required placeholder="tu@email.com"></div>
+    </div>
+    <div><label for="f-nivel">Tu experiencia con IA</label><select id="f-nivel" name="nivel" required>
+      <option value="" disabled selected>Selecciona…</option>
+      <option>Nunca he usado IA</option>
+      <option>La uso de vez en cuando</option>
+      <option>La uso a diario</option>
+      <option>Ya creo contenido con IA</option>
+    </select></div>
+    <button type="submit" id="btn">RESERVAR MI PLAZA DE FUNDADOR</button>
+    <div class="err" id="err">Algo falló — inténtalo otra vez.</div>
+    <div class="fine">Sin spam. Solo te aviso cuando abra el curso.</div>
+  </form>
+
+  <div class="gracias" id="gracias">
+    <h2>Plaza reservada ✦</h2>
+    <p>Te aviso por email en cuanto abra el curso.<br>Eres de los primeros — tu precio queda en 9,99 € para siempre.</p>
+  </div>
+</div>
+
+<script>
+(function () {
+  fetch('/api/curso').then(function (r) { return r.json(); }).then(function (s) {
+    document.getElementById('plazas').textContent = s.plazasGratis;
+  }).catch(function () { document.getElementById('plazas').textContent = '100'; });
+
+  var form = document.getElementById('curso-form');
+  form.addEventListener('submit', function (e) {
+    e.preventDefault();
+    var btn = document.getElementById('btn');
+    btn.disabled = true;
+    document.getElementById('err').style.display = 'none';
+    var payload = Object.fromEntries(new FormData(form).entries());
+    fetch('/api/curso', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(payload)
+    }).then(r => r.json()).then(function (res) {
+      if (!res.ok) throw new Error('bad');
+      if (typeof fbq === 'function') fbq('trackCustom', 'CursoInterest');
+      form.style.display = 'none';
+      document.getElementById('gracias').style.display = 'block';
+    }).catch(function () {
+      btn.disabled = false;
+      document.getElementById('err').style.display = 'block';
+    });
+  });
+})();
+</script>
+</body>
+</html>
