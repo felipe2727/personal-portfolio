@@ -57,7 +57,7 @@ module.exports = async (req, res) => {
     const tally = (arr, fn) => arr.reduce((m, x) => { const k = fn(x); m[k] = (m[k] || 0) + 1; return m; }, {});
     const stats = {
       count,
-      plazasGratis: Math.max(0, 100 - count),
+      plazasGratis: Math.max(0, 50 - count),
       flagged: all.length - count,
       porGenero: tally(rows, (r) => r.genero),
       porEdad: tally(rows, (r) => bucket(r.edad)),

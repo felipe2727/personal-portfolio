@@ -38,7 +38,7 @@ th { font-family: 'JetBrains Mono', monospace; font-size: 10px; letter-spacing: 
 
   <div class="hero-num">
     <div class="big" id="total">—</div>
-    <div class="lbl">REGISTROS VÁLIDOS · <span id="plazas">—</span> PLAZAS FUNDADOR · <span id="flagged">—</span> FILTRADOS (SPAM/TEST)</div>
+    <div class="lbl">REGISTROS VÁLIDOS · <span id="plazas">—</span> PLAZAS GRATIS DE 50 · <span id="flagged">—</span> FILTRADOS (SPAM/TEST)</div>
     <div class="progress"><i id="bar" style="width:0%"></i></div>
   </div>
 
@@ -67,7 +67,7 @@ th { font-family: 'JetBrains Mono', monospace; font-size: 10px; letter-spacing: 
       document.getElementById('total').textContent = s.count;
       document.getElementById('plazas').textContent = s.plazasGratis;
       document.getElementById('flagged').textContent = s.flagged;
-      document.getElementById('bar').style.width = Math.min(100, s.count) + '%';
+      document.getElementById('bar').style.width = Math.min(100, s.count * 2) + '%';
       document.getElementById('updated').textContent = 'ACTUALIZADO ' + new Date().toLocaleTimeString('es-ES') + ' · SE REFRESCA SOLO CADA 60 S';
       bars(document.getElementById('porDia'), s.porDia, Object.keys(s.porDia).sort());
       bars(document.getElementById('porEdad'), s.porEdad, ['14–17', '18–24', '25–34', '35–44', '45–54', '55+']);
