@@ -43,7 +43,9 @@ nav .links { display: flex; gap: 6px; }
 nav .links a { font-size: 13px; color: rgba(26,26,26,0.75); text-decoration: none; padding: 6px 16px; border-radius: 30px; border: 1px solid transparent; font-family: 'Oxanium', sans-serif; }
 nav .links a:hover { color: #1a1a1a; border-color: rgba(230,50,40,0.2); background: rgba(230,50,40,0.04); }
 nav .links a.active { color: #1a1a1a; border-color: rgba(230,50,40,0.35); background: rgba(230,50,40,0.06); }
-nav .meta { font-family: 'JetBrains Mono', monospace; font-size: 10px; color: rgba(26,26,26,0.5); }
+nav .meta { font-family: 'JetBrains Mono', monospace; font-size: 10px; color: rgba(26,26,26,0.5); display: flex; align-items: center; gap: 12px; }
+#lang-toggle { font-family: 'JetBrains Mono', monospace; font-size: 10px; letter-spacing: 0.1em; color: rgba(26,26,26,0.75); background: none; border: 1px solid rgba(26,26,26,0.2); border-radius: 30px; padding: 4px 12px; cursor: pointer; transition: all 0.3s; }
+#lang-toggle:hover { border-color: rgba(230,50,40,0.4); color: #1a1a1a; }
 
 .tag { font-family: 'JetBrains Mono', monospace; font-size: 12px; letter-spacing: 0.12em; color: #a01b15; }
 .section-head { text-align: center; margin-bottom: 48px; padding: 0 20px; }
@@ -267,7 +269,8 @@ section.block { padding: 90px 40px; border-top: 1px solid rgba(26,26,26,0.1); }
 
 @media (max-width: 768px) {
   nav { padding: 0 8px; }
-  nav .meta { display: none; }
+  nav .meta .city { display: none; }
+  #lang-toggle { padding: 3px 8px; font-size: 9px; }
   nav .logo { font-size: 17px; }
   nav .links { gap: 0; }
   nav .links a { padding: 11px 5px; font-size: 11px; }
@@ -327,15 +330,15 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <a href="/">Home</a>
     <a href="/doctors" class="active">Doctors</a>
   </div>
-  <div class="meta">Madrid</div>
+  <div class="meta"><button id="lang-toggle">EN</button><span class="city">Madrid</span></div>
 </nav>
 
 <!-- ══════════ 1. VSL ══════════ -->
 <section class="vsl">
   <div class="vsl-head">
     <span class="tag">{ AVATARS AI }</span>
-    <h1>Contenido médico constante — sin grabar ni un solo video</h1>
-  <p style="text-align:center; margin-top: 14px; font-family: 'JetBrains Mono', monospace; font-size: 12px; letter-spacing: 0.1em; color: #a01b15;">+35M VIEWS GENERADOS CON ESTE SISTEMA EN 2026</p>
+    <h1 data-i18n="hero">Contenido médico constante — sin grabar ni un solo video</h1>
+  <p style="text-align:center; margin-top: 14px; font-family: 'JetBrains Mono', monospace; font-size: 12px; letter-spacing: 0.1em; color: #a01b15;" data-i18n="proof">+35M VIEWS GENERADOS CON ESTE SISTEMA EN 2026</p>
   </div>
   <video src="../assets/avatars/vsl.mp4" autoplay muted loop playsinline controls controlslist="nodownload"></video>
 </section>
@@ -344,66 +347,66 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <!-- ══════════ PLANES ══════════ -->
 <section class="block" id="demo" style="padding-top: 56px; padding-bottom: 0; border-top: none;">
   <div class="demo-offer">
-    <span class="chip">PRIMER CLIENTE</span>
-    <h3>Te hago <em>1 demo gratis</em> de lo que quieras</h3>
-    <p>SIN COMPROMISO · EN BAJA RESOLUCIÓN · TÚ ELIGES EL FORMATO</p>
-    <a class="cta-big" href="#aplica" id="demo-btn">PEDIR MI DEMO GRATIS →</a>
+    <span class="chip" data-i18n="demo_chip">PRIMER CLIENTE</span>
+    <h3><span data-i18n="demo_h1">Te hago </span><em data-i18n="demo_h2">1 demo gratis</em><span data-i18n="demo_h3"> de lo que quieras</span></h3>
+    <p data-i18n="demo_sub">SIN COMPROMISO · EN BAJA RESOLUCIÓN · TÚ ELIGES EL FORMATO</p>
+    <a class="cta-big" href="#aplica" id="demo-btn" data-i18n="demo_cta">PEDIR MI DEMO GRATIS →</a>
   </div>
 </section>
 
 <section class="block" id="planes" style="padding-top: 50px;">
   <div class="section-head">
-    <span class="tag">{ PLANES MENSUALES }</span>
-    <h2>Elige tu plan</h2>
+    <span class="tag" data-i18n="plans_tag">{ PLANES MENSUALES }</span>
+    <h2 data-i18n="plans_h">Elige tu plan</h2>
   </div>
   <div class="plans">
     <div class="plan">
-      <div class="tier">ESENCIAL</div>
+      <div class="tier" data-i18n="t1">ESENCIAL</div>
       <div class="price">120 USD</div>
-      <div class="per">AL MES</div>
+      <div class="per" data-i18n="per">AL MES</div>
       <ul>
-        <li><b>4</b> vídeos editados</li>
-        <li>Todos los formatos</li>
-        <li>1 revisión por vídeo</li>
+        <li><b>4</b> <span data-i18n="pl_videos">vídeos editados</span></li>
+        <li data-i18n="pl_formats">Todos los formatos</li>
+        <li data-i18n="pl_rev">1 revisión por vídeo</li>
       </ul>
-      <div class="unit">30 USD POR VÍDEO</div>
+      <div class="unit" data-i18n="u1">30 USD POR VÍDEO</div>
     </div>
     <div class="plan featured">
       <div class="tier">PRO</div>
-      <span class="popular">MÁS POPULAR</span>
+      <span class="popular" data-i18n="popular">MÁS POPULAR</span>
       <div class="price">200 USD</div>
-      <div class="per">AL MES</div>
+      <div class="per" data-i18n="per">AL MES</div>
       <ul>
-        <li><b>8</b> vídeos editados</li>
-        <li><b>Estáticos ilimitados</b></li>
-        <li>1 revisión por vídeo</li>
+        <li><b>8</b> <span data-i18n="pl_videos">vídeos editados</span></li>
+        <li><b data-i18n="pl_statics">Estáticos ilimitados</b></li>
+        <li data-i18n="pl_rev">1 revisión por vídeo</li>
       </ul>
-      <div class="unit">25 USD POR VÍDEO</div>
+      <div class="unit" data-i18n="u2">25 USD POR VÍDEO</div>
     </div>
     <div class="plan">
       <div class="tier">TOTAL</div>
       <div class="price">240 USD</div>
-      <div class="per">AL MES</div>
+      <div class="per" data-i18n="per">AL MES</div>
       <ul>
-        <li><b>12</b> vídeos editados</li>
-        <li><b>Estáticos ilimitados</b></li>
-        <li>1 revisión por vídeo</li>
+        <li><b>12</b> <span data-i18n="pl_videos">vídeos editados</span></li>
+        <li><b data-i18n="pl_statics">Estáticos ilimitados</b></li>
+        <li data-i18n="pl_rev">1 revisión por vídeo</li>
       </ul>
-      <div class="unit">20 USD POR VÍDEO</div>
+      <div class="unit" data-i18n="u3">20 USD POR VÍDEO</div>
     </div>
   </div>
-  <p class="delivery-note">→ <b>ENTREGA EN 7 DÍAS</b> · DEL BRIEF AL RENDER FINAL</p>
-  <p class="delivery-note" style="margin-top: 10px; letter-spacing: 0.06em;">Tu avatar y la clonación de voz están <b>incluidos</b> en el primer mes de cualquier plan.</p>
-  <p class="delivery-note" style="margin-top: 6px; letter-spacing: 0.06em;">Cada vídeo: 15–40 s · vertical 9:16 · guion y voz incluidos · 1 revisión. Estáticos: hasta 20/mes.</p>
+  <p class="delivery-note">→ <b data-i18n="dn1b">ENTREGA EN 7 DÍAS</b> <span data-i18n="dn1r">· DEL BRIEF AL RENDER FINAL</span></p>
+  <p class="delivery-note" style="margin-top: 10px; letter-spacing: 0.06em;"><span data-i18n="dn2a">Tu avatar y la clonación de voz están </span><b data-i18n="dn2b">incluidos</b><span data-i18n="dn2c"> en el primer mes de cualquier plan.</span></p>
+  <p class="delivery-note" style="margin-top: 6px; letter-spacing: 0.06em;" data-i18n="dn3">Cada vídeo: 15–40 s · vertical 9:16 · guion y voz incluidos · 1 revisión. Estáticos: hasta 20/mes.</p>
 </section>
 
 <section class="block" id="aplica">
   <div class="section-head">
-    <span class="tag">{ APLICA }</span>
-    <h2>Cuéntanos sobre ti</h2>
-    <p class="sub">Rellena el formulario y te contactamos en menos de 24 horas.</p>
+    <span class="tag" data-i18n="ap_tag">{ APLICA }</span>
+    <h2 data-i18n="ap_h">Cuéntanos sobre ti</h2>
+    <p class="sub" data-i18n="ap_sub">Rellena el formulario y te contactamos en menos de 24 horas.</p>
   </div>
-  <p class="pasos"><b>01</b> Aplicas (2 min) → <b>02</b> Llamada de 15 min → <b>03</b> Primeros vídeos en 7 días</p>
+  <p class="pasos"><b>01</b> <span data-i18n="ps1">Aplicas (2 min)</span> → <b>02</b> <span data-i18n="ps2">Llamada de 15 min</span> → <b>03</b> <span data-i18n="ps3">Primeros vídeos en 7 días</span></p>
   <div class="survey">
     <form id="lead-form" action="https://api.web3forms.com/submit" method="POST">
       <input type="hidden" name="access_key" value="7ebeb2a7-c4f7-46e1-ac9e-f435634b99b4">
@@ -413,8 +416,8 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       <input type="checkbox" name="botcheck" style="display:none" tabindex="-1" aria-hidden="true">
       <div class="row2">
         <div class="field">
-          <label for="f-nombre">Nombre</label>
-          <input id="f-nombre" name="nombre" type="text" required placeholder="Tu nombre">
+          <label for="f-nombre" data-i18n="f_name">Nombre</label>
+          <input id="f-nombre" name="nombre" type="text" required placeholder="Tu nombre" data-i18n-placeholder="f_name_ph">
         </div>
         <div class="field">
           <label for="f-email">Email</label>
@@ -424,33 +427,33 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       <div class="row2">
         <div class="field">
           <label for="f-instagram">Instagram</label>
-          <input id="f-instagram" name="instagram" type="text" placeholder="@tuhandle">
+          <input id="f-instagram" name="instagram" type="text" placeholder="@tuhandle" data-i18n-placeholder="f_ig_ph">
         </div>
         <div class="field">
-          <label for="f-profesion">Profesión</label>
+          <label for="f-profesion" data-i18n="f_prof">Profesión</label>
           <select id="f-profesion" name="profesion" required>
-            <option value="" disabled selected>Selecciona…</option>
-            <option>Dermatología</option>
-            <option>Odontología</option>
-            <option>Cirugía plástica</option>
-            <option>Medicina estética</option>
-            <option>Traumatología</option>
-            <option>Oftalmología</option>
-            <option>Otra especialidad</option>
+            <option value="" disabled selected data-i18n="f_select">Selecciona…</option>
+            <option data-i18n="f_p1">Dermatología</option>
+            <option data-i18n="f_p2">Odontología</option>
+            <option data-i18n="f_p3">Cirugía plástica</option>
+            <option data-i18n="f_p4">Medicina estética</option>
+            <option data-i18n="f_p5">Traumatología</option>
+            <option data-i18n="f_p6">Oftalmología</option>
+            <option data-i18n="f_p7">Otra especialidad</option>
           </select>
         </div>
       </div>
       <div class="field">
-        <label for="f-expectativas">¿Qué esperas conseguir?</label>
-        <textarea id="f-expectativas" name="expectativas" placeholder="Cuéntanos qué quieres lograr con tu avatar…"></textarea>
+        <label for="f-expectativas" data-i18n="f_exp">¿Qué esperas conseguir?</label>
+        <textarea id="f-expectativas" name="expectativas" placeholder="Cuéntanos qué quieres lograr con tu avatar…" data-i18n-placeholder="f_exp_ph"></textarea>
       </div>
-      <label class="consent"><input type="checkbox" name="consentimiento" required><span>Acepto que Kéntro use mis datos para responder a mi solicitud.</span></label>
-      <button type="submit">ENVIAR APLICACIÓN</button>
-      <div class="fine">Sin spam. Solo te contactamos sobre tu proyecto.</div>
+      <label class="consent"><input type="checkbox" name="consentimiento" required><span data-i18n="f_consent">Acepto que Kéntro use mis datos para responder a mi solicitud.</span></label>
+      <button type="submit" data-i18n="f_send">ENVIAR APLICACIÓN</button>
+      <div class="fine" data-i18n="f_fine">Sin spam. Solo te contactamos sobre tu proyecto.</div>
     </form>
     <div class="gracias" id="gracias">
-      <h3>Recibido ✦</h3>
-      <p>Te contactamos en menos de 24 horas.</p>
+      <h3 data-i18n="g_h">Recibido ✦</h3>
+      <p data-i18n="g_p">Te contactamos en menos de 24 horas.</p>
     </div>
   </div>
 </section>
@@ -458,9 +461,9 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <!-- ══════════ 1. CHARACTER SHEET → VIDEO ══════════ -->
 <section class="block" id="clon">
   <div class="section-head">
-    <span class="tag">{ ASÍ FUNCIONA }</span>
-    <h2>De un character sheet a un video real</h2>
-    <p class="sub">Construimos tu avatar desde varios ángulos — y a partir de ahí, cada video sale idéntico a ti. Sin cámaras, sin estudios, sin repetir tomas.</p>
+    <span class="tag" data-i18n="c_tag">{ ASÍ FUNCIONA }</span>
+    <h2 data-i18n="c_h">De un character sheet a un video real</h2>
+    <p class="sub" data-i18n="c_sub">Construimos tu avatar desde varios ángulos — y a partir de ahí, cada video sale idéntico a ti. Sin cámaras, sin estudios, sin repetir tomas.</p>
   </div>
   <div class="transform">
     <div>
@@ -468,27 +471,27 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         <div class="slot"><img src="../assets/avatars/char-01.jpg" alt="Character sheet — ángulo 1"></div>
         <div class="slot"><img src="../assets/avatars/char-02.jpg" alt="Character sheet — ángulo 2"></div>
       </div>
-      <div class="col-label"><b>CHARACTER SHEET</b> · VARIOS ÁNGULOS</div>
+      <div class="col-label"><b>CHARACTER SHEET</b> <span data-i18n="cl1">· VARIOS ÁNGULOS</span></div>
     </div>
     <div class="arrow">→</div>
     <div class="result">
       <div class="slot"><video src="../assets/avatars/rinolift.mp4" autoplay muted loop playsinline controls controlslist="nodownload" preload="metadata"></video></div>
-      <div class="col-label"><b>TALKING HEAD</b> · VIDEO REAL</div>
+      <div class="col-label"><b>TALKING HEAD</b> <span data-i18n="cl2">· VIDEO REAL</span></div>
     </div>
   </div>
 
   <div class="cta-big-wrap">
-    <a class="cta-big" href="#aplica">QUIERO MI AVATAR · DESDE 120 USD/MES</a>
-    <div class="micro">Sin permanencia · Respuesta en 24 h</div>
+    <a class="cta-big" href="#aplica" data-i18n="big_cta">QUIERO MI AVATAR · DESDE 120 USD/MES</a>
+    <div class="micro" data-i18n="big_micro">Sin permanencia · Respuesta en 24 h</div>
   </div>
 </section>
 
 <!-- ══════════ 2. FORMATOS ══════════ -->
 <section class="block" id="formatos">
   <div class="section-head">
-    <span class="tag">{ FORMATOS }</span>
-    <h2>Un avatar. Múltiples formatos.</h2>
-    <p class="sub">La misma persona, la misma voz — en todos los formatos que funcionan hoy en redes.</p>
+    <span class="tag" data-i18n="fm_tag">{ FORMATOS }</span>
+    <h2 data-i18n="fm_h">Un avatar. Múltiples formatos.</h2>
+    <p class="sub" data-i18n="fm_sub">La misma persona, la misma voz — en todos los formatos que funcionan hoy en redes.</p>
   </div>
   <div class="formats-wrap">
     <button class="fmt-arrow left" type="button" aria-label="Anterior">
@@ -498,37 +501,37 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <div class="format">
       <span class="num">F_01</span>
       <h3>Talking Head</h3>
-      <p>Tu avatar hablando directo a cámara. Consejos, novedades de tu clínica o despacho, y contenido educativo que genera confianza.</p>
+      <p data-i18n="f1p">Tu avatar hablando directo a cámara. Consejos, novedades de tu clínica o despacho, y contenido educativo que genera confianza.</p>
       <div class="media slot"><video src="../assets/avatars/fmt-talking-head.mp4" autoplay muted loop playsinline controls controlslist="nodownload" preload="metadata"></video></div>
     </div>
     <div class="format">
       <span class="num">F_02</span>
       <h3>Q&amp;A</h3>
-      <p>Tu avatar responde las preguntas que tus pacientes o clientes hacen todos los días. El formato que más engagement genera.</p>
+      <p data-i18n="f2p">Tu avatar responde las preguntas que tus pacientes o clientes hacen todos los días. El formato que más engagement genera.</p>
       <div class="media slot"><video src="../assets/avatars/fmt-qa.mp4" autoplay muted loop playsinline controls controlslist="nodownload" preload="metadata"></video></div>
     </div>
     <div class="format">
       <span class="num">F_03</span>
       <h3>Podcast</h3>
-      <p>Conversaciones con un paciente, un colega u otro avatar. Posicionamiento de experto sin agendar una sola grabación.</p>
+      <p data-i18n="f3p">Conversaciones con un paciente, un colega u otro avatar. Posicionamiento de experto sin agendar una sola grabación.</p>
       <div class="media slot"><video src="../assets/avatars/fmt-podcast.mp4" autoplay muted loop playsinline controls controlslist="nodownload" preload="metadata"></video></div>
     </div>
     <div class="format">
       <span class="num">F_04</span>
       <h3>Reviews &amp; Rankings</h3>
-      <p>Tu avatar analiza y clasifica tratamientos, productos o servicios. Contenido que educa y vende al mismo tiempo.</p>
+      <p data-i18n="f4p">Tu avatar analiza y clasifica tratamientos, productos o servicios. Contenido que educa y vende al mismo tiempo.</p>
       <div class="media slot"><video src="../assets/avatars/fmt-ranking.mp4" autoplay muted loop playsinline controls controlslist="nodownload" preload="metadata"></video></div>
     </div>
     <div class="format">
       <span class="num">F_05</span>
       <h3>Trends</h3>
-      <p>Tu avatar montado en los trends del momento — el formato que multiplica el alcance orgánico.</p>
+      <p data-i18n="f5p">Tu avatar montado en los trends del momento — el formato que multiplica el alcance orgánico.</p>
       <div class="media slot"><video src="../assets/avatars/fmt-trends.mp4" autoplay muted loop playsinline controls controlslist="nodownload" preload="metadata"></video></div>
     </div>
     <div class="format">
       <span class="num">F_06</span>
-      <h3>Carruseles</h3>
-      <p>Posts educativos de varias páginas con tu avatar. El formato que más guardados y confianza genera.</p>
+      <h3 data-i18n="f6h">Carruseles</h3>
+      <p data-i18n="f6p">Posts educativos de varias páginas con tu avatar. El formato que más guardados y confianza genera.</p>
       <div class="media carrusel">
         <img src="../assets/avatars/carrusel-01.jpg" alt="Carrusel — slide 1" class="on">
         <img src="../assets/avatars/carrusel-02.jpg" alt="Carrusel — slide 2">
@@ -540,13 +543,13 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <div class="format">
       <span class="num">F_07</span>
       <h3>Pixar Comparisons</h3>
-      <p>Dos tratamientos frente a frente, explicados en 3D estilo Pixar. Sin tecnicismos — el formato que más se comparte.</p>
+      <p data-i18n="f7p">Dos tratamientos frente a frente, explicados en 3D estilo Pixar. Sin tecnicismos — el formato que más se comparte.</p>
       <div class="media slot"><span class="views-chip">252K VIEWS</span><img src="../assets/avatars/fmt-pixar.jpg" alt="Comparación Pixar — implante vs puente" loading="lazy"></div>
     </div>
     <div class="format">
       <span class="num">F_08</span>
       <h3>Macro Editorial</h3>
-      <p>Tus procedimientos paso a paso en macrofotografía editorial. Detalle clínico real con estética de revista.</p>
+      <p data-i18n="f8p">Tus procedimientos paso a paso en macrofotografía editorial. Detalle clínico real con estética de revista.</p>
       <div class="media slot"><img src="../assets/avatars/fmt-macro.jpg" alt="Macro editorial — prótesis de rodilla" loading="lazy"></div>
     </div>
     </div>
@@ -558,28 +561,28 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   </div>
 
   <div class="cta-big-wrap">
-    <a class="cta-big" href="#aplica">QUIERO MI AVATAR · DESDE 120 USD/MES</a>
-    <div class="micro">Sin permanencia · Respuesta en 24 h</div>
+    <a class="cta-big" href="#aplica" data-i18n="big_cta">QUIERO MI AVATAR · DESDE 120 USD/MES</a>
+    <div class="micro" data-i18n="big_micro">Sin permanencia · Respuesta en 24 h</div>
   </div>
 </section>
 
 <!-- ══════════ 3. PLAN Y ROADMAP ══════════ -->
 <section class="block" id="plan">
   <div class="section-head">
-    <span class="tag">{ QUÉ RECIBES }</span>
-    <h2>Un sistema de contenido, no videos sueltos</h2>
-    <p class="sub">Esto es exactamente lo que construimos contigo, paso a paso.</p>
+    <span class="tag" data-i18n="pr_tag">{ QUÉ RECIBES }</span>
+    <h2 data-i18n="pr_h">Un sistema de contenido, no videos sueltos</h2>
+    <p class="sub" data-i18n="pr_sub">Esto es exactamente lo que construimos contigo, paso a paso.</p>
   </div>
   <div class="steps">
     <div class="step">
       <div class="n">01</div>
       <div>
-        <h3>Tu avatar + auditoría de contenido</h3>
-        <p>Creamos tu avatar hiperrealista desde una sesión de fotos, y auditamos tu presencia actual para detectar qué contenido te está costando pacientes o clientes.</p>
+        <h3 data-i18n="s1h">Tu avatar + auditoría de contenido</h3>
+        <p data-i18n="s1p">Creamos tu avatar hiperrealista desde una sesión de fotos, y auditamos tu presencia actual para detectar qué contenido te está costando pacientes o clientes.</p>
         <ul>
-          <li>CHARACTER SHEET COMPLETO · VARIOS ÁNGULOS Y ESCENARIOS</li>
-          <li>VOZ CLONADA EN ESPAÑOL</li>
-          <li>AUDITORÍA DE TU INSTAGRAM ACTUAL</li>
+          <li data-i18n="s1l1">CHARACTER SHEET COMPLETO · VARIOS ÁNGULOS Y ESCENARIOS</li>
+          <li data-i18n="s1l2">VOZ CLONADA EN ESPAÑOL</li>
+          <li data-i18n="s1l3">AUDITORÍA DE TU INSTAGRAM ACTUAL</li>
         </ul>
       </div>
       <div class="shot"><img src="../assets/avatars/plan-01.jpg" alt="Paso 01" loading="lazy"></div>
@@ -587,12 +590,12 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <div class="step">
       <div class="n">02</div>
       <div>
-        <h3>Plan de contenido mensual</h3>
-        <p>Un calendario completo: qué publica tu avatar, en qué formato, con qué guion y en qué plataforma. Tú solo apruebas.</p>
+        <h3 data-i18n="s2h">Plan de contenido mensual</h3>
+        <p data-i18n="s2p">Un calendario completo: qué publica tu avatar, en qué formato, con qué guion y en qué plataforma. Tú solo apruebas.</p>
         <ul>
-          <li>CALENDARIO MENSUAL DE PUBLICACIONES</li>
-          <li>GUIONES ESCRITOS PARA TU NICHO</li>
-          <li>MEZCLA DE FORMATOS: TALKING HEAD · Q&amp;A · PODCAST · REVIEWS</li>
+          <li data-i18n="s2l1">CALENDARIO MENSUAL DE PUBLICACIONES</li>
+          <li data-i18n="s2l2">GUIONES ESCRITOS PARA TU NICHO</li>
+          <li data-i18n="s2l3">MEZCLA DE FORMATOS: TALKING HEAD · Q&amp;A · PODCAST · REVIEWS</li>
         </ul>
       </div>
       <div class="shot"><img src="../assets/avatars/plan-02.jpg" alt="Paso 02" loading="lazy"></div>
@@ -600,12 +603,12 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <div class="step">
       <div class="n">03</div>
       <div>
-        <h3>Producción y roadmap de crecimiento</h3>
-        <p>Producimos, entregamos y medimos. Cada mes revisamos qué funcionó y ajustamos el plan para crecer de forma constante.</p>
+        <h3 data-i18n="s3h">Producción y roadmap de crecimiento</h3>
+        <p data-i18n="s3p">Producimos, entregamos y medimos. Cada mes revisamos qué funcionó y ajustamos el plan para crecer de forma constante.</p>
         <ul>
-          <li>VIDEOS LISTOS PARA PUBLICAR CADA MES</li>
-          <li>REVISIÓN MENSUAL DE MÉTRICAS</li>
-          <li>ROADMAP DE CRECIMIENTO TRIMESTRAL</li>
+          <li data-i18n="s3l1">VIDEOS LISTOS PARA PUBLICAR CADA MES</li>
+          <li data-i18n="s3l2">REVISIÓN MENSUAL DE MÉTRICAS</li>
+          <li data-i18n="s3l3">ROADMAP DE CRECIMIENTO TRIMESTRAL</li>
         </ul>
       </div>
       <div class="shot"><img src="../assets/avatars/plan-03.jpg" alt="Paso 03" loading="lazy"></div>
@@ -613,50 +616,50 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   </div>
 
   <div class="cta-big-wrap">
-    <a class="cta-big" href="#aplica">QUIERO MI AVATAR · DESDE 120 USD/MES</a>
-    <div class="micro">Sin permanencia · Respuesta en 24 h</div>
+    <a class="cta-big" href="#aplica" data-i18n="big_cta">QUIERO MI AVATAR · DESDE 120 USD/MES</a>
+    <div class="micro" data-i18n="big_micro">Sin permanencia · Respuesta en 24 h</div>
   </div>
 </section>
 
 <!-- ══════════ 4. PARA QUIÉN ══════════ -->
 <section class="block" id="para-quien">
   <div class="section-head">
-    <span class="tag">{ ¿PARA QUIÉN ES? }</span>
-    <h2>Esto es para ti — o no</h2>
+    <span class="tag" data-i18n="w_tag">{ ¿PARA QUIÉN ES? }</span>
+    <h2 data-i18n="w_h">Esto es para ti — o no</h2>
   </div>
   <div class="who">
     <div class="col si">
-      <h3><span class="dot"></span>ES PARA TI SI…</h3>
+      <h3><span class="dot"></span><span data-i18n="w_yes">ES PARA TI SI…</span></h3>
       <ul>
-        <li>Tienes una consulta, clínica o práctica médica activa</li>
-        <li>Sabes que necesitas contenido, pero no tienes tiempo para grabar</li>
-        <li>Quieres atraer pacientes o clientes de forma constante, no de vez en cuando</li>
-        <li>Prefieres invertir en un sistema y no en videos sueltos</li>
+        <li data-i18n="wy1">Tienes una consulta, clínica o práctica médica activa</li>
+        <li data-i18n="wy2">Sabes que necesitas contenido, pero no tienes tiempo para grabar</li>
+        <li data-i18n="wy3">Quieres atraer pacientes o clientes de forma constante, no de vez en cuando</li>
+        <li data-i18n="wy4">Prefieres invertir en un sistema y no en videos sueltos</li>
       </ul>
     </div>
     <div class="col no">
-      <h3><span class="dot"></span>NO ES PARA TI SI…</h3>
+      <h3><span class="dot"></span><span data-i18n="w_no">NO ES PARA TI SI…</span></h3>
       <ul>
-        <li>Todavía no tienes un negocio o consulta funcionando</li>
-        <li>Buscas resultados en una semana sin constancia</li>
-        <li>No estás dispuesto a invertir en tu presencia digital</li>
-        <li>La idea de un avatar creando contenido por ti no te convence</li>
+        <li data-i18n="wn1">Todavía no tienes un negocio o consulta funcionando</li>
+        <li data-i18n="wn2">Buscas resultados en una semana sin constancia</li>
+        <li data-i18n="wn3">No estás dispuesto a invertir en tu presencia digital</li>
+        <li data-i18n="wn4">La idea de un avatar creando contenido por ti no te convence</li>
       </ul>
     </div>
   </div>
 
   <div class="cta-big-wrap">
-    <a class="cta-big" href="#aplica">QUIERO MI AVATAR · DESDE 120 USD/MES</a>
-    <div class="micro">Sin permanencia · Respuesta en 24 h</div>
+    <a class="cta-big" href="#aplica" data-i18n="big_cta">QUIERO MI AVATAR · DESDE 120 USD/MES</a>
+    <div class="micro" data-i18n="big_micro">Sin permanencia · Respuesta en 24 h</div>
   </div>
 </section>
 
 <!-- ══════════ CTA / FOOTER ══════════ -->
 <section class="cta">
   <div class="inner">
-    <h2><span class="strong">Trabajemos</span> <span class="light">juntos</span></h2>
+    <h2><span class="strong" data-i18n="cta1">Trabajemos</span> <span class="light" data-i18n="cta2">juntos</span></h2>
     <div class="row">
-      <a class="primary" href="mailto:felipe@kentro-ai.com">Escríbenos</a>
+      <a class="primary" href="mailto:felipe@kentro-ai.com" data-i18n="cta_write">Escríbenos</a>
       <a class="secondary" href="mailto:felipe@kentro-ai.com">felipe@kentro-ai.com</a>
     </div>
     <div class="socials">
@@ -686,7 +689,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 })();
 </script>
 
-<div class="lightbox" id="lightbox"><span class="close">[ CERRAR × ]</span><img id="lightbox-img" src="" alt=""></div>
+<div class="lightbox" id="lightbox"><span class="close" data-i18n="lb_close">[ CERRAR × ]</span><img id="lightbox-img" src="" alt=""></div>
 
 <script>
 (function () {
@@ -845,6 +848,135 @@ document.getElementById('lead-form').addEventListener('submit', function () {
   }
 
   requestAnimationFrame(drift);
+})();
+</script>
+<script>
+(function () {
+  var I18N = {
+    es: {
+      hero: "Contenido médico constante — sin grabar ni un solo video",
+      proof: "+35M VIEWS GENERADOS CON ESTE SISTEMA EN 2026",
+      demo_chip: "PRIMER CLIENTE", demo_h1: "Te hago ", demo_h2: "1 demo gratis", demo_h3: " de lo que quieras",
+      demo_sub: "SIN COMPROMISO · EN BAJA RESOLUCIÓN · TÚ ELIGES EL FORMATO", demo_cta: "PEDIR MI DEMO GRATIS →",
+      plans_tag: "{ PLANES MENSUALES }", plans_h: "Elige tu plan",
+      t1: "ESENCIAL", per: "AL MES", popular: "MÁS POPULAR",
+      pl_videos: "vídeos editados", pl_formats: "Todos los formatos", pl_rev: "1 revisión por vídeo", pl_statics: "Estáticos ilimitados",
+      u1: "30 USD POR VÍDEO", u2: "25 USD POR VÍDEO", u3: "20 USD POR VÍDEO",
+      dn1b: "ENTREGA EN 7 DÍAS", dn1r: "· DEL BRIEF AL RENDER FINAL",
+      dn2a: "Tu avatar y la clonación de voz están ", dn2b: "incluidos", dn2c: " en el primer mes de cualquier plan.",
+      dn3: "Cada vídeo: 15–40 s · vertical 9:16 · guion y voz incluidos · 1 revisión. Estáticos: hasta 20/mes.",
+      ap_tag: "{ APLICA }", ap_h: "Cuéntanos sobre ti", ap_sub: "Rellena el formulario y te contactamos en menos de 24 horas.",
+      ps1: "Aplicas (2 min)", ps2: "Llamada de 15 min", ps3: "Primeros vídeos en 7 días",
+      f_name: "Nombre", f_name_ph: "Tu nombre", f_ig_ph: "@tuhandle", f_prof: "Profesión", f_select: "Selecciona…",
+      f_p1: "Dermatología", f_p2: "Odontología", f_p3: "Cirugía plástica", f_p4: "Medicina estética", f_p5: "Traumatología", f_p6: "Oftalmología", f_p7: "Otra especialidad",
+      f_exp: "¿Qué esperas conseguir?", f_exp_ph: "Cuéntanos qué quieres lograr con tu avatar…",
+      f_consent: "Acepto que Kéntro use mis datos para responder a mi solicitud.",
+      f_send: "ENVIAR APLICACIÓN", f_fine: "Sin spam. Solo te contactamos sobre tu proyecto.",
+      g_h: "Recibido ✦", g_p: "Te contactamos en menos de 24 horas.",
+      c_tag: "{ ASÍ FUNCIONA }", c_h: "De un character sheet a un video real",
+      c_sub: "Construimos tu avatar desde varios ángulos — y a partir de ahí, cada video sale idéntico a ti. Sin cámaras, sin estudios, sin repetir tomas.",
+      cl1: "· VARIOS ÁNGULOS", cl2: "· VIDEO REAL",
+      big_cta: "QUIERO MI AVATAR · DESDE 120 USD/MES", big_micro: "Sin permanencia · Respuesta en 24 h",
+      fm_tag: "{ FORMATOS }", fm_h: "Un avatar. Múltiples formatos.",
+      fm_sub: "La misma persona, la misma voz — en todos los formatos que funcionan hoy en redes.",
+      f1p: "Tu avatar hablando directo a cámara. Consejos, novedades de tu clínica o despacho, y contenido educativo que genera confianza.",
+      f2p: "Tu avatar responde las preguntas que tus pacientes o clientes hacen todos los días. El formato que más engagement genera.",
+      f3p: "Conversaciones con un paciente, un colega u otro avatar. Posicionamiento de experto sin agendar una sola grabación.",
+      f4p: "Tu avatar analiza y clasifica tratamientos, productos o servicios. Contenido que educa y vende al mismo tiempo.",
+      f5p: "Tu avatar montado en los trends del momento — el formato que multiplica el alcance orgánico.",
+      f6h: "Carruseles", f6p: "Posts educativos de varias páginas con tu avatar. El formato que más guardados y confianza genera.",
+      f7p: "Dos tratamientos frente a frente, explicados en 3D estilo Pixar. Sin tecnicismos — el formato que más se comparte.",
+      f8p: "Tus procedimientos paso a paso en macrofotografía editorial. Detalle clínico real con estética de revista.",
+      pr_tag: "{ QUÉ RECIBES }", pr_h: "Un sistema de contenido, no videos sueltos", pr_sub: "Esto es exactamente lo que construimos contigo, paso a paso.",
+      s1h: "Tu avatar + auditoría de contenido",
+      s1p: "Creamos tu avatar hiperrealista desde una sesión de fotos, y auditamos tu presencia actual para detectar qué contenido te está costando pacientes o clientes.",
+      s1l1: "CHARACTER SHEET COMPLETO · VARIOS ÁNGULOS Y ESCENARIOS", s1l2: "VOZ CLONADA EN ESPAÑOL", s1l3: "AUDITORÍA DE TU INSTAGRAM ACTUAL",
+      s2h: "Plan de contenido mensual",
+      s2p: "Un calendario completo: qué publica tu avatar, en qué formato, con qué guion y en qué plataforma. Tú solo apruebas.",
+      s2l1: "CALENDARIO MENSUAL DE PUBLICACIONES", s2l2: "GUIONES ESCRITOS PARA TU NICHO", s2l3: "MEZCLA DE FORMATOS: TALKING HEAD · Q&A · PODCAST · REVIEWS",
+      s3h: "Producción y roadmap de crecimiento",
+      s3p: "Producimos, entregamos y medimos. Cada mes revisamos qué funcionó y ajustamos el plan para crecer de forma constante.",
+      s3l1: "VIDEOS LISTOS PARA PUBLICAR CADA MES", s3l2: "REVISIÓN MENSUAL DE MÉTRICAS", s3l3: "ROADMAP DE CRECIMIENTO TRIMESTRAL",
+      w_tag: "{ ¿PARA QUIÉN ES? }", w_h: "Esto es para ti — o no",
+      w_yes: "ES PARA TI SI…", wy1: "Tienes una consulta, clínica o práctica médica activa", wy2: "Sabes que necesitas contenido, pero no tienes tiempo para grabar",
+      wy3: "Quieres atraer pacientes o clientes de forma constante, no de vez en cuando", wy4: "Prefieres invertir en un sistema y no en videos sueltos",
+      w_no: "NO ES PARA TI SI…", wn1: "Todavía no tienes un negocio o consulta funcionando", wn2: "Buscas resultados en una semana sin constancia",
+      wn3: "No estás dispuesto a invertir en tu presencia digital", wn4: "La idea de un avatar creando contenido por ti no te convence",
+      cta1: "Trabajemos", cta2: "juntos", cta_write: "Escríbenos", lb_close: "[ CERRAR × ]"
+    },
+    en: {
+      hero: "Constant medical content — without recording a single video",
+      proof: "+35M VIEWS GENERATED WITH THIS SYSTEM IN 2026",
+      demo_chip: "FIRST CLIENT", demo_h1: "I'll make you ", demo_h2: "1 free demo", demo_h3: " of whatever you want",
+      demo_sub: "NO STRINGS · LOW-RES · YOU PICK THE FORMAT", demo_cta: "GET MY FREE DEMO →",
+      plans_tag: "{ MONTHLY PLANS }", plans_h: "Pick your plan",
+      t1: "ESSENTIAL", per: "PER MONTH", popular: "MOST POPULAR",
+      pl_videos: "edited videos", pl_formats: "All formats", pl_rev: "1 revision per video", pl_statics: "Unlimited statics",
+      u1: "30 USD PER VIDEO", u2: "25 USD PER VIDEO", u3: "20 USD PER VIDEO",
+      dn1b: "7-DAY DELIVERY", dn1r: "· FROM BRIEF TO FINAL RENDER",
+      dn2a: "Your avatar and voice clone are ", dn2b: "included", dn2c: " in the first month of any plan.",
+      dn3: "Each video: 15–40 s · vertical 9:16 · script and voice included · 1 revision. Statics: up to 20/mo.",
+      ap_tag: "{ APPLY }", ap_h: "Tell us about you", ap_sub: "Fill in the form and we'll contact you within 24 hours.",
+      ps1: "Apply (2 min)", ps2: "15-min call", ps3: "First videos in 7 days",
+      f_name: "Name", f_name_ph: "Your name", f_ig_ph: "@yourhandle", f_prof: "Profession", f_select: "Select…",
+      f_p1: "Dermatology", f_p2: "Dentistry", f_p3: "Plastic surgery", f_p4: "Aesthetic medicine", f_p5: "Orthopedics", f_p6: "Ophthalmology", f_p7: "Other specialty",
+      f_exp: "What do you want to achieve?", f_exp_ph: "Tell us what you want to achieve with your avatar…",
+      f_consent: "I agree that Kéntro uses my data to respond to my request.",
+      f_send: "SEND APPLICATION", f_fine: "No spam. We only contact you about your project.",
+      g_h: "Received ✦", g_p: "We'll contact you within 24 hours.",
+      c_tag: "{ HOW IT WORKS }", c_h: "From a character sheet to a real video",
+      c_sub: "We build your avatar from several angles — and from there, every video comes out identical to you. No cameras, no studios, no retakes.",
+      cl1: "· MULTIPLE ANGLES", cl2: "· REAL VIDEO",
+      big_cta: "I WANT MY AVATAR · FROM 120 USD/MO", big_micro: "No lock-in · Reply within 24 h",
+      fm_tag: "{ FORMATS }", fm_h: "One avatar. Multiple formats.",
+      fm_sub: "The same person, the same voice — in every format that works on social today.",
+      f1p: "Your avatar speaking straight to camera. Tips, news from your clinic or practice, and educational content that builds trust.",
+      f2p: "Your avatar answers the questions your patients ask every single day. The format that drives the most engagement.",
+      f3p: "Conversations with a patient, a colleague or another avatar. Expert positioning without booking a single recording.",
+      f4p: "Your avatar reviews and ranks treatments, products or services. Content that educates and sells at the same time.",
+      f5p: "Your avatar riding the trends of the moment — the format that multiplies organic reach.",
+      f6h: "Carousels", f6p: "Multi-page educational posts featuring your avatar. The format that earns the most saves and trust.",
+      f7p: "Two treatments head to head, explained in Pixar-style 3D. No jargon — the format that gets shared the most.",
+      f8p: "Your procedures step by step in editorial macro photography. Real clinical detail with magazine aesthetics.",
+      pr_tag: "{ WHAT YOU GET }", pr_h: "A content system, not loose videos", pr_sub: "This is exactly what we build with you, step by step.",
+      s1h: "Your avatar + content audit",
+      s1p: "We create your hyperrealistic avatar from a photo session, and audit your current presence to spot the content that's costing you patients or clients.",
+      s1l1: "FULL CHARACTER SHEET · MULTIPLE ANGLES AND SETTINGS", s1l2: "VOICE CLONING INCLUDED", s1l3: "AUDIT OF YOUR CURRENT INSTAGRAM",
+      s2h: "Monthly content plan",
+      s2p: "A complete calendar: what your avatar posts, in which format, with which script and on which platform. You just approve.",
+      s2l1: "MONTHLY PUBLISHING CALENDAR", s2l2: "SCRIPTS WRITTEN FOR YOUR NICHE", s2l3: "FORMAT MIX: TALKING HEAD · Q&A · PODCAST · REVIEWS",
+      s3h: "Production and growth roadmap",
+      s3p: "We produce, deliver and measure. Every month we review what worked and adjust the plan for steady growth.",
+      s3l1: "READY-TO-POST VIDEOS EVERY MONTH", s3l2: "MONTHLY METRICS REVIEW", s3l3: "QUARTERLY GROWTH ROADMAP",
+      w_tag: "{ WHO IS THIS FOR? }", w_h: "This is for you — or not",
+      w_yes: "IT'S FOR YOU IF…", wy1: "You run an active practice or clinic", wy2: "You know you need content, but have no time to record",
+      wy3: "You want to attract patients consistently, not once in a while", wy4: "You'd rather invest in a system than in loose videos",
+      w_no: "IT'S NOT FOR YOU IF…", wn1: "You don't have a working business or practice yet", wn2: "You expect results in a week without consistency",
+      wn3: "You're not willing to invest in your digital presence", wn4: "The idea of an avatar creating content for you doesn't convince you",
+      cta1: "Let's work", cta2: "together", cta_write: "Write to us", lb_close: "[ CLOSE × ]"
+    }
+  };
+
+  var lang = localStorage.getItem('kentro-lang') || 'es';
+  var toggle = document.getElementById('lang-toggle');
+
+  function applyLang(l) {
+    var dict = I18N[l];
+    document.querySelectorAll('[data-i18n]').forEach(function (el) {
+      var k = el.getAttribute('data-i18n');
+      if (dict[k] !== undefined) el.textContent = dict[k];
+    });
+    document.querySelectorAll('[data-i18n-placeholder]').forEach(function (el) {
+      var k = el.getAttribute('data-i18n-placeholder');
+      if (dict[k] !== undefined) el.setAttribute('placeholder', dict[k]);
+    });
+    document.documentElement.lang = l;
+    toggle.textContent = l === 'es' ? 'EN' : 'ES';
+    localStorage.setItem('kentro-lang', l);
+    lang = l;
+  }
+  toggle.addEventListener('click', function () { applyLang(lang === 'es' ? 'en' : 'es'); });
+  if (lang !== 'es') applyLang(lang);
 })();
 </script>
 </body>
