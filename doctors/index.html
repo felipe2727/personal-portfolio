@@ -815,11 +815,18 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 document.addEventListener('contextmenu' , function (e) { if (e.target.tagName === 'VIDEO') e.preventDefault(); });
 </script>
 <script>
-document.querySelectorAll('#demo-btn, #hero-demo').forEach(function (b) { b.addEventListener('click', function () {
-  var t = document.getElementById('f-expectativas');
-  if (t && !t.value) t.value = 'Quiero mi demo gratis de: ';
-  (window.dataLayer = window.dataLayer || []).push({ event: 'demo_click', link_location: b.id === 'hero-demo' ? 'hero' : 'offer' });
-  if (typeof fbq === 'function') fbq('trackCustom', 'DemoOfferClick');
+document.querySelectorAll('a[href="#aplica"]').forEach(function (b) { b.addEventListener('click', function () {
+  var isDemo = b.id === 'demo-btn' || b.id === 'hero-demo';
+  var sec = b.closest('section');
+  if (isDemo) {
+    var t = document.getElementById('f-expectativas');
+    if (t && !t.value) t.value = 'Quiero mi demo gratis de: ';
+    if (typeof fbq === 'function') fbq('trackCustom', 'DemoOfferClick');
+  }
+  (window.dataLayer = window.dataLayer || []).push({ event: 'demo_click', link_location: b.id === 'hero-demo' ? 'hero' : (sec && sec.id) || 'page' });
+}); });
+document.querySelectorAll('a[href^="mailto:"]').forEach(function (a) { a.addEventListener('click', function () {
+  (window.dataLayer = window.dataLayer || []).push({ event: 'email_click', link_location: 'footer' });
 }); });
 document.getElementById('lead-form').addEventListener('submit', function () {
   (window.dataLayer = window.dataLayer || []).push({ event: 'generate_lead', form_location: 'doctors' });
