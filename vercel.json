@@ -1,6 +1,12 @@
 {
   "redirects": [
     {
+      "source": "/:path*",
+      "has": [{ "type": "host", "value": "kentro-ai.com" }],
+      "destination": "https://www.kentro-ai.com/:path*",
+      "permanent": true
+    },
+    {
       "source": "/avatars",
       "destination": "/doctors",
       "permanent": true
