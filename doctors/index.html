@@ -264,12 +264,6 @@ section.block { padding: 90px 40px; border-top: 1px solid rgba(26,26,26,0.1); }
 .gracias p { margin-top: 10px; font-size: 13px; opacity: 0.65; }
 
 
-.demo-offer { max-width: 720px; margin: 0 auto; border: 2px dashed rgba(230,50,40,0.5); border-radius: 6px; padding: 34px 30px; text-align: center; background: rgba(255,255,255,0.08); position: relative; }
-.demo-offer .chip { position: absolute; top: -12px; left: 50%; transform: translateX(-50%); font-family: 'JetBrains Mono', monospace; font-size: 10px; letter-spacing: 0.14em; background: #e63228; color: #fff; padding: 5px 14px; border-radius: 20px; font-weight: 500; white-space: nowrap; }
-.demo-offer h3 { font-size: clamp(22px, 3vw, 30px); font-weight: 700; line-height: 1.25; }
-.demo-offer h3 em { font-style: normal; color: #a01b15; }
-.demo-offer p { margin-top: 10px; font-family: 'JetBrains Mono', monospace; font-size: 12px; letter-spacing: 0.08em; color: rgba(26,26,26,0.65); }
-.demo-offer .cta-big { margin-top: 22px; }
 .cta-big-wrap { text-align: center; margin: 48px auto 0; }
 .cta-big { display: inline-block; font-family: 'JetBrains Mono', monospace; font-size: 15px; padding: 17px 46px; border-radius: 40px; background: #e63228; color: #fff; text-decoration: none; font-weight: 500; letter-spacing: 0.04em; transition: opacity 0.3s; }
 .cta-big:hover { opacity: 0.85; color: #fff; }
@@ -415,7 +409,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         <li data-i18n="hp3">Entrega en 7 días · sin permanencia</li>
       </ul>
       <div class="hero-ctas">
-        <a class="cta-big" href="#aplica" id="hero-demo" data-i18n="demo_cta">PEDIR MI DEMO GRATIS →</a>
+        <a class="cta-big" href="#aplica" id="hero-cta" data-i18n="big_cta">QUIERO MI AVATAR · DESDE 120 USD/MES</a>
         <a class="hero-wa wa-link" href="https://wa.me/34617172451?text=Hola%20K%C3%A9ntro%2C%20quiero%20informaci%C3%B3n%20sobre%20los%20avatares%20para%20doctores" target="_blank" rel="noopener"><svg viewBox="0 0 32 32" aria-hidden="true"><path d="M16 3C9 3 3.3 8.6 3.3 15.6c0 2.2.6 4.4 1.7 6.3L3 29l7.3-1.9c1.8 1 3.8 1.5 5.8 1.5 7 0 12.7-5.7 12.7-12.6C28.8 8.6 23 3 16 3zm0 23.3c-1.9 0-3.8-.5-5.4-1.5l-.4-.2-4.3 1.1 1.2-4.2-.3-.4c-1.1-1.7-1.6-3.6-1.6-5.6C5.2 9.7 10 5 16 5s10.7 4.7 10.7 10.6S21.9 26.3 16 26.3zm5.9-7.9c-.3-.2-1.9-1-2.2-1.1-.3-.1-.5-.2-.7.2-.2.3-.8 1-1 1.2-.2.2-.4.2-.7.1-.3-.2-1.4-.5-2.6-1.6-1-.9-1.6-1.9-1.8-2.2-.2-.3 0-.5.1-.7l.5-.6c.2-.2.2-.3.3-.6.1-.2 0-.4 0-.6l-1-2.4c-.3-.6-.5-.5-.7-.5h-.6c-.2 0-.6.1-.9.4-.3.3-1.2 1.1-1.2 2.8s1.2 3.2 1.4 3.5c.2.2 2.4 3.6 5.7 5 .8.3 1.4.5 1.9.7.8.3 1.5.2 2.1.1.6-.1 1.9-.8 2.2-1.5.3-.7.3-1.4.2-1.5-.1-.2-.3-.3-.6-.4z"/></svg><span data-i18n="hero_wa">Hablar por WhatsApp</span></a>
       </div>
       <p class="hero-proof" data-i18n="proof">+35M VIEWS GENERADOS CON ESTE SISTEMA EN 2026</p>
@@ -425,16 +419,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
 <!-- ══════════ 2. SURVEY ══════════ -->
 <!-- ══════════ PLANES ══════════ -->
-<section class="block" id="demo" style="padding-top: 56px; padding-bottom: 0; border-top: none;">
-  <div class="demo-offer">
-    <span class="chip" data-i18n="demo_chip">PRIMER CLIENTE</span>
-    <h3><span data-i18n="demo_h1">Te hago </span><em data-i18n="demo_h2">1 demo gratis</em><span data-i18n="demo_h3"> de lo que quieras</span></h3>
-    <p data-i18n="demo_sub">SIN COMPROMISO · EN BAJA RESOLUCIÓN · TÚ ELIGES EL FORMATO</p>
-    <a class="cta-big" href="#aplica" id="demo-btn" data-i18n="demo_cta">PEDIR MI DEMO GRATIS →</a>
-  </div>
-</section>
-
-<section class="block" id="planes" style="padding-top: 50px;">
+<section class="block" id="planes" style="padding-top: 56px;">
   <div class="section-head">
     <span class="tag" data-i18n="plans_tag">{ PLANES MENSUALES }</span>
     <h2 data-i18n="plans_h">Elige tu plan</h2>
@@ -816,14 +801,8 @@ document.addEventListener('contextmenu' , function (e) { if (e.target.tagName ==
 </script>
 <script>
 document.querySelectorAll('a[href="#aplica"]').forEach(function (b) { b.addEventListener('click', function () {
-  var isDemo = b.id === 'demo-btn' || b.id === 'hero-demo';
   var sec = b.closest('section');
-  if (isDemo) {
-    var t = document.getElementById('f-expectativas');
-    if (t && !t.value) t.value = 'Quiero mi demo gratis de: ';
-    if (typeof fbq === 'function') fbq('trackCustom', 'DemoOfferClick');
-  }
-  (window.dataLayer = window.dataLayer || []).push({ event: 'demo_click', link_location: b.id === 'hero-demo' ? 'hero' : (sec && sec.id) || 'page' });
+  (window.dataLayer = window.dataLayer || []).push({ event: 'demo_click', link_location: b.id === 'hero-cta' ? 'hero' : (sec && sec.id) || 'page' });
 }); });
 document.querySelectorAll('a[href^="mailto:"]').forEach(function (a) { a.addEventListener('click', function () {
   (window.dataLayer = window.dataLayer || []).push({ event: 'email_click', link_location: 'footer' });
@@ -949,8 +928,6 @@ document.getElementById('lead-form').addEventListener('submit', function () {
       hp1: "Avatar y voz clonada en español incluidos", hp2: "Guiones escritos para tu especialidad", hp3: "Entrega en 7 días · sin permanencia",
       hero_wa: "Hablar por WhatsApp",
       proof: "+35M VIEWS GENERADOS CON ESTE SISTEMA EN 2026",
-      demo_chip: "PRIMER CLIENTE", demo_h1: "Te hago ", demo_h2: "1 demo gratis", demo_h3: " de lo que quieras",
-      demo_sub: "SIN COMPROMISO · EN BAJA RESOLUCIÓN · TÚ ELIGES EL FORMATO", demo_cta: "PEDIR MI DEMO GRATIS →",
       plans_tag: "{ PLANES MENSUALES }", plans_h: "Elige tu plan",
       t1: "ESENCIAL", per: "AL MES", popular: "MÁS POPULAR",
       pl_videos: "vídeos editados", pl_formats: "Todos los formatos", pl_rev: "1 revisión por vídeo", pl_statics: "Estáticos ilimitados",
@@ -1004,8 +981,6 @@ document.getElementById('lead-form').addEventListener('submit', function () {
       hp1: "Avatar and Spanish voice clone included", hp2: "Scripts written for your specialty", hp3: "Delivered in 7 days · no lock-in",
       hero_wa: "Chat on WhatsApp",
       proof: "+35M VIEWS GENERATED WITH THIS SYSTEM IN 2026",
-      demo_chip: "FIRST CLIENT", demo_h1: "I'll make you ", demo_h2: "1 free demo", demo_h3: " of whatever you want",
-      demo_sub: "NO STRINGS · LOW-RES · YOU PICK THE FORMAT", demo_cta: "GET MY FREE DEMO →",
       plans_tag: "{ MONTHLY PLANS }", plans_h: "Pick your plan",
       t1: "ESSENTIAL", per: "PER MONTH", popular: "MOST POPULAR",
       pl_videos: "edited videos", pl_formats: "All formats", pl_rev: "1 revision per video", pl_statics: "Unlimited statics",
