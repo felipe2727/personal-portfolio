@@ -1,6 +1,13 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
+<script>
+/* Consent Mode v2: por defecto denegado hasta que el visitante acepte el banner de cookies */
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+(function(){var c=null;try{c=localStorage.getItem('kentro-consent');}catch(e){}var g=c==='granted'?'granted':'denied';
+gtag('consent','default',{ad_storage:g,ad_user_data:g,ad_personalization:g,analytics_storage:g,wait_for_update:500});})();
+</script>
 <!-- Google Tag Manager -->
 <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
 new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
@@ -380,6 +387,7 @@ n.queue=[];t=b.createElement(e);t.async=!0;
 t.src=v;s=b.getElementsByTagName(e)[0];
 s.parentNode.insertBefore(t,s)}(window, document,'script',
 'https://connect.facebook.net/en_US/fbevents.js');
+fbq('consent', (function(){try{return localStorage.getItem('kentro-consent')==='granted'?'grant':'revoke';}catch(e){return 'revoke';}})());
 fbq('init', '1397163875180350');
 fbq('init', '1570364827668416');
 fbq('track', 'PageView');
@@ -760,6 +768,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <footer>
       <span>© 2026</span>
       <span>Madrid · <span id="clock"></span> · 40.4168° N</span>
+      <a href="/cookies" style="color:inherit">Política de cookies</a>
       <span>All rights reserved</span>
     </footer>
   </div>
@@ -1098,5 +1107,6 @@ document.querySelectorAll('.wa-link').forEach(function (a) {
   });
 });
 </script>
+<script src="/cookie-consent.js" defer></script>
 </body>
 </html>

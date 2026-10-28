@@ -1,6 +1,13 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
+<script>
+/* Consent Mode v2: por defecto denegado hasta que el visitante acepte el banner de cookies */
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+(function(){var c=null;try{c=localStorage.getItem('kentro-consent');}catch(e){}var g=c==='granted'?'granted':'denied';
+gtag('consent','default',{ad_storage:g,ad_user_data:g,ad_personalization:g,analytics_storage:g,wait_for_update:500});})();
+</script>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="robots" content="noindex, nofollow">
@@ -18,6 +25,7 @@ n.queue=[];t=b.createElement(e);t.async=!0;
 t.src=v;s=b.getElementsByTagName(e)[0];
 s.parentNode.insertBefore(t,s)}(window, document,'script',
 'https://connect.facebook.net/en_US/fbevents.js');
+fbq('consent', (function(){try{return localStorage.getItem('kentro-consent')==='granted'?'grant':'revoke';}catch(e){return 'revoke';}})());
 fbq('init', '1397163875180350');
 fbq('init', '1570364827668416');
 fbq('track', 'PageView');
@@ -135,5 +143,6 @@ button:disabled { opacity: 0.5; cursor: wait; }
   });
 })();
 </script>
+<script src="/cookie-consent.js" defer></script>
 </body>
 </html>
