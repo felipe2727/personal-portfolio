@@ -285,6 +285,8 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       <input type="hidden" name="subject" id="subject-field" value="Nueva aplicación — kentro-ai.com">
       <input type="hidden" name="from_name" value="Kentro AI Web">
       <input type="hidden" name="redirect" value="https://www.kentro-ai.com/gracias?from=home&lead=ok">
+      <input type="hidden" name="politica_datos" value="Política de Tratamiento de Datos v1.0 (kentro-ai.com/privacidad)">
+      <input type="hidden" name="fecha_autorizacion" id="fecha-autorizacion" value="">
       <input type="checkbox" name="botcheck" style="display:none" tabindex="-1" aria-hidden="true">
       <div>
         <span class="tipo-label" data-i18n="f_tipo">¿CÓMO TE IDENTIFICAS?</span>
@@ -334,7 +336,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         <label for="f-mensaje" data-i18n="f_msg">¿Qué necesitas?</label>
         <textarea id="f-mensaje" name="mensaje" placeholder="Cuéntanos sobre tu marca, tus campañas o tu idea…" data-i18n-placeholder="f_msg_ph"></textarea>
       </div>
-      <label class="consent"><input type="checkbox" name="consentimiento" required><span data-i18n="f_consent">Acepto que Kéntro use mis datos para responder a mi solicitud.</span></label>
+      <label class="consent"><input type="checkbox" name="consentimiento" required><span><span data-i18n="f_consent">Autorizo a Kéntro a tratar mis datos personales para responder a mi solicitud y enviarme información comercial, conforme a la</span> <a href="/privacidad" target="_blank" rel="noopener" data-i18n="f_policy">Política de Tratamiento de Datos</a>.</span></label>
       <button type="submit" data-i18n="f_send">ENVIAR APLICACIÓN</button>
       <div class="fine" data-i18n="f_fine">Sin spam. Solo te contactamos sobre tu proyecto.</div>
     </form>
@@ -463,7 +465,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <footer>
       <span>© 2026</span>
       <span>Madrid · <span id="clock-footer"></span> · 40.4168° N</span>
-      <a href="/cookies" style="color:inherit">Política de cookies</a>
+      <a href="/privacidad" style="color:inherit">Tratamiento de datos</a> · <a href="/cookies" style="color:inherit">Política de cookies</a>
       <span data-i18n="rights">All rights reserved</span>
     </footer>
   </div>
@@ -529,7 +531,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       big_cta: "QUIERO MIS ANUNCIOS", big_micro: "Sin permanencia · Respuesta en 24 h",
       ps1: "Aplicas (2 min)", ps2: "Llamada de 15 min", ps3: "Primeros vídeos en 7 días",
       pl_def: "Cada vídeo: 15–40 s · vertical 9:16 · guion y voz incluidos · variantes de hook incluidas. Estáticos: hasta 20/mes.",
-      f_consent: "Acepto que Kéntro use mis datos para responder a mi solicitud."
+      f_consent: "Autorizo a Kéntro a tratar mis datos personales para responder a mi solicitud y enviarme información comercial, conforme a la", f_policy: "Política de Tratamiento de Datos"
     },
     en: {
       nav_formats: "Formats", nav_numbers: "Plans", nav_apply: "Apply",
@@ -579,7 +581,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       big_cta: "I WANT MY ADS", big_micro: "No lock-in · Reply within 24 h",
       ps1: "Apply (2 min)", ps2: "15-min call", ps3: "First videos in 7 days",
       pl_def: "Each video: 15–40 s · vertical 9:16 · script and voice included · hook variants included. Statics: up to 20/mo.",
-      f_consent: "I agree that Kéntro uses my data to respond to my request."
+      f_consent: "I authorize Kéntro to process my personal data to respond to my request and send me commercial information, under the", f_policy: "Personal Data Policy"
     }
   };
 
@@ -677,6 +679,11 @@ document.querySelector('.wa-float').addEventListener('click', function () {
   (window.dataLayer = window.dataLayer || []).push({ event: 'whatsapp_click', link_location: 'float' });
   if (typeof fbq === 'function') fbq('track', 'Contact');
 });
+</script>
+<script>
+document.getElementById('lead-form').addEventListener('submit', function () {
+  document.getElementById('fecha-autorizacion').value = new Date().toISOString();
+}, true);
 </script>
 <script src="/cookie-consent.js" defer></script>
 </body>

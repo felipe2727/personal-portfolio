@@ -457,6 +457,8 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       <input type="hidden" name="subject" value="Nueva aplicación — kentro-ai.com/doctors">
       <input type="hidden" name="from_name" value="Kentro AI Web">
       <input type="hidden" name="redirect" value="https://www.kentro-ai.com/gracias?from=doctors&lead=ok">
+      <input type="hidden" name="politica_datos" value="Política de Tratamiento de Datos v1.0 (kentro-ai.com/privacidad)">
+      <input type="hidden" name="fecha_autorizacion" id="fecha-autorizacion" value="">
       <input type="checkbox" name="botcheck" style="display:none" tabindex="-1" aria-hidden="true">
       <div class="field">
         <label for="f-nombre" data-i18n="f_name">Nombre</label>
@@ -476,7 +478,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         <label for="f-expectativas" data-i18n="f_exp">¿Qué necesitas?</label>
         <textarea id="f-expectativas" name="necesidad" required placeholder="Ej: videos con mi avatar para Instagram de mi consultorio…" data-i18n-placeholder="f_exp_ph"></textarea>
       </div>
-      <label class="consent"><input type="checkbox" name="consentimiento" required><span data-i18n="f_consent">Acepto que Kéntro use mis datos para responder a mi solicitud.</span></label>
+      <label class="consent"><input type="checkbox" name="consentimiento" required><span><span data-i18n="f_consent">Autorizo a Kéntro a tratar mis datos personales para responder a mi solicitud y enviarme información comercial, conforme a la</span> <a href="/privacidad" target="_blank" rel="noopener" data-i18n="f_policy">Política de Tratamiento de Datos</a>.</span></label>
       <button type="submit" data-i18n="f_send">ENVIAR APLICACIÓN</button>
       <div class="fine" data-i18n="f_fine">Sin spam. Solo te contactamos sobre tu proyecto.</div>
     </form>
@@ -768,7 +770,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <footer>
       <span>© 2026</span>
       <span>Madrid · <span id="clock"></span> · 40.4168° N</span>
-      <a href="/cookies" style="color:inherit">Política de cookies</a>
+      <a href="/privacidad" style="color:inherit">Tratamiento de datos</a> · <a href="/cookies" style="color:inherit">Política de cookies</a>
       <span>All rights reserved</span>
     </footer>
   </div>
@@ -985,7 +987,7 @@ document.getElementById('lead-form').addEventListener('submit', function () {
       ps1: "Aplicas (2 min)", ps2: "Llamada de 15 min", ps3: "Primeros vídeos en 7 días",
       f_name: "Nombre", f_name_ph: "Tu nombre", f_email: "Correo", f_email_ph: "tu@correo.com", f_phone: "Celular",
       f_exp: "¿Qué necesitas?", f_exp_ph: "Ej: videos con mi avatar para Instagram de mi consultorio…",
-      f_consent: "Acepto que Kéntro use mis datos para responder a mi solicitud.",
+      f_consent: "Autorizo a Kéntro a tratar mis datos personales para responder a mi solicitud y enviarme información comercial, conforme a la", f_policy: "Política de Tratamiento de Datos",
       f_send: "ENVIAR APLICACIÓN", f_fine: "Sin spam. Solo te contactamos sobre tu proyecto.",
       g_h: "Recibido ✦", g_p: "Te contactamos en menos de 24 horas.",
       c_tag: "{ ASÍ FUNCIONA }", c_h: "De un character sheet a un video real",
@@ -1036,7 +1038,7 @@ document.getElementById('lead-form').addEventListener('submit', function () {
       ps1: "Apply (2 min)", ps2: "15-min call", ps3: "First videos in 7 days",
       f_name: "Name", f_name_ph: "Your name", f_email: "Email", f_email_ph: "you@email.com", f_phone: "Mobile",
       f_exp: "What do you need?", f_exp_ph: "E.g. avatar videos for my practice's Instagram…",
-      f_consent: "I agree that Kéntro uses my data to respond to my request.",
+      f_consent: "I authorize Kéntro to process my personal data to respond to my request and send me commercial information, under the", f_policy: "Personal Data Policy",
       f_send: "SEND APPLICATION", f_fine: "No spam. We only contact you about your project.",
       g_h: "Received ✦", g_p: "We'll contact you within 24 hours.",
       c_tag: "{ HOW IT WORKS }", c_h: "From a character sheet to a real video",
@@ -1106,6 +1108,11 @@ document.querySelectorAll('.wa-link').forEach(function (a) {
     if (typeof fbq === 'function') fbq('track', 'Contact');
   });
 });
+</script>
+<script>
+document.getElementById('lead-form').addEventListener('submit', function () {
+  document.getElementById('fecha-autorizacion').value = new Date().toISOString();
+}, true);
 </script>
 <script src="/cookie-consent.js" defer></script>
 </body>
