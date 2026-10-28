@@ -496,38 +496,23 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       <input type="hidden" name="from_name" value="Kentro AI Web">
       <input type="hidden" name="redirect" value="https://www.kentro-ai.com/doctors?enviado=1#aplica">
       <input type="checkbox" name="botcheck" style="display:none" tabindex="-1" aria-hidden="true">
-      <div class="row2">
-        <div class="field">
-          <label for="f-nombre" data-i18n="f_name">Nombre</label>
-          <input id="f-nombre" name="nombre" type="text" required placeholder="Tu nombre" data-i18n-placeholder="f_name_ph">
-        </div>
-        <div class="field">
-          <label for="f-email">Email</label>
-          <input id="f-email" name="email" type="email" required placeholder="tu@email.com">
-        </div>
+      <div class="field">
+        <label for="f-nombre" data-i18n="f_name">Nombre</label>
+        <input id="f-nombre" name="nombre" type="text" required autocomplete="name" placeholder="Tu nombre" data-i18n-placeholder="f_name_ph">
       </div>
       <div class="row2">
         <div class="field">
-          <label for="f-instagram">Instagram</label>
-          <input id="f-instagram" name="instagram" type="text" placeholder="@tuhandle" data-i18n-placeholder="f_ig_ph">
+          <label for="f-email" data-i18n="f_email">Correo</label>
+          <input id="f-email" name="email" type="email" required autocomplete="email" placeholder="tu@correo.com" data-i18n-placeholder="f_email_ph">
         </div>
         <div class="field">
-          <label for="f-profesion" data-i18n="f_prof">Profesión</label>
-          <select id="f-profesion" name="profesion" required>
-            <option value="" disabled selected data-i18n="f_select">Selecciona…</option>
-            <option data-i18n="f_p1">Dermatología</option>
-            <option data-i18n="f_p2">Odontología</option>
-            <option data-i18n="f_p3">Cirugía plástica</option>
-            <option data-i18n="f_p4">Medicina estética</option>
-            <option data-i18n="f_p5">Traumatología</option>
-            <option data-i18n="f_p6">Oftalmología</option>
-            <option data-i18n="f_p7">Otra especialidad</option>
-          </select>
+          <label for="f-celular" data-i18n="f_phone">Celular</label>
+          <input id="f-celular" name="celular" type="tel" required autocomplete="tel" inputmode="tel" placeholder="+57 300 000 0000">
         </div>
       </div>
       <div class="field">
-        <label for="f-expectativas" data-i18n="f_exp">¿Qué esperas conseguir?</label>
-        <textarea id="f-expectativas" name="expectativas" placeholder="Cuéntanos qué quieres lograr con tu avatar…" data-i18n-placeholder="f_exp_ph"></textarea>
+        <label for="f-expectativas" data-i18n="f_exp">¿Qué necesitas?</label>
+        <textarea id="f-expectativas" name="necesidad" required placeholder="Ej: videos con mi avatar para Instagram de mi consultorio…" data-i18n-placeholder="f_exp_ph"></textarea>
       </div>
       <label class="consent"><input type="checkbox" name="consentimiento" required><span data-i18n="f_consent">Acepto que Kéntro use mis datos para responder a mi solicitud.</span></label>
       <button type="submit" data-i18n="f_send">ENVIAR APLICACIÓN</button>
@@ -1037,9 +1022,8 @@ document.getElementById('lead-form').addEventListener('submit', function () {
       dn3: "Cada vídeo: 15–40 s · vertical 9:16 · guion y voz incluidos · 1 revisión. Estáticos: hasta 20/mes.",
       ap_tag: "{ APLICA }", ap_h: "Cuéntanos sobre ti", ap_sub: "Rellena el formulario y te contactamos en menos de 24 horas.",
       ps1: "Aplicas (2 min)", ps2: "Llamada de 15 min", ps3: "Primeros vídeos en 7 días",
-      f_name: "Nombre", f_name_ph: "Tu nombre", f_ig_ph: "@tuhandle", f_prof: "Profesión", f_select: "Selecciona…",
-      f_p1: "Dermatología", f_p2: "Odontología", f_p3: "Cirugía plástica", f_p4: "Medicina estética", f_p5: "Traumatología", f_p6: "Oftalmología", f_p7: "Otra especialidad",
-      f_exp: "¿Qué esperas conseguir?", f_exp_ph: "Cuéntanos qué quieres lograr con tu avatar…",
+      f_name: "Nombre", f_name_ph: "Tu nombre", f_email: "Correo", f_email_ph: "tu@correo.com", f_phone: "Celular",
+      f_exp: "¿Qué necesitas?", f_exp_ph: "Ej: videos con mi avatar para Instagram de mi consultorio…",
       f_consent: "Acepto que Kéntro use mis datos para responder a mi solicitud.",
       f_send: "ENVIAR APLICACIÓN", f_fine: "Sin spam. Solo te contactamos sobre tu proyecto.",
       g_h: "Recibido ✦", g_p: "Te contactamos en menos de 24 horas.",
@@ -1090,9 +1074,8 @@ document.getElementById('lead-form').addEventListener('submit', function () {
       dn3: "Each video: 15–40 s · vertical 9:16 · script and voice included · 1 revision. Statics: up to 20/mo.",
       ap_tag: "{ APPLY }", ap_h: "Tell us about you", ap_sub: "Fill in the form and we'll contact you within 24 hours.",
       ps1: "Apply (2 min)", ps2: "15-min call", ps3: "First videos in 7 days",
-      f_name: "Name", f_name_ph: "Your name", f_ig_ph: "@yourhandle", f_prof: "Profession", f_select: "Select…",
-      f_p1: "Dermatology", f_p2: "Dentistry", f_p3: "Plastic surgery", f_p4: "Aesthetic medicine", f_p5: "Orthopedics", f_p6: "Ophthalmology", f_p7: "Other specialty",
-      f_exp: "What do you want to achieve?", f_exp_ph: "Tell us what you want to achieve with your avatar…",
+      f_name: "Name", f_name_ph: "Your name", f_email: "Email", f_email_ph: "you@email.com", f_phone: "Mobile",
+      f_exp: "What do you need?", f_exp_ph: "E.g. avatar videos for my practice's Instagram…",
       f_consent: "I agree that Kéntro uses my data to respond to my request.",
       f_send: "SEND APPLICATION", f_fine: "No spam. We only contact you about your project.",
       g_h: "Received ✦", g_p: "We'll contact you within 24 hours.",
