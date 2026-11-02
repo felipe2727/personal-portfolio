@@ -64,6 +64,12 @@ body { background: #9b9a99; color: #1a1a1a; font-family: 'Oxanium', sans-serif; 
 .link.featured h2, .link.featured p { color: #fff; }
 .link.featured p { opacity: 0.9; }
 .link.featured .arrow { color: #fff; }
+.link.dark { background: #1a1a1a; border-color: #1a1a1a; }
+@media (hover: hover) { .link.dark:hover { background: #1a1a1a; border-color: rgba(230,50,40,0.7); } }
+.link.dark .tag { color: #ff6a5e; }
+.link.dark h2, .link.dark p { color: #fff; }
+.link.dark p { opacity: 0.75; }
+.link.dark .arrow { color: #e63228; }
 footer { margin-top: 44px; text-align: center; font-family: 'JetBrains Mono', monospace; font-size: 9px; letter-spacing: 0.12em; color: rgba(26,26,26,0.45); line-height: 2; }
 </style>
 </head>
@@ -82,16 +88,16 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   </div>
 
   <nav class="links">
+    <a class="link dark" href="/doctors" data-ev="menu_doctors">
+      <div><span class="tag">{ MÉDICOS }</span><h2>Kéntro Doctors</h2><p>Contenido consistente y variado para doctores y clínicas</p></div>
+      <span class="arrow">→</span>
+    </a>
     <a class="link" href="/resources" data-ev="menu_resources">
       <div><span class="tag">{ GRATIS }</span><h2>Recursos</h2><p>PDFs y packs de prompts para crear con IA</p></div>
       <span class="arrow">→</span>
     </a>
     <a class="link featured" href="/curso" data-ev="menu_curso">
       <div><span class="tag">{ PRIMEROS 50 }</span><h2>Curso de IA</h2><p>Gratis para siempre · después 9,99 USD/mes</p></div>
-      <span class="arrow">→</span>
-    </a>
-    <a class="link" href="/doctors" data-ev="menu_doctors">
-      <div><span class="tag">{ MÉDICOS }</span><h2>Kéntro Doctors</h2><p>Contenido consistente y variado para doctores y clínicas</p></div>
       <span class="arrow">→</span>
     </a>
     <a class="link" href="/" data-ev="menu_ads">
