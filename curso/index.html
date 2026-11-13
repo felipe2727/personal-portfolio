@@ -69,9 +69,9 @@ button:disabled { opacity: 0.5; cursor: wait; }
 <div class="noise"></div>
 <div class="wrap">
   <div class="logo">Ké<span>.</span></div>
-  <div class="tag">{ CURSO DE IA — LISTA DE ESPERA }</div>
-  <h1><em>Gratis para siempre</em> si eres de los primeros 50 — después, 9,99 USD al mes</h1>
-  <p class="sub">Aprende a crear contenido con IA como el que ves en esta cuenta. Reserva tu plaza de fundador y tu acceso queda gratis para siempre.</p>
+  <div class="tag">{ CURSO DE IA — PLAZAS DE FUNDADOR }</div>
+  <h1><em>9,99 € una vez, para siempre</em> si reservas ahora — después, 9,99 € al mes</h1>
+  <p class="sub">Aprende a crear contenido con IA como el que ves en esta cuenta. Las 26 plazas gratis ya volaron — quedan las últimas plazas de fundador: un solo pago de 9,99 € y acceso para siempre.</p>
   <ul class="perks">
     <li>1 masterclass gratis a la semana — para todos</li>
     <li>Recursos gratis en la comunidad de Skool</li>
@@ -80,7 +80,7 @@ button:disabled { opacity: 0.5; cursor: wait; }
 
   <div class="counter">
     <div class="num" id="plazas">&mdash;</div>
-    <div class="lbl">PLAZAS GRATIS PARA SIEMPRE<br>DE LAS 50 INICIALES</div>
+    <div class="lbl">PLAZAS A 9,99 € PARA SIEMPRE<br>LAS 26 GRATIS YA VOLARON</div>
   </div>
 
   <form id="curso-form">
@@ -105,12 +105,12 @@ button:disabled { opacity: 0.5; cursor: wait; }
     </select></div>
     <button type="submit" id="btn">RESERVAR MI PLAZA DE FUNDADOR</button>
     <div class="err" id="err">Algo falló — inténtalo otra vez.</div>
-    <div class="fine">Sin spam. Solo te aviso cuando abra el curso.</div>
+    <div class="fine">Sin spam. No pagas nada ahora — te aviso cuando abra el curso.</div>
   </form>
 
   <div class="gracias" id="gracias">
     <h2>Plaza reservada ✦</h2>
-    <p>Te aviso por email en cuanto abra el curso.<br>Eres de los primeros — tu acceso queda gratis para siempre.</p>
+    <p>Te aviso por email en cuanto abra el curso.<br>Tu precio de fundador queda bloqueado: un solo pago de 9,99 € y acceso para siempre.</p>
   </div>
 </div>
 
@@ -118,7 +118,7 @@ button:disabled { opacity: 0.5; cursor: wait; }
 (function () {
   fetch('/api/curso').then(function (r) { return r.json(); }).then(function (s) {
     document.getElementById('plazas').textContent = s.plazasGratis;
-  }).catch(function () { document.getElementById('plazas').textContent = '50'; });
+  }).catch(function () { document.getElementById('plazas').textContent = '24'; });
 
   var form = document.getElementById('curso-form');
   form.addEventListener('submit', function (e) {
