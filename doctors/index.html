@@ -460,9 +460,15 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       <input type="hidden" name="politica_datos" value="Política de Tratamiento de Datos v1.0 (kentro-ai.com/privacidad)">
       <input type="hidden" name="fecha_autorizacion" id="fecha-autorizacion" value="">
       <input type="checkbox" name="botcheck" style="display:none" tabindex="-1" aria-hidden="true">
-      <div class="field">
-        <label for="f-nombre" data-i18n="f_name">Nombre</label>
-        <input id="f-nombre" name="nombre" type="text" required autocomplete="name" placeholder="Tu nombre" data-i18n-placeholder="f_name_ph">
+      <div class="row2">
+        <div class="field">
+          <label for="f-nombre" data-i18n="f_name">Nombre</label>
+          <input id="f-nombre" name="nombre" type="text" required autocomplete="name" placeholder="Tu nombre" data-i18n-placeholder="f_name_ph">
+        </div>
+        <div class="field">
+          <label for="f-instagram" data-i18n="f_ig">Usuario Instagram</label>
+          <input id="f-instagram" name="instagram" type="text" autocomplete="off" placeholder="@tu.clinica" data-i18n-placeholder="f_ig_ph">
+        </div>
       </div>
       <div class="row2">
         <div class="field">
@@ -986,7 +992,7 @@ document.getElementById('lead-form').addEventListener('submit', function () {
       dn3: "Cada vídeo: 15–40 s · vertical 9:16 · guion y voz incluidos · 1 revisión. Estáticos: hasta 20/mes.",
       ap_tag: "{ APLICA }", ap_h: "Cuéntanos sobre ti", ap_sub: "Rellena el formulario y te contactamos en menos de 24 horas.",
       ps1: "Aplicas (2 min)", ps2: "Llamada de 15 min", ps3: "Primeros vídeos en 7 días",
-      f_name: "Nombre", f_name_ph: "Tu nombre", f_email: "Correo", f_email_ph: "tu@correo.com", f_phone: "Celular",
+      f_name: "Nombre", f_name_ph: "Tu nombre", f_ig: "Usuario Instagram", f_ig_ph: "@tu.clinica", f_email: "Correo", f_email_ph: "tu@correo.com", f_phone: "Celular",
       f_exp: "¿Qué necesitas?", f_exp_ph: "Ej: videos con mi avatar para Instagram de mi consultorio…",
       f_consent: "Autorizo a Kéntro a tratar mis datos personales para responder a mi solicitud y enviarme información comercial, conforme a la", f_policy: "Política de Tratamiento de Datos",
       f_send: "ENVIAR APLICACIÓN", f_fine: "Sin spam. Solo te contactamos sobre tu proyecto.",
@@ -1037,7 +1043,7 @@ document.getElementById('lead-form').addEventListener('submit', function () {
       dn3: "Each video: 15–40 s · vertical 9:16 · script and voice included · 1 revision. Statics: up to 20/mo.",
       ap_tag: "{ APPLY }", ap_h: "Tell us about you", ap_sub: "Fill in the form and we'll contact you within 24 hours.",
       ps1: "Apply (2 min)", ps2: "15-min call", ps3: "First videos in 7 days",
-      f_name: "Name", f_name_ph: "Your name", f_email: "Email", f_email_ph: "you@email.com", f_phone: "Mobile",
+      f_name: "Name", f_name_ph: "Your name", f_ig: "Instagram handle", f_ig_ph: "@your.clinic", f_email: "Email", f_email_ph: "you@email.com", f_phone: "Mobile",
       f_exp: "What do you need?", f_exp_ph: "E.g. avatar videos for my practice's Instagram…",
       f_consent: "I authorize Kéntro to process my personal data to respond to my request and send me commercial information, under the", f_policy: "Personal Data Policy",
       f_send: "SEND APPLICATION", f_fine: "No spam. We only contact you about your project.",
