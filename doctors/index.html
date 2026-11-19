@@ -376,6 +376,85 @@ section.block { padding: 90px 40px; border-top: 1px solid rgba(26,26,26,0.1); }
   .cta .row { margin-top: 28px; }
   .cta .socials { margin-top: 24px; }
 }
+
+/* ══ v2 · piel clara, más contraste y legibilidad (nov-2026) ══ */
+:root { --bg: #f4f1ec; --bg2: #ebe6de; --card: #ffffff; --ink: #16161a; --muted: rgba(22,22,26,0.68); --line: rgba(22,22,26,0.10); --red: #e63228; }
+body { background: var(--bg); color: var(--ink); }
+::-webkit-scrollbar-track { background: var(--bg); }
+a { color: var(--ink); }
+nav { background: rgba(244,241,236,0.9); border-bottom-color: var(--line); }
+section.block { border-top: none; padding-top: 84px; padding-bottom: 84px; }
+#clon, #plan, #comparativa, #faq { background: var(--bg2); }
+section.block#aplica { padding-top: 84px; }
+.section-head h2 { font-size: clamp(28px, 4vw, 42px); letter-spacing: -0.015em; }
+.section-head .sub, .answer { opacity: 1; color: var(--muted); font-size: 16px; line-height: 1.7; max-width: 600px; }
+.hero h1 { color: var(--ink); }
+.hero-sub { color: var(--muted); font-size: 18px; }
+.hero-points li { font-family: 'Oxanium', sans-serif; font-size: 15px; letter-spacing: 0; color: var(--ink); font-weight: 600; }
+.hero-for { margin-top: 18px; display: flex; flex-wrap: wrap; gap: 6px; }
+.hero-for span { font-size: 12px; font-weight: 600; padding: 6px 12px; border-radius: 30px; background: var(--card); border: 1px solid var(--line); color: var(--muted); }
+.hero-media video { border-radius: 16px; border: none; box-shadow: 0 30px 70px rgba(22,22,26,0.22); }
+.cta-big { box-shadow: 0 10px 26px rgba(230,50,40,0.28); transition: transform 0.2s ease, box-shadow 0.2s ease; }
+.cta-big:hover { opacity: 1; transform: translateY(-1px); box-shadow: 0 14px 30px rgba(230,50,40,0.34); }
+.hero-wa { background: var(--card); border-color: var(--line); }
+.hero-wa:hover { background: var(--card); border-color: rgba(22,22,26,0.3); }
+.format, .step, .who .col, .plan { background: var(--card); border: 1px solid var(--line); border-radius: 16px; box-shadow: 0 1px 2px rgba(22,22,26,0.04), 0 10px 28px rgba(22,22,26,0.05); }
+.format:hover { border-color: rgba(230,50,40,0.35); }
+.format h3 { font-size: 18px; }
+.format p, .step p, .who ul li, .faq p, .cmp td { opacity: 1; color: var(--muted); font-size: 15px; line-height: 1.7; }
+.who .col.no { opacity: 1; background: transparent; box-shadow: none; }
+.slot, .format .media.carrusel { border-radius: 12px; }
+.faq details { background: var(--card); border: 1px solid var(--line); border-radius: 14px; padding: 18px 20px; margin-bottom: 10px; }
+.faq details:last-child { border-bottom: 1px solid var(--line); }
+.faq summary { font-size: 16px; }
+.cmp-wrap { background: var(--card); border-radius: 16px; border: 1px solid var(--line); overflow: hidden; }
+.cmp { font-size: 14px; min-width: 0; }
+.cmp th, .cmp td { border-bottom-color: var(--line); padding: 14px 16px; }
+/* formulario */
+.pasos { color: var(--muted); }
+.survey { background: var(--card); border-radius: 20px; padding: 32px; border: 1px solid var(--line); box-shadow: 0 20px 50px rgba(22,22,26,0.08); }
+.field label { color: var(--muted); font-size: 11px; }
+.field label .opt { text-transform: none; letter-spacing: 0; opacity: 0.7; }
+.field input, .field select, .field textarea { background: #faf8f5; border: 1px solid rgba(22,22,26,0.14); border-radius: 12px; font-size: 16px; padding: 14px 16px; }
+.field input:focus, .field select:focus, .field textarea:focus { border-color: var(--red); box-shadow: 0 0 0 3px rgba(230,50,40,0.12); background: #fff; }
+.field textarea { min-height: 96px; }
+.consent { opacity: 1; color: var(--muted); font-size: 13px; }
+.survey button { width: 100%; font-size: 14px; padding: 18px; box-shadow: 0 10px 26px rgba(230,50,40,0.28); }
+.survey button[disabled] { opacity: 0.6; cursor: progress; }
+.survey .fine { color: var(--muted); }
+/* cierre oscuro para contraste */
+.cta { background: var(--ink); color: #f4f1ec; border-top: none; }
+.cta h2 .strong { color: #fff; }
+.cta h2 .light { color: rgba(244,241,236,0.65); }
+.cta .row a.secondary { color: #f4f1ec; border-color: rgba(244,241,236,0.25); }
+.cta .socials a, .cta footer, .cta footer a { color: rgba(244,241,236,0.6); }
+.cta footer { border-top-color: rgba(244,241,236,0.15); }
+/* barra fija en móvil */
+.m-bar { display: none; }
+@media (max-width: 720px) {
+  section.block, section.block#aplica { padding: 48px 16px; }
+  .section-head { margin-bottom: 24px; }
+  .section-head .sub, .answer { font-size: 15px; }
+  .hero-sub { font-size: 16px; }
+  .survey { padding: 22px 18px; border-radius: 16px; }
+  .format p { display: none; }
+  /* comparativa apilada, sin scroll horizontal */
+  .cmp-wrap { background: none; border: none; overflow: visible; }
+  .cmp, .cmp tbody, .cmp tr, .cmp th, .cmp td { display: block; width: 100%; }
+  .cmp thead { display: none; }
+  .cmp tr { background: var(--card); border: 1px solid var(--line); border-radius: 14px; padding: 4px 2px 6px; margin-bottom: 8px; }
+  .cmp tbody th { width: 100%; border: none; padding: 10px 14px 4px; font-size: 15px; }
+  .cmp td { border: none; padding: 3px 14px; font-size: 13.5px; line-height: 1.45; }
+  .cmp td::before { content: attr(data-label) ' · '; font-family: 'JetBrains Mono', monospace; font-size: 10px; letter-spacing: 0.06em; color: rgba(22,22,26,0.5); }
+  .cmp td.us { background: rgba(230,50,40,0.06); border-radius: 8px; margin: 2px 6px; width: auto; padding: 5px 8px; }
+  .m-bar { display: flex; gap: 10px; position: fixed; left: 0; right: 0; bottom: 0; z-index: 450; padding: 10px 14px calc(10px + env(safe-area-inset-bottom)); background: rgba(244,241,236,0.96); backdrop-filter: blur(12px); border-top: 1px solid var(--line); transform: translateY(110%); transition: transform 0.25s ease; }
+  .m-bar.show { transform: none; }
+  .m-bar .m-cta { flex: 1; text-align: center; font-family: 'JetBrains Mono', monospace; font-size: 13px; font-weight: 500; letter-spacing: 0.04em; padding: 15px 10px; border-radius: 40px; background: var(--red); color: #fff; text-decoration: none; }
+  .m-bar .m-wa { width: 50px; flex: 0 0 50px; border-radius: 50%; background: #25D366; display: flex; align-items: center; justify-content: center; }
+  .m-bar .m-wa svg { width: 26px; height: 26px; fill: #fff; }
+  body.m-bar-on .wa-float { display: none; }
+  body.kc-open .m-bar { display: none; }
+}
 </style>
 <!-- Meta Pixel Code -->
 <script>
@@ -437,6 +516,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         <a class="cta-big" href="#aplica" id="hero-cta" data-i18n="big_cta">QUIERO MIS VÍDEOS</a>
         <a class="hero-wa wa-link" href="https://wa.me/34617172451?text=Hola%20K%C3%A9ntro%2C%20quiero%20informaci%C3%B3n%20sobre%20los%20avatares%20para%20doctores" target="_blank" rel="noopener"><svg viewBox="0 0 32 32" aria-hidden="true"><path d="M16 3C9 3 3.3 8.6 3.3 15.6c0 2.2.6 4.4 1.7 6.3L3 29l7.3-1.9c1.8 1 3.8 1.5 5.8 1.5 7 0 12.7-5.7 12.7-12.6C28.8 8.6 23 3 16 3zm0 23.3c-1.9 0-3.8-.5-5.4-1.5l-.4-.2-4.3 1.1 1.2-4.2-.3-.4c-1.1-1.7-1.6-3.6-1.6-5.6C5.2 9.7 10 5 16 5s10.7 4.7 10.7 10.6S21.9 26.3 16 26.3zm5.9-7.9c-.3-.2-1.9-1-2.2-1.1-.3-.1-.5-.2-.7.2-.2.3-.8 1-1 1.2-.2.2-.4.2-.7.1-.3-.2-1.4-.5-2.6-1.6-1-.9-1.6-1.9-1.8-2.2-.2-.3 0-.5.1-.7l.5-.6c.2-.2.2-.3.3-.6.1-.2 0-.4 0-.6l-1-2.4c-.3-.6-.5-.5-.7-.5h-.6c-.2 0-.6.1-.9.4-.3.3-1.2 1.1-1.2 2.8s1.2 3.2 1.4 3.5c.2.2 2.4 3.6 5.7 5 .8.3 1.4.5 1.9.7.8.3 1.5.2 2.1.1.6-.1 1.9-.8 2.2-1.5.3-.7.3-1.4.2-1.5-.1-.2-.3-.3-.6-.4z"/></svg><span data-i18n="hero_wa">Hablar por WhatsApp</span></a>
       </div>
+      <div class="hero-for"><span data-i18n="hf1">Dermatología</span><span data-i18n="hf2">Odontología</span><span data-i18n="hf3">Cirugía plástica</span><span data-i18n="hf4">Medicina estética</span><span data-i18n="hf5">Oftalmología</span></div>
       <p class="hero-proof" data-i18n="proof">+35M VIEWS GENERADOS CON ESTE SISTEMA EN 2026</p>
     </div>
   </div>
@@ -444,56 +524,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
 <!-- ══════════ 2. SURVEY ══════════ -->
 <!-- ══════════ PLANES ══════════ -->
-<section class="block" id="aplica">
-  <div class="section-head">
-    <span class="tag" data-i18n="ap_tag">{ APLICA }</span>
-    <h2 data-i18n="ap_h">Cuéntanos sobre ti</h2>
-    <p class="sub" data-i18n="ap_sub">Rellena el formulario y te contactamos en menos de 24 horas.</p>
-  </div>
-  <p class="pasos"><b>01</b> <span data-i18n="ps1">Aplicas (2 min)</span> → <b>02</b> <span data-i18n="ps2">Llamada de 15 min</span> → <b>03</b> <span data-i18n="ps3">Primeros vídeos en 7 días</span></p>
-  <div class="survey">
-    <form id="lead-form" action="https://api.web3forms.com/submit" method="POST">
-      <input type="hidden" name="access_key" value="7ebeb2a7-c4f7-46e1-ac9e-f435634b99b4">
-      <input type="hidden" name="subject" value="Nueva aplicación — kentro-ai.com/doctors">
-      <input type="hidden" name="from_name" value="Kentro AI Web">
-      <input type="hidden" name="redirect" value="https://www.kentro-ai.com/gracias?from=doctors&lead=ok">
-      <input type="hidden" name="politica_datos" value="Política de Tratamiento de Datos v1.0 (kentro-ai.com/privacidad)">
-      <input type="hidden" name="fecha_autorizacion" id="fecha-autorizacion" value="">
-      <input type="checkbox" name="botcheck" style="display:none" tabindex="-1" aria-hidden="true">
-      <div class="row2">
-        <div class="field">
-          <label for="f-nombre" data-i18n="f_name">Nombre</label>
-          <input id="f-nombre" name="nombre" type="text" required autocomplete="name" placeholder="Tu nombre" data-i18n-placeholder="f_name_ph">
-        </div>
-        <div class="field">
-          <label for="f-instagram" data-i18n="f_ig">Usuario Instagram</label>
-          <input id="f-instagram" name="instagram" type="text" autocomplete="off" placeholder="@tu.clinica" data-i18n-placeholder="f_ig_ph">
-        </div>
-      </div>
-      <div class="row2">
-        <div class="field">
-          <label for="f-email" data-i18n="f_email">Correo</label>
-          <input id="f-email" name="email" type="email" required autocomplete="email" placeholder="tu@correo.com" data-i18n-placeholder="f_email_ph">
-        </div>
-        <div class="field">
-          <label for="f-celular" data-i18n="f_phone">Celular</label>
-          <input id="f-celular" name="celular" type="tel" required autocomplete="tel" inputmode="tel" placeholder="+57 300 000 0000">
-        </div>
-      </div>
-      <div class="field">
-        <label for="f-expectativas" data-i18n="f_exp">¿Qué necesitas?</label>
-        <textarea id="f-expectativas" name="necesidad" required placeholder="Ej: videos con mi avatar para Instagram de mi consultorio…" data-i18n-placeholder="f_exp_ph"></textarea>
-      </div>
-      <label class="consent"><input type="checkbox" name="consentimiento" required><span><span data-i18n="f_consent">Autorizo a Kéntro a tratar mis datos personales para responder a mi solicitud y enviarme información comercial, conforme a la</span> <a href="/privacidad" target="_blank" rel="noopener" data-i18n="f_policy">Política de Tratamiento de Datos</a>.</span></label>
-      <button type="submit" data-i18n="f_send">ENVIAR APLICACIÓN</button>
-      <div class="fine" data-i18n="f_fine">Sin spam. Solo te contactamos sobre tu proyecto.</div>
-    </form>
-    <div class="gracias" id="gracias">
-      <h3 data-i18n="g_h">Recibido ✦</h3>
-      <p data-i18n="g_p">Te contactamos en menos de 24 horas.</p>
-    </div>
-  </div>
-</section>
+
 
 <!-- ══════════ 1. CHARACTER SHEET → VIDEO ══════════ -->
 <section class="block" id="clon">
@@ -601,6 +632,57 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   <div class="cta-big-wrap">
     <a class="cta-big" href="#aplica" data-i18n="big_cta">QUIERO MIS VÍDEOS</a>
     <div class="micro" data-i18n="big_micro">Sin permanencia · Respuesta en 24 h</div>
+  </div>
+</section>
+
+<section class="block" id="aplica">
+  <div class="section-head">
+    <span class="tag" data-i18n="ap_tag">{ APLICA }</span>
+    <h2 data-i18n="ap_h">Cuéntanos sobre ti</h2>
+    <p class="sub" data-i18n="ap_sub">Rellena el formulario y te contactamos en menos de 24 horas.</p>
+  </div>
+  <p class="pasos"><b>01</b> <span data-i18n="ps1">Aplicas (2 min)</span> → <b>02</b> <span data-i18n="ps2">Llamada de 15 min</span> → <b>03</b> <span data-i18n="ps3">Primeros vídeos en 7 días</span></p>
+  <div class="survey">
+    <form id="lead-form" action="https://api.web3forms.com/submit" method="POST">
+      <input type="hidden" name="access_key" value="7ebeb2a7-c4f7-46e1-ac9e-f435634b99b4">
+      <input type="hidden" name="subject" value="Nueva aplicación — kentro-ai.com/doctors">
+      <input type="hidden" name="from_name" value="Kentro AI Web">
+      <input type="hidden" name="redirect" value="https://www.kentro-ai.com/gracias?from=doctors&lead=ok">
+      <input type="hidden" name="politica_datos" value="Política de Tratamiento de Datos v1.0 (kentro-ai.com/privacidad)">
+      <input type="hidden" name="fecha_autorizacion" id="fecha-autorizacion" value="">
+      <input type="checkbox" name="botcheck" style="display:none" tabindex="-1" aria-hidden="true">
+      <div class="row2">
+        <div class="field">
+          <label for="f-nombre" data-i18n="f_name">Nombre</label>
+          <input id="f-nombre" name="nombre" type="text" required autocomplete="name" placeholder="Tu nombre" data-i18n-placeholder="f_name_ph">
+        </div>
+        <div class="field">
+          <label for="f-celular" data-i18n="f_phone">Celular</label>
+          <input id="f-celular" name="celular" type="tel" required autocomplete="tel" inputmode="tel" placeholder="+57 300 000 0000">
+        </div>
+      </div>
+      <div class="row2">
+        <div class="field">
+          <label for="f-email" data-i18n="f_email">Correo</label>
+          <input id="f-email" name="email" type="email" required autocomplete="email" placeholder="tu@correo.com" data-i18n-placeholder="f_email_ph">
+        </div>
+        <div class="field">
+          <label for="f-instagram"><span data-i18n="f_ig">Usuario Instagram</span> <span class="opt" data-i18n="f_opt">(opcional)</span></label>
+          <input id="f-instagram" name="instagram" type="text" autocomplete="off" placeholder="@tu.clinica" data-i18n-placeholder="f_ig_ph">
+        </div>
+      </div>
+      <div class="field">
+        <label for="f-expectativas"><span data-i18n="f_exp">¿Qué necesitas?</span> <span class="opt" data-i18n="f_opt">(opcional)</span></label>
+        <textarea id="f-expectativas" name="necesidad" placeholder="Ej: videos con mi avatar para Instagram de mi consultorio…" data-i18n-placeholder="f_exp_ph"></textarea>
+      </div>
+      <label class="consent"><input type="checkbox" name="consentimiento" required><span><span data-i18n="f_consent">Autorizo a Kéntro a tratar mis datos personales para responder a mi solicitud y enviarme información comercial, conforme a la</span> <a href="/privacidad" target="_blank" rel="noopener" data-i18n="f_policy">Política de Tratamiento de Datos</a>.</span></label>
+      <button type="submit" data-i18n="f_send">ENVIAR APLICACIÓN</button>
+      <div class="fine" data-i18n="f_fine">Sin spam. Solo te contactamos sobre tu proyecto.</div>
+    </form>
+    <div class="gracias" id="gracias">
+      <h3 data-i18n="g_h">Recibido ✦</h3>
+      <p data-i18n="g_p">Te contactamos en menos de 24 horas.</p>
+    </div>
   </div>
 </section>
 
@@ -984,6 +1066,7 @@ document.getElementById('lead-form').addEventListener('submit', function () {
       hp1: "Avatar y voz clonada en español incluidos", hp2: "Guiones escritos para tu especialidad", hp3: "Entrega en 7 días · sin permanencia",
       hero_wa: "Hablar por WhatsApp",
       proof: "+35M VIEWS GENERADOS CON ESTE SISTEMA EN 2026",
+      hf1: "Dermatología", hf2: "Odontología", hf3: "Cirugía plástica", hf4: "Medicina estética", hf5: "Oftalmología",
       plans_tag: "{ PLANES MENSUALES }", plans_h: "Elige tu plan",
       t1: "ESENCIAL", per: "AL MES", popular: "MÁS POPULAR",
       pl_videos: "vídeos editados", pl_formats: "Todos los formatos", pl_rev: "1 revisión por vídeo", pl_statics: "Estáticos ilimitados",
@@ -993,7 +1076,7 @@ document.getElementById('lead-form').addEventListener('submit', function () {
       ap_tag: "{ APLICA }", ap_h: "Cuéntanos sobre ti", ap_sub: "Rellena el formulario y te contactamos en menos de 24 horas.",
       ps1: "Aplicas (2 min)", ps2: "Llamada de 15 min", ps3: "Primeros vídeos en 7 días",
       f_name: "Nombre", f_name_ph: "Tu nombre", f_ig: "Usuario Instagram", f_ig_ph: "@tu.clinica", f_email: "Correo", f_email_ph: "tu@correo.com", f_phone: "Celular",
-      f_exp: "¿Qué necesitas?", f_exp_ph: "Ej: videos con mi avatar para Instagram de mi consultorio…",
+      f_exp: "¿Qué necesitas?", f_opt: "(opcional)", f_exp_ph: "Ej: videos con mi avatar para Instagram de mi consultorio…",
       f_consent: "Autorizo a Kéntro a tratar mis datos personales para responder a mi solicitud y enviarme información comercial, conforme a la", f_policy: "Política de Tratamiento de Datos",
       f_send: "ENVIAR APLICACIÓN", f_fine: "Sin spam. Solo te contactamos sobre tu proyecto.",
       g_h: "Recibido ✦", g_p: "Te contactamos en menos de 24 horas.",
@@ -1035,6 +1118,7 @@ document.getElementById('lead-form').addEventListener('submit', function () {
       hp1: "Avatar and Spanish voice clone included", hp2: "Scripts written for your specialty", hp3: "Delivered in 7 days · no lock-in",
       hero_wa: "Chat on WhatsApp",
       proof: "+35M VIEWS GENERATED WITH THIS SYSTEM IN 2026",
+      hf1: "Dermatology", hf2: "Dentistry", hf3: "Plastic surgery", hf4: "Aesthetic medicine", hf5: "Ophthalmology",
       plans_tag: "{ MONTHLY PLANS }", plans_h: "Pick your plan",
       t1: "ESSENTIAL", per: "PER MONTH", popular: "MOST POPULAR",
       pl_videos: "edited videos", pl_formats: "All formats", pl_rev: "1 revision per video", pl_statics: "Unlimited statics",
@@ -1044,7 +1128,7 @@ document.getElementById('lead-form').addEventListener('submit', function () {
       ap_tag: "{ APPLY }", ap_h: "Tell us about you", ap_sub: "Fill in the form and we'll contact you within 24 hours.",
       ps1: "Apply (2 min)", ps2: "15-min call", ps3: "First videos in 7 days",
       f_name: "Name", f_name_ph: "Your name", f_ig: "Instagram handle", f_ig_ph: "@your.clinic", f_email: "Email", f_email_ph: "you@email.com", f_phone: "Mobile",
-      f_exp: "What do you need?", f_exp_ph: "E.g. avatar videos for my practice's Instagram…",
+      f_exp: "What do you need?", f_opt: "(optional)", f_exp_ph: "E.g. avatar videos for my practice's Instagram…",
       f_consent: "I authorize Kéntro to process my personal data to respond to my request and send me commercial information, under the", f_policy: "Personal Data Policy",
       f_send: "SEND APPLICATION", f_fine: "No spam. We only contact you about your project.",
       g_h: "Received ✦", g_p: "We'll contact you within 24 hours.",
@@ -1105,6 +1189,32 @@ document.getElementById('lead-form').addEventListener('submit', function () {
   }
   toggle.addEventListener('click', function () { applyLang(lang === 'es' ? 'en' : 'es'); });
   if (lang !== 'es') applyLang(lang);
+})();
+</script>
+<div class="m-bar" id="m-bar">
+  <a class="m-cta" href="#aplica" data-i18n="big_cta">QUIERO MIS VÍDEOS</a>
+  <a class="m-wa wa-link" href="https://wa.me/34617172451?text=Hola%20K%C3%A9ntro%2C%20quiero%20informaci%C3%B3n%20sobre%20los%20avatares%20para%20doctores" target="_blank" rel="noopener" aria-label="WhatsApp"><svg viewBox="0 0 32 32" aria-hidden="true"><path d="M16 3C9 3 3.3 8.6 3.3 15.6c0 2.2.6 4.4 1.7 6.3L3 29l7.3-1.9c1.8 1 3.8 1.5 5.8 1.5 7 0 12.7-5.7 12.7-12.6C28.8 8.6 23 3 16 3zm0 23.3c-1.9 0-3.8-.5-5.4-1.5l-.4-.2-4.3 1.1 1.2-4.2-.3-.4c-1.1-1.7-1.6-3.6-1.6-5.6C5.2 9.7 10 5 16 5s10.7 4.7 10.7 10.6S21.9 26.3 16 26.3zm5.9-7.9c-.3-.2-1.9-1-2.2-1.1-.3-.1-.5-.2-.7.2-.2.3-.8 1-1 1.2-.2.2-.4.2-.7.1-.3-.2-1.4-.5-2.6-1.6-1-.9-1.6-1.9-1.8-2.2-.2-.3 0-.5.1-.7l.5-.6c.2-.2.2-.3.3-.6.1-.2 0-.4 0-.6l-1-2.4c-.3-.6-.5-.5-.7-.5h-.6c-.2 0-.6.1-.9.4-.3.3-1.2 1.1-1.2 2.8s1.2 3.2 1.4 3.5c.2.2 2.4 3.6 5.7 5 .8.3 1.4.5 1.9.7.8.3 1.5.2 2.1.1.6-.1 1.9-.8 2.2-1.5.3-.7.3-1.4.2-1.5-.1-.2-.3-.3-.6-.4z"/></svg></a>
+</div>
+<script>
+(function () {
+  var bar = document.getElementById('m-bar'), hero = document.querySelector('.hero'), form = document.getElementById('aplica');
+  function update() {
+    var past = hero.getBoundingClientRect().bottom < 0;
+    var r = form.getBoundingClientRect(), inForm = r.top < innerHeight && r.bottom > 0;
+    var on = past && !inForm;
+    bar.classList.toggle('show', on);
+    document.body.classList.toggle('m-bar-on', on);
+  }
+  addEventListener('scroll', update, { passive: true }); update();
+  var heads = [...document.querySelectorAll('.cmp thead th')].map(function (h) { return h.textContent.split('(')[0].trim(); });
+  document.querySelectorAll('.cmp tbody tr').forEach(function (tr) {
+    tr.querySelectorAll('td').forEach(function (td, i) { td.setAttribute('data-label', heads[i + 1] || ''); });
+  });
+  var f = document.getElementById('lead-form');
+  f.addEventListener('submit', function () {
+    var btn = f.querySelector('button[type=submit]');
+    setTimeout(function () { btn.disabled = true; btn.textContent = document.documentElement.lang === 'en' ? 'SENDING…' : 'ENVIANDO…'; }, 0);
+  });
 })();
 </script>
 <a class="wa-float wa-link" href="https://wa.me/34617172451?text=Hola%20K%C3%A9ntro%2C%20quiero%20informaci%C3%B3n%20sobre%20los%20avatares%20para%20doctores" target="_blank" rel="noopener" aria-label="Escríbenos por WhatsApp"><svg viewBox="0 0 32 32" aria-hidden="true"><path d="M16 3C9 3 3.3 8.6 3.3 15.6c0 2.2.6 4.4 1.7 6.3L3 29l7.3-1.9c1.8 1 3.8 1.5 5.8 1.5 7 0 12.7-5.7 12.7-12.6C28.8 8.6 23 3 16 3zm0 23.3c-1.9 0-3.8-.5-5.4-1.5l-.4-.2-4.3 1.1 1.2-4.2-.3-.4c-1.1-1.7-1.6-3.6-1.6-5.6C5.2 9.7 10 5 16 5s10.7 4.7 10.7 10.6S21.9 26.3 16 26.3zm5.9-7.9c-.3-.2-1.9-1-2.2-1.1-.3-.1-.5-.2-.7.2-.2.3-.8 1-1 1.2-.2.2-.4.2-.7.1-.3-.2-1.4-.5-2.6-1.6-1-.9-1.6-1.9-1.8-2.2-.2-.3 0-.5.1-.7l.5-.6c.2-.2.2-.3.3-.6.1-.2 0-.4 0-.6l-1-2.4c-.3-.6-.5-.5-.7-.5h-.6c-.2 0-.6.1-.9.4-.3.3-1.2 1.1-1.2 2.8s1.2 3.2 1.4 3.5c.2.2 2.4 3.6 5.7 5 .8.3 1.4.5 1.9.7.8.3 1.5.2 2.1.1.6-.1 1.9-.8 2.2-1.5.3-.7.3-1.4.2-1.5-.1-.2-.3-.3-.6-.4z"/></svg></a>
