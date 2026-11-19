@@ -52,6 +52,7 @@ th { font-family: 'JetBrains Mono', monospace; font-size: 10px; letter-spacing: 
     <div class="progress"><i id="bar" style="width:0%"></i></div>
   </div>
 
+  <h2>{ TIER — QUIÉN PAGA QUÉ }</h2><div class="bars" id="porTier"></div>
   <h2>{ POR DÍA }</h2><div class="bars" id="porDia"></div>
   <h2>{ EDAD }</h2><div class="bars" id="porEdad"></div>
   <h2>{ GÉNERO }</h2><div class="bars" id="porGenero"></div>
@@ -79,14 +80,18 @@ th { font-family: 'JetBrains Mono', monospace; font-size: 10px; letter-spacing: 
       document.getElementById('flagged').textContent = s.flagged;
       document.getElementById('bar').style.width = Math.min(100, s.count * 2) + '%';
       document.getElementById('updated').textContent = 'ACTUALIZADO ' + new Date().toLocaleTimeString('es-ES') + ' · SE REFRESCA SOLO CADA 60 S';
+      var tierNames = { 'gratis': 'Gratis para siempre (1–26)', 'fundador-999': 'Fundador — 9,99 € una vez', 'mensual-999': '9,99 €/mes' };
+      var tierData = {};
+      Object.keys(s.porTier || {}).forEach(function (k) { tierData[tierNames[k] || k] = s.porTier[k]; });
+      bars(document.getElementById('porTier'), tierData, ['Gratis para siempre (1–26)', 'Fundador — 9,99 € una vez', '9,99 €/mes'].filter(function (k) { return tierData[k]; }).concat(Object.keys(tierData).filter(function (k) { return ['Gratis para siempre (1–26)', 'Fundador — 9,99 € una vez', '9,99 €/mes'].indexOf(k) < 0; })));
       bars(document.getElementById('porDia'), s.porDia, Object.keys(s.porDia).sort());
       bars(document.getElementById('porEdad'), s.porEdad, ['14–17', '18–24', '25–34', '35–44', '45–54', '55+']);
       bars(document.getElementById('porGenero'), s.porGenero);
       bars(document.getElementById('porNivel'), s.porNivel, ['Nunca he usado IA', 'La uso de vez en cuando', 'La uso a diario', 'Ya creo contenido con IA']);
       if (s.entries) {
-        document.getElementById('entries').innerHTML = '<table><tr><th>FECHA</th><th>NOMBRE</th><th>EDAD</th><th>GÉNERO</th><th>EMAIL</th><th>NIVEL</th><th>FLAG</th></tr>' +
+        document.getElementById('entries').innerHTML = '<table><tr><th>FECHA</th><th>NOMBRE</th><th>EDAD</th><th>GÉNERO</th><th>EMAIL</th><th>NIVEL</th><th>TIER</th><th>FLAG</th></tr>' +
           s.entries.map(function (e) {
-            return '<tr style="' + (e.flag ? 'opacity:0.45' : '') + '"><td>' + e.fecha + '</td><td>' + e.nombre + '</td><td>' + e.edad + '</td><td>' + e.genero + '</td><td>' + e.email + '</td><td>' + e.nivel + '</td><td style="color:#a01b15">' + (e.flag || '') + '</td></tr>';
+            return '<tr style="' + (e.flag ? 'opacity:0.45' : '') + '"><td>' + e.fecha + '</td><td>' + e.nombre + '</td><td>' + e.edad + '</td><td>' + e.genero + '</td><td>' + e.email + '</td><td>' + e.nivel + '</td><td style="font-family:JetBrains Mono,monospace;font-size:11px">' + (e.tier || '') + '</td><td style="color:#a01b15">' + (e.flag || '') + '</td></tr>';
           }).join('') + '</table>';
       }
     });

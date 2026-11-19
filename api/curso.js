@@ -22,8 +22,24 @@ function spamCheck(nombre, email) {
   return null;
 }
 
+let tierReady = false;
+// Tier por fila: 'gratis' = las primeras 26 plazas fundadoras; 'fundador-999' = 9,99 EUR una vez
+// (plazas 27-50); 'mensual-999' = 9,99 EUR/mes (a partir de la 51). Backfill una sola vez (tier IS NULL).
+async function ensureTier(sql) {
+  if (tierReady) return;
+  await sql`ALTER TABLE curso_leads ADD COLUMN IF NOT EXISTS tier text`;
+  await sql`WITH ranked AS (
+      SELECT email, row_number() OVER (ORDER BY ts ASC) AS rn
+      FROM curso_leads WHERE flagged = false
+    )
+    UPDATE curso_leads c SET tier = CASE WHEN r.rn <= 26 THEN 'gratis' ELSE 'fundador-999' END
+    FROM ranked r WHERE c.email = r.email AND c.tier IS NULL`;
+  tierReady = true;
+}
+
 module.exports = async (req, res) => {
   const sql = neon(process.env.DATABASE_URL);
+  await ensureTier(sql);
 
   if (req.method === 'POST') {
     const b = req.body || {};
@@ -42,15 +58,18 @@ module.exports = async (req, res) => {
       const [{ reciente }] = await sql`SELECT count(*)::int AS reciente FROM curso_leads WHERE ip = ${ip} AND ts > now() - interval '1 hour'`;
       if (reciente >= 4) motivo = 'rate';
     }
-    await sql`INSERT INTO curso_leads (nombre, edad, genero, email, nivel, ip, flagged, motivo)
-              VALUES (${nombre}, ${edad}, ${genero}, ${email}, ${nivel}, ${ip}, ${!!motivo}, ${motivo})
+    await sql`INSERT INTO curso_leads (nombre, edad, genero, email, nivel, ip, flagged, motivo, tier)
+              VALUES (${nombre}, ${edad}, ${genero}, ${email}, ${nivel}, ${ip}, ${!!motivo}, ${motivo},
+                      CASE WHEN ${!!motivo} THEN NULL
+                           WHEN (SELECT count(*) FROM curso_leads WHERE flagged = false) < 50 THEN 'fundador-999'
+                           ELSE 'mensual-999' END)
               ON CONFLICT (email) DO NOTHING`;
     const [{ count }] = await sql`SELECT count(*)::int AS count FROM curso_leads WHERE flagged = false`;
     return res.status(200).json({ ok: true, count });
   }
 
   if (req.method === 'GET') {
-    const all = await sql`SELECT nombre, edad, genero, email, nivel, ts, flagged, motivo FROM curso_leads ORDER BY ts DESC`;
+    const all = await sql`SELECT nombre, edad, genero, email, nivel, ts, flagged, motivo, tier FROM curso_leads ORDER BY ts DESC`;
     const rows = all.filter((r) => !r.flagged);
     const count = rows.length;
     const bucket = (e) => (e < 18 ? '14–17' : e < 25 ? '18–24' : e < 35 ? '25–34' : e < 45 ? '35–44' : e < 55 ? '45–54' : '55+');
@@ -62,12 +81,13 @@ module.exports = async (req, res) => {
       porGenero: tally(rows, (r) => r.genero),
       porEdad: tally(rows, (r) => bucket(r.edad)),
       porNivel: tally(rows, (r) => r.nivel),
+      porTier: tally(rows, (r) => r.tier || '—'),
       porDia: tally(rows, (r) => new Date(r.ts).toISOString().slice(0, 10)),
     };
     const q = req.query || {};
     if (q.full && q.full === process.env.CURSO_STATS_KEY) {
       stats.entries = all.map((r) => ({
-        nombre: r.nombre, edad: r.edad, genero: r.genero, email: r.email, nivel: r.nivel,
+        nombre: r.nombre, edad: r.edad, genero: r.genero, email: r.email, nivel: r.nivel, tier: r.tier || '',
         flag: r.flagged ? (r.motivo || 'spam') : '',
         fecha: new Date(r.ts).toISOString().slice(0, 16).replace('T', ' '),
       }));
