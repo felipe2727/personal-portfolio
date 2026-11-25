@@ -97,7 +97,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       <span class="arrow">→</span>
     </a>
     <a class="link featured" href="/curso" data-ev="menu_curso">
-      <div><span class="tag">{ ÚLTIMAS PLAZAS }</span><h2>Curso de IA</h2><p>9,99 € para siempre · después 9,99 €/mes</p></div>
+      <div><span class="tag">{ ÚLTIMAS PLAZAS }</span><h2>Curso de IA</h2><p id="curso-precio">9,99 € para siempre · después 9,99 €/mes</p></div>
       <span class="arrow">→</span>
     </a>
     <a class="link" href="/" data-ev="menu_ads">
@@ -117,5 +117,10 @@ document.querySelectorAll('.link').forEach(function (a) {
 });
 </script>
 <script src="/cookie-consent.js" defer></script>
+<script>
+fetch('/api/curso').then(function (r) { return r.json(); }).then(function (s) {
+  if (s.batch >= 2) document.getElementById('curso-precio').textContent = '19,99 \u20ac para siempre \u00b7 despu\u00e9s 9,99 \u20ac/mes';
+}).catch(function () {});
+</script>
 </body>
 </html>

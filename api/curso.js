@@ -62,6 +62,7 @@ module.exports = async (req, res) => {
               VALUES (${nombre}, ${edad}, ${genero}, ${email}, ${nivel}, ${ip}, ${!!motivo}, ${motivo},
                       CASE WHEN ${!!motivo} THEN NULL
                            WHEN (SELECT count(*) FROM curso_leads WHERE flagged = false) < 50 THEN 'fundador-999'
+                           WHEN (SELECT count(*) FROM curso_leads WHERE flagged = false) < 100 THEN 'fundador-1999'
                            ELSE 'mensual-999' END)
               ON CONFLICT (email) DO NOTHING`;
     const [{ count }] = await sql`SELECT count(*)::int AS count FROM curso_leads WHERE flagged = false`;
@@ -74,9 +75,11 @@ module.exports = async (req, res) => {
     const count = rows.length;
     const bucket = (e) => (e < 18 ? '14–17' : e < 25 ? '18–24' : e < 35 ? '25–34' : e < 45 ? '35–44' : e < 55 ? '45–54' : '55+');
     const tally = (arr, fn) => arr.reduce((m, x) => { const k = fn(x); m[k] = (m[k] || 0) + 1; return m; }, {});
+    const batch = count < 50 ? 1 : 2;
     const stats = {
       count,
-      plazasGratis: Math.max(0, 50 - count),
+      batch,
+      plazasGratis: batch === 1 ? 50 - count : Math.max(0, 100 - count),
       flagged: all.length - count,
       porGenero: tally(rows, (r) => r.genero),
       porEdad: tally(rows, (r) => bucket(r.edad)),

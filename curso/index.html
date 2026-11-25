@@ -118,7 +118,13 @@ button:disabled { opacity: 0.5; cursor: wait; }
 (function () {
   fetch('/api/curso').then(function (r) { return r.json(); }).then(function (s) {
     document.getElementById('plazas').textContent = s.plazasGratis;
-  }).catch(function () { document.getElementById('plazas').textContent = '24'; });
+    if (s.batch >= 2) {
+      document.querySelector('h1').innerHTML = '<em>19,99 \u20ac una vez, para siempre si reservas ahora</em> \u2014 despu\u00e9s, 9,99 \u20ac al mes';
+      document.querySelector('.sub').textContent = 'Aprende a crear contenido con IA como el que ves en esta cuenta. Las 50 plazas de fundador a 9,99 \u20ac ya volaron \u2014 abrimos 50 nuevas a 19,99 \u20ac: un solo pago y acceso para siempre.';
+      document.querySelector('.counter .lbl').innerHTML = 'PLAZAS A 19,99 \u20ac PARA SIEMPRE<br>LAS 50 DE FUNDADOR YA VOLARON';
+      document.querySelector('#gracias p').innerHTML = 'Te aviso por email en cuanto abra el curso.<br>Tu precio queda bloqueado: un solo pago de 19,99 \u20ac y acceso para siempre.';
+    }
+  }).catch(function () { document.getElementById('plazas').textContent = '7'; });
 
   var form = document.getElementById('curso-form');
   form.addEventListener('submit', function (e) {

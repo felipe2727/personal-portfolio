@@ -80,10 +80,10 @@ th { font-family: 'JetBrains Mono', monospace; font-size: 10px; letter-spacing: 
       document.getElementById('flagged').textContent = s.flagged;
       document.getElementById('bar').style.width = Math.min(100, s.count * 2) + '%';
       document.getElementById('updated').textContent = 'ACTUALIZADO ' + new Date().toLocaleTimeString('es-ES') + ' · SE REFRESCA SOLO CADA 60 S';
-      var tierNames = { 'gratis': 'Gratis para siempre (1–26)', 'fundador-999': 'Fundador — 9,99 € una vez', 'mensual-999': '9,99 €/mes' };
+      var tierNames = { 'gratis': 'Gratis para siempre (1–26)', 'fundador-999': 'Fundador — 9,99 € una vez', 'fundador-1999': 'Fundador 2ª ronda — 19,99 € una vez', 'mensual-999': '9,99 €/mes' };
       var tierData = {};
       Object.keys(s.porTier || {}).forEach(function (k) { tierData[tierNames[k] || k] = s.porTier[k]; });
-      bars(document.getElementById('porTier'), tierData, ['Gratis para siempre (1–26)', 'Fundador — 9,99 € una vez', '9,99 €/mes'].filter(function (k) { return tierData[k]; }).concat(Object.keys(tierData).filter(function (k) { return ['Gratis para siempre (1–26)', 'Fundador — 9,99 € una vez', '9,99 €/mes'].indexOf(k) < 0; })));
+      bars(document.getElementById('porTier'), tierData, ['Gratis para siempre (1–26)', 'Fundador — 9,99 € una vez', 'Fundador 2ª ronda — 19,99 € una vez', '9,99 €/mes'].filter(function (k) { return tierData[k]; }).concat(Object.keys(tierData).filter(function (k) { return ['Gratis para siempre (1–26)', 'Fundador — 9,99 € una vez', 'Fundador 2ª ronda — 19,99 € una vez', '9,99 €/mes'].indexOf(k) < 0; })));
       bars(document.getElementById('porDia'), s.porDia, Object.keys(s.porDia).sort());
       bars(document.getElementById('porEdad'), s.porEdad, ['14–17', '18–24', '25–34', '35–44', '45–54', '55+']);
       bars(document.getElementById('porGenero'), s.porGenero);
