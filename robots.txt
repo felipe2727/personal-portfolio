@@ -1,6 +1,0 @@
-User-agent: *
-Allow: /
-Disallow: /curso/
-Disallow: /api/
-
-Sitemap: https://www.kentro-ai.com/sitemap.xml

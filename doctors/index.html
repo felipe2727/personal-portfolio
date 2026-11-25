@@ -994,10 +994,8 @@ document.getElementById('lead-form').addEventListener('submit', function () {
     var form = document.getElementById('lead-form');
     var payload = Object.fromEntries(new FormData(form).entries());
     delete payload.access_key; delete payload.botcheck; delete payload.redirect; delete payload.from_name;
-    payload._subject = '[BACKUP] ' + (payload.subject || 'Lead kentro-ai.com/doctors');
     delete payload.subject;
-    payload._captcha = 'false';
-    fetch('https://formsubmit.co/ajax/felipe@kentro-ai.com', {
+    fetch('/api/doctors', {
       method: 'POST', keepalive: true,
       headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
       body: JSON.stringify(payload)
